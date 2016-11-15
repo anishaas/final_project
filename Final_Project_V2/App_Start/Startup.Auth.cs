@@ -6,9 +6,9 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 
 //DONE: Change the using statement here to match your project's name
-using FinalProject.Models;
+using Final_Project_V2.Models;
 
-namespace FinalProject
+namespace Final_Project_V2
 {
     public partial class Startup
     {

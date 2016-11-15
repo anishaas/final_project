@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-//DONE: Change the namespace here to match your project's name
-namespace Final_Project_V2.Controllers
+namespace FinalProject.Controllers.MainControllers
 {
-    public class HomeController : Controller
+    public class CustomerController : Controller
     {
+        // GET: Customer
         public ActionResult Index()
         {
             return View();

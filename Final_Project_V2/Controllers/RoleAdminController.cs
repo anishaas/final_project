@@ -7,10 +7,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
 //DONE: Change the using statement here to match your project's name
-using FinalProject.Models;
+using Final_Project_V2.Models;
 
 //DONE: Change the namespace here to match your project's name
-namespace FinalProject.Controllers
+namespace Final_Project_V2.Controllers
 {
     //LATER: Once you have roles working, uncomment the tag below to limit access to this page
     //[Authorize]

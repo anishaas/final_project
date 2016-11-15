@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace FinalProject.Models
+namespace Final_Project_V2.Models
 {
     public class ProjectGenres
     {

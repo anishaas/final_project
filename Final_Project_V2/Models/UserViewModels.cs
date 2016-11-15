@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 
-namespace FinalProject.Models
+namespace Final_Project_V2.Models
 {
     public class LoginViewModel
     {

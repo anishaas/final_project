@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace FinalProject.Models
+namespace Final_Project_V2.Models
 {
     public class ProjectSongs
     {

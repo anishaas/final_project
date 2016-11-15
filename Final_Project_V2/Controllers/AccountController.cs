@@ -1,5 +1,5 @@
 ﻿//DONE: Change the using statement here to match your project's name
-using FinalProject.Models;
+using Final_Project_V2.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 
 //DONE: Change the namespace here to match your project's name
-namespace FinalProject.Controllers
+namespace Final_Project_V2.Controllers
 {
     [Authorize]
     public class AccountController : Controller

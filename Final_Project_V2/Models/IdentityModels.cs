@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 //DONE: Change the namespace here to match your project's name
-namespace FinalProject.Models
+namespace Final_Project_V2.Models
 {
     // You can add profile data for the user by adding more properties to your AppUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     /* @PF
@@ -73,6 +73,6 @@ namespace FinalProject.Models
         //Add dbSet for roles
          public DbSet<AppRole> AppRoles { get; set; }
 
-        //public System.Data.Entity.DbSet<FinalProject.Models.AppUser> AppUsers { get; set; }
+        //public System.Data.Entity.DbSet<Final_Project_V2.Models.AppUser> AppUsers { get; set; }
     }
 }

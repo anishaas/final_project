@@ -12,9 +12,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
 // Change the using statement here to match your project's name
-using FinalProject.Models;
+using Final_Project_V2.Models;
 
-namespace FinalProject
+namespace Final_Project_V2
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class AppUserManager : UserManager<AppUser>
