@@ -1964,6 +1964,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\AlbumSong.cs" />
+    <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\Discount.cs" />
+    <Compile Include="Models\Feature.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IdentityRoles.cs" />
     <Compile Include="Models\ProjectAlbums.cs" />
@@ -1971,6 +1977,9 @@
     <Compile Include="Models\ProjectGenres.cs" />
     <Compile Include="Models\ProjectSongs.cs" />
     <Compile Include="Models\RoleViewModels.cs" />
+    <Compile Include="Models\Song.cs" />
+    <Compile Include="Models\UserActivityClassification.cs" />
+    <Compile Include="Models\UserActivityInput.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
