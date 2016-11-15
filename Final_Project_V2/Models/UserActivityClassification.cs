@@ -20,5 +20,8 @@ namespace Final_Project_V2.Models
         public String UserActivityTxt4 { get; set; }
         public String UserActivityTxt5 { get; set; }
         public DateTime UserActivityClassificationTimestamp { get; set; }
+
+        //Navigational Properties
+        public UserActivityInput UserActivityInputID { get; set; }
     }
 }
