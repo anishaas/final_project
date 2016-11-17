@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EZ$ - Login</title>
+
+    @Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHeader.cshtml"))
+</head>
+<body class="menubar-hoverable header-fixed ">
+
+    <!-- BEGIN LOGIN SECTION -->
+    <section class="section-account">
+        <div class="img-backdrop" style="background-image: url('http://static.wixstatic.com/media/13e356_2639323ab8c049bebc7e46a1a0503e19.jpg_srz_1903_1065_85_22_0.50_1.20_0.00_jpg_srz')"></div>
+        <div class="spacer"></div>
+        <div class="card contain-sm style-transparent">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <br />
+                        <span class="text-lg text-bold text-primary">EZ$ Entertainment</span>
+                        <br /><br />
+                        <form class="form floating-label" action="../../html/dashboards/dashboard.html" accept-charset="utf-8" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="username" name="username">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password" name="password">
+                                <label for="password">Password</label>
+                                <p class="help-block"><a href="#">Forgotten?</a></p>
+                            </div>
+                            <br />
+                            <div class="row">    
+                                <div class="col-xs-6">
+                                    <button class="btn btn-primary btn-raised" type="submit">Login</button>
+                                </div><!--end .col -->
+                            </div><!--end .row -->
+                        </form>
+                    </div><!--end .col -->
+                    <div class="col-sm-5 col-sm-offset-1 text-center">
+                        <br><br>
+                        <h3 class="text-light">
+                            No account yet?
+                        </h3>
+                        <a class="btn btn-block btn-raised btn-primary" href="#">Sign up here</a>
+                    </div><!--end .col -->
+                </div><!--end .row -->
+            </div><!--end .card-body -->
+        </div><!--end .card -->
+    </section>
+    <!-- END LOGIN SECTION -->
+    <!-- BEGIN JAVASCRIPT -->
+    @Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewFooter.cshtml"))
+    <!-- END JAVASCRIPT -->
+
+</body>
+</html>

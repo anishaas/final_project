@@ -1987,6 +1987,16 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\SandBoxViews\SandBoxCustomerWelcomePage.cshtml" />
+    <Content Include="Views\SandBoxViews\userViewFooter.cshtml" />
+    <Content Include="Views\SandBoxViews\userViewHeader.cshtml" />
+    <Content Include="Views\SandBoxViews\userViewHTMLComponents.cshtml" />
+    <Content Include="Views\SandBoxViews\userViewLayout.cshtml" />
+    <Content Include="Views\SandBoxViews\Search\AlbumSearch\customerAlbumSearch.cshtml" />
+    <Content Include="Views\SandBoxViews\Search\SongSearch\customerSongSearch.cshtml" />
+    <Content Include="Views\SandBoxViews\AccountScreens\Login.cshtml" />
+    <Content Include="Views\SandBoxViews\AccountScreens\ManageAccount.cshtml" />
+    <Content Include="Views\SandBoxViews\AccountScreens\NewAccount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1998,6 +2008,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AjaxControllers\" />
     <Folder Include="Views\Customer\" />
+    <Folder Include="Views\SandBoxViews\WelcomePage\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
   <PropertyGroup>

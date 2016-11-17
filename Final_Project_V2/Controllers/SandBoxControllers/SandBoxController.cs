@@ -11,7 +11,34 @@ namespace FinalProject.Controllers.SandBoxControllers
         // GET: SandBox
         public ActionResult Index()
         {
-            return View("~/Views/SandBoxViews/SandBox1.cshtml");
+            return View("~/Views/SandBoxViews/userViewLayout.cshtml");
+        }
+
+        public ActionResult getCustomerSongSearchPage()
+        {
+            return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
+        }
+
+        public ActionResult getCustomerAlbumSearchPage()
+        {
+            return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
+        }
+
+        public ActionResult getSongDetailsPage()
+        {
+            return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
+        }
+        public ActionResult getAlbumDetailsPage()
+        {
+            return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
+        }
+        public ActionResult getUserAccountPage()
+        {
+            return View("~/Views/SandBoxViews/AccountScreens/ManageAccount.cshtml");
+        }
+        public ActionResult getLoginPage()
+        {
+            return View("~/Views/SandBoxViews/AccountScreens/Login.cshtml");
         }
     }
 }
