@@ -60,10 +60,14 @@ namespace Final_Project_V2.Models
         {
         }
 
-        public DbSet<ProjectAlbums> Albums { get; set; }
-        public DbSet<ProjectArtists> Artists { get; set; }
-        public DbSet<ProjectGenres> Genres { get; set; }
-        public DbSet<ProjectSongs> Songs { get; set; }
+        public DbSet<Song> Songs { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Artist> Artists { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
+        public DbSet<AlbumSongValue> AlbumSongValues { get; set; }
+        public DbSet<UserActivityInput> UserActivityInputs { get; set; }
+
 
         public static AppDbContext Create()
         {

@@ -11,6 +11,7 @@ namespace Final_Project_V2.Models
         public Int32 SongID { get; set; }
         public string SongTitle { get; set; }
         public DateTime SongTimestamp { get; set; }
+        public bool Featured { get; set; }
 
         //navigational
         public virtual Artist SongArtist { get; set; }

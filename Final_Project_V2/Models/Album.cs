@@ -12,6 +12,7 @@ namespace Final_Project_V2.Models
         public decimal AlbumPrice { get; set; }
         public string AlbumName { get; set; }
         public DateTime AlbumTimestamp { get; set; }
+        public bool Featured { get; set; }
 
         //navigational
         public virtual Genre AlbumGenre { get; set; }
