@@ -36,6 +36,10 @@ namespace FinalProject.Controllers.SandBoxControllers
         {
             return View("~/Views/SandBoxViews/AccountScreens/ManageAccount.cshtml");
         }
+        public ActionResult getNewAccountPage()
+        {
+            return View("~/Views/SandBoxViews/AccountScreens/NewAccount.cshtml");
+        }
         public ActionResult getLoginPage()
         {
             return View("~/Views/SandBoxViews/AccountScreens/Login.cshtml");
