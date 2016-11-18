@@ -1919,6 +1919,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\ProjectJs\songSearchJs\songSearch.js" />
+    <Content Include="Scripts\ProjectJs\songSearchJs\songSearchComponents.js" />
+    <Content Include="Scripts\ProjectJs\songSearchJs\songSearchHelperFunctions.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
