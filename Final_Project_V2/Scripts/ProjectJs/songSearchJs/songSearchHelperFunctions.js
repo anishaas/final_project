@@ -7,18 +7,28 @@ var songSearchHelperFunctions = {};
 
     //Public API's	
     context.test = function () {
-        alert('wtf');
+        $.post(songSearchURLs.getGenreDataURL)
+        .done(function (data) {
+            if (data != "fail") {
+                //alert(data);
+
+                $.each(data, function (index, item) {
+                    alert(index);
+                });
+            }
+        });
     };
 
     context.setupGenres = function setupGenres(){
         $.post(songSearchURLs.getGenreDataURL)
         .done(function (data) {
             if (data != "fail") {
-                alert(data);
-                return;
+                //alert(data);
+                /*
                 $.each(data, function (index, item) {
-                    alert(item);
+                    alert(index);
                 });
+                */
             }
         });
 

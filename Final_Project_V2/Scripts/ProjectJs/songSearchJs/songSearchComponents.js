@@ -4,7 +4,8 @@ var htmlComponents = {
 }
 
 var songSearchURLs = {
-    getGenreDataURL: '/data/getGenreData'
+    getGenreDataURL: '/data/getGenreData',
+    searchSongURL: '/search/searchResults'
 }
 
 $(document).ready(function () {
