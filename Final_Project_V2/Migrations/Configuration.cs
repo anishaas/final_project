@@ -4,6 +4,7 @@ namespace Final_Project_V2.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    
 
     internal sealed class Configuration : DbMigrationsConfiguration<Final_Project_V2.Models.AppDbContext>
     {
@@ -11,7 +12,7 @@ namespace Final_Project_V2.Migrations
         {
             AutomaticMigrationsEnabled = false;
         }
-
+        /*
         protected override void Seed(Final_Project_V2.Models.AppDbContext context)
         {
             //create a song to add
@@ -27,5 +28,6 @@ namespace Final_Project_V2.Migrations
             song1.Albums.Add(db.Albums.FirstOrDefault(a => a.Name == "21"));
             db.SaveChanges();
         }
+        */
     }
 }
