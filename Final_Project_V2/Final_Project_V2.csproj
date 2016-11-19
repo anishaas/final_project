@@ -2000,6 +2000,7 @@
     <Content Include="Views\SandBoxViews\AccountScreens\Login.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\ManageAccount.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\NewAccount.cshtml" />
+    <Content Include="Views\SandBoxViews\Footers\userSongSearchFooter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
