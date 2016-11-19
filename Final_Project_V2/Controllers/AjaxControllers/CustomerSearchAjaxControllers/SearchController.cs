@@ -35,7 +35,8 @@ namespace FinalProject.Controllers.MainControllers
             //convert songs objects to JSON for frontend
             var json = new JavaScriptSerializer().Serialize(SelectedSongs);
 
-            return View();
+            return View ("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
+
             //Display message to users
             //if (SelectedSongs == null)
             //{

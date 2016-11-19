@@ -1922,7 +1922,6 @@
     <Content Include="Scripts\ProjectJs\songSearchJs\songSearch.js" />
     <Content Include="Scripts\ProjectJs\songSearchJs\songSearchComponents.js" />
     <Content Include="Scripts\ProjectJs\songSearchJs\songSearchHelperFunctions.js" />
-    <Content Include="Scripts\ProjectJs\UserViewConfigJs\userViewConfig.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
@@ -1947,9 +1946,9 @@
     <Content Include="Views\Members\Details.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
-    <Content Include="Views\RoleAdmin\Create.cshtml" />
-    <Content Include="Views\RoleAdmin\Edit.cshtml" />
-    <Content Include="Views\RoleAdmin\Index.cshtml" />
+    <Content Include="Views\Members\RoleAdmin\Create.cshtml" />
+    <Content Include="Views\Members\RoleAdmin\Edit.cshtml" />
+    <Content Include="Views\Members\RoleAdmin\Index.cshtml" />
     <Content Include="Views\SandBoxViews\SandBox1.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -1962,7 +1961,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainControllers\CustomerController.cs" />
-    <Compile Include="Controllers\MainControllers\SearchController.cs" />
+    <Compile Include="Controllers\AjaxControllers\CustomerSearchAjaxControllers\SearchController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SandBoxControllers\SandBoxController.cs" />
     <Compile Include="Controllers\SearchingController.cs" />
@@ -2010,12 +2009,8 @@
     <Content Include="Views\SandBoxViews\AccountScreens\Login.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\ManageAccount.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\NewAccount.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Search\searchbySongTitle.cshtml" />
-=======
-    <Content Include="Views\SandBoxViews\Footers\userSongSearchFooter.cshtml" />
-    <Content Include="Views\SandBoxViews\Footers\userViewFooter.cshtml" />
->>>>>>> 0cd591cd7e96d0f45ac7499bbb006f781f38da10
+    <Content Include="Views\Search\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2025,7 +2020,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\AjaxControllers\" />
     <Folder Include="Views\Customer\" />
     <Folder Include="Views\SandBoxViews\WelcomePage\" />
   </ItemGroup>

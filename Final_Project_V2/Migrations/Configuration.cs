@@ -4,24 +4,18 @@ namespace Final_Project_V2.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-<<<<<<< HEAD
     using Final_Project_V2.Models;
-=======
     
->>>>>>> 0cd591cd7e96d0f45ac7499bbb006f781f38da10
-
     internal sealed class Configuration : DbMigrationsConfiguration<Final_Project_V2.Models.AppDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
-<<<<<<< HEAD
 
         //instance of AppDbContext file
         private AppDbContext db = new AppDbContext();
 
-=======
         /*
 >>>>>>> 0cd591cd7e96d0f45ac7499bbb006f781f38da10
         protected override void Seed(Final_Project_V2.Models.AppDbContext context)
