@@ -15,16 +15,14 @@ namespace Final_Project_V2.Migrations
 
         //instance of AppDbContext file
         private AppDbContext db = new AppDbContext();
-
-        /*
->>>>>>> 0cd591cd7e96d0f45ac7499bbb006f781f38da10
+   
         protected override void Seed(Final_Project_V2.Models.AppDbContext context)
         {
             //create a song to add
             Song song1 = new Song();
             song1.SongTitle = "Rolling in the Deep";
             db.Songs.AddOrUpdate(s => s.SongTitle, song1);
-            db.SaveChanges();
+            db.SaveChanges();       
 
             Genre genre1 = new Genre();
             genre1.GenreName = "Pop";
@@ -42,12 +40,31 @@ namespace Final_Project_V2.Migrations
             db.SaveChanges();
 
             //find the song you just created in the database
-           //song1 = db.Songs.FirstOrDefault(s => s.SongTitle == "Rolling in the Deep");
+           song1 = db.Songs.FirstOrDefault(s => s.SongTitle == "Rolling in the Deep");
            song1.SongArtist = artist1;
            song1.SongGenre = genre1;
-           //song1.SongAlbums = album1;
-           //db.SaveChanges();
+           song1.SongAlbums.Add(db.Albums.FirstOrDefault(a => a.AlbumName == "21"));
+           db.SaveChanges();
+
+            Song song2 = new Song();
+            song2.SongTitle = "Crazy Girl";
+            db.Songs.AddOrUpdate(s => s.SongTitle, song2);
+            db.SaveChanges();
+
+            Genre genre2 = new Genre();
+            genre2.GenreName = "Country";
+            db.Genres.AddOrUpdate(g => g.GenreName, genre2);
+            db.SaveChanges();
+
+            Album album2 = new Album();
+            album2.AlbumName = "Life At Best (Deluxe Version)";
+            db.Albums.AddOrUpdate(a => a.AlbumName, album2);
+            db.SaveChanges();
+
+            Artist artist2 = new Artist();
+            artist2.ArtistName = "Eli Young Band";
+            db.Artists.AddOrUpdate(a => a.ArtistName, artist2);
+            db.SaveChanges();
         }
-        */
     }
 }

@@ -103,31 +103,52 @@ namespace FinalProject.Controllers.MainControllers
             return AllGenres;
         }
 
-        public string SearchResults(string songTitle, string songArtist, string songAlbum, string selectedGenre)
+        public string SearchResults()
         {
-            ViewBag.AllGenres = GetAllGenres();
+            //string songTitle, string songArtist, string songAlbum, string selectedGenre
+            var songTitle = Request.Form["songTitle"];
+            var artistName = Request.Form["artistName"];
+            var albumName = Request.Form["albumName"];
+            var genreArray = Request.Form["genreArray"];
+            var ratingFilterType = Request.Form["ratingFilterType"];
+            var ratingInput1 = Request.Form["ratingInput1"];
+            var ratingInput2 = Request.Form["ratingInput2"];
+
             var query = from s in db.Songs
                         select s;
-            if (songTitle != null || songTitle != "") 
-            {
-                query = query.Where(s => s.SongTitle.Contains(songTitle) && s.SongArtist.ArtistName.Contains(songArtist));
-            }
-            //check genre dropdown
-            if (selectedGenre == null) // they chose "no genre" from the drop-down
-            {
-                //replace statement with AJAX request
-                ViewBag.SelectedGenre = "No genre was selected";
-            }
-            else //genre was selected
-            {
-                List<Genre> AllGenres = db.Genres.ToList();
-                Genre GenreToDisplay = AllGenres.Find(g => g.GenreName == selectedGenre);
-                ViewBag.Genre = "The selected genre is " + GenreToDisplay.GenreName;
-                query = query.Where(s => s.SongGenre.GenreName == selectedGenre);
-            }
-            
 
-           
+            if (songTitle != null && songTitle != "") //check for matching title 
+            {
+                query = query.Where(s => s.SongTitle.Contains(songTitle));
+            } 
+
+            if (artistName != null && artistName != "")
+            {
+                query = query.Where(s => s.SongArtist.ArtistName.Contains(artistName));
+            }
+
+            /*
+            if (albumName != null && albumName != "")
+            {
+                query = query.Where(a => a.SongAlbums.AlbumName.Contains(artistName));
+            }
+            */
+
+           if (genreArray != null && genreArray != "")
+           {
+                List<string> GenresToCheck = new List<string>();
+                foreach (Char genre in genreArray)
+                {
+                    GenresToCheck.Add(genre.ToString());
+                }     
+                foreach(string genre in GenresToCheck)
+                {
+                    query = query.Where(s => s.SongGenre.GenreName.Contains(genre));
+                }
+           }
+
+           //check genre dropdown
+
             query = query.OrderBy(s => s.SongTitle);
             List<Song> SelectedSongs = query.ToList();
             ViewBag.SelectedSongCount = SelectedSongs.Count();
@@ -135,9 +156,9 @@ namespace FinalProject.Controllers.MainControllers
 
             //order query
             //SelectedCustomers.OrderBy(c => c.LastName).ThenBy(c => c.FirstName).ThenBy(c => c.AverageSale);
+            var json = new JavaScriptSerializer().Serialize(SelectedSongs);
 
-
-            return "hi";
+            return json;
         }
 
 
