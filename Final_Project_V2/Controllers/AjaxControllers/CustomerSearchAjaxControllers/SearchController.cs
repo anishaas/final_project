@@ -19,9 +19,8 @@ namespace FinalProject.Controllers.MainControllers
         {
             return View();
         }
-
-       // [HttpPost]
-        public ActionResult searchbySongTitle()
+        [HttpPost]
+        public String searchbySongTitle()
         {
             var songTitle = Request.Form["songTitle"];
             //var songArtist = Request.Form["songArtist"];
@@ -35,7 +34,7 @@ namespace FinalProject.Controllers.MainControllers
             //convert songs objects to JSON for frontend
             var json = new JavaScriptSerializer().Serialize(SelectedSongs);
 
-            return View ("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
+            return "test";
 
             //Display message to users
             //if (SelectedSongs == null)
@@ -47,5 +46,61 @@ namespace FinalProject.Controllers.MainControllers
             //    return "Successful search";
             //}
         }
+
+        public ActionResult searchbyAlbumTitle()
+        {
+            var albumTitle = Request.Form["albumTitle"];
+            //var songArtist = Request.Form["songArtist"];
+
+            //Find relevant songs
+            var query = from a in db.Albums
+                        select a;
+            query = query.Where(a => a.AlbumName.Contains(albumTitle));
+            List<Album> SelectedAlbums = query.ToList();
+
+            //convert songs objects to JSON for frontend
+            var json = new JavaScriptSerializer().Serialize(SelectedAlbums);
+
+            return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
+
+            //Display message to users
+            //if (SelectedSongs == null)
+            //{
+            //    return "No songs found based on your search";
+            //}
+            //else
+            //{
+            //    return "Successful search";
+            //}
+        }
+
+        public ActionResult searchbyArtistName()
+        {
+            var artistName= Request.Form["artistName"];
+            //var songArtist = Request.Form["songArtist"];
+
+            //Find relevant songs
+            var query = from a in db.Artists
+                        select a;
+            query = query.Where(a => a.ArtistName.Contains(artistName));
+            List<Artist> SelectedArtists = query.ToList();
+
+            //convert songs objects to JSON for frontend
+            var json = new JavaScriptSerializer().Serialize(SelectedArtists);
+
+            return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
+
+            //Display message to users
+            //if (SelectedSongs == null)
+            //{
+            //    return "No songs found based on your search";
+            //}
+            //else
+            //{
+            //    return "Successful search";
+            //}
+        }
+
+
     }
 }

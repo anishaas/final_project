@@ -2011,6 +2011,8 @@
     <Content Include="Views\SandBoxViews\AccountScreens\NewAccount.cshtml" />
     <Content Include="Views\Search\searchbySongTitle.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\SandBoxViews\Footers\userSongSearchFooter.cshtml" />
+    <Content Include="Views\SandBoxViews\Footers\userViewFooter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
