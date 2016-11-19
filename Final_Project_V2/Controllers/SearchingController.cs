@@ -9,7 +9,7 @@ using System.Web.Script.Serialization;
 
 namespace FinalProject.Controllers.MainControllers
 {
-    public class SearchController : Controller
+    public class SearchingController : Controller
     {
         //instance of AppDbContext file
         private AppDbContext db = new AppDbContext();
@@ -20,8 +20,8 @@ namespace FinalProject.Controllers.MainControllers
             return View();
         }
 
-       // [HttpPost]
-        public ActionResult searchbySongTitle()
+        [HttpPost]
+        public string searchbySongTitle()
         {
             var songTitle = Request.Form["songTitle"];
             //var songArtist = Request.Form["songArtist"];
@@ -35,7 +35,7 @@ namespace FinalProject.Controllers.MainControllers
             //convert songs objects to JSON for frontend
             var json = new JavaScriptSerializer().Serialize(SelectedSongs);
 
-            return View();
+            return "hi";
             //Display message to users
             //if (SelectedSongs == null)
             //{

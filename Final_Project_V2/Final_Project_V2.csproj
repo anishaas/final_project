@@ -1964,12 +1964,21 @@
     <Compile Include="Controllers\MainControllers\SearchController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SandBoxControllers\SandBoxController.cs" />
+    <Compile Include="Controllers\SearchingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201611181949305_Initial Setup.cs" />
     <Compile Include="Migrations\201611181949305_Initial Setup.Designer.cs">
       <DependentUpon>201611181949305_Initial Setup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611190333517_Updated genre model properties.cs" />
+    <Compile Include="Migrations\201611190333517_Updated genre model properties.Designer.cs">
+      <DependentUpon>201611190333517_Updated genre model properties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611190349500_Temporarily removed datetime props.cs" />
+    <Compile Include="Migrations\201611190349500_Temporarily removed datetime props.Designer.cs">
+      <DependentUpon>201611190349500_Temporarily removed datetime props.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -2000,6 +2009,7 @@
     <Content Include="Views\SandBoxViews\AccountScreens\Login.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\ManageAccount.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\NewAccount.cshtml" />
+    <Content Include="Views\Search\searchbySongTitle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2012,11 +2022,16 @@
     <Folder Include="Controllers\AjaxControllers\" />
     <Folder Include="Views\Customer\" />
     <Folder Include="Views\SandBoxViews\WelcomePage\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611181949305_Initial Setup.resx">
       <DependentUpon>201611181949305_Initial Setup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611190333517_Updated genre model properties.resx">
+      <DependentUpon>201611190333517_Updated genre model properties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611190349500_Temporarily removed datetime props.resx">
+      <DependentUpon>201611190349500_Temporarily removed datetime props.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

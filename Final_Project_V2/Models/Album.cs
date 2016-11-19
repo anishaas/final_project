@@ -11,7 +11,7 @@ namespace Final_Project_V2.Models
         public Int32 AlbumID { get; set; }
         public decimal AlbumPrice { get; set; }
         public string AlbumName { get; set; }
-        public DateTime AlbumTimestamp { get; set; }
+       // public DateTime AlbumTimestamp { get; set; }
         public bool Featured { get; set; }
 
         //navigational
