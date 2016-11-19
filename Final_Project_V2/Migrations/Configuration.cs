@@ -14,18 +14,18 @@ namespace Final_Project_V2.Migrations
 
         protected override void Seed(Final_Project_V2.Models.AppDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            //create a song to add
+            Song song1 = new Song();
+            song1.Name = "Rolling in the Deep";
+            db.Songs.AddOrUpdate(s => s.Name, song1);
+            db.SaveChanges();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            //find the song you just created in the database
+            song1 = db.Songs.FirstOrDefault(s => s.Name == "Rolling in the Deep");
+            song1.Artists.Add(db.Artists.FirstOrDefault(a => a.Name == "ADELE"));
+            song1.Genres.Add(db.Genres.FirstOrDefault(a => a.Name == "Pop"));
+            song1.Albums.Add(db.Albums.FirstOrDefault(a => a.Name == "21"));
+            db.SaveChanges();
         }
     }
 }
