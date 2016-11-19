@@ -9,6 +9,6 @@ var surveyURLs = {
 
 $(document).ready(function () {
     //Set up the html components in the htmlComponents object so other scripts can easily refer to the html.
-    htmlComponents.accordionComponent = $('#accordionComponent')[0].outerHTML;
+    //htmlComponents.accordionComponent = $('#accordionComponent')[0].outerHTML;
 
 });

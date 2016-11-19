@@ -1922,6 +1922,7 @@
     <Content Include="Scripts\ProjectJs\songSearchJs\songSearch.js" />
     <Content Include="Scripts\ProjectJs\songSearchJs\songSearchComponents.js" />
     <Content Include="Scripts\ProjectJs\songSearchJs\songSearchHelperFunctions.js" />
+    <Content Include="Scripts\ProjectJs\UserViewConfigJs\userViewConfig.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
@@ -2009,7 +2010,12 @@
     <Content Include="Views\SandBoxViews\AccountScreens\Login.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\ManageAccount.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\NewAccount.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Search\searchbySongTitle.cshtml" />
+=======
+    <Content Include="Views\SandBoxViews\Footers\userSongSearchFooter.cshtml" />
+    <Content Include="Views\SandBoxViews\Footers\userViewFooter.cshtml" />
+>>>>>>> 0cd591cd7e96d0f45ac7499bbb006f781f38da10
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
