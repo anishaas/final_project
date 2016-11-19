@@ -90,17 +90,17 @@
                             <div class="card-body">
                                 <form class="form" role="form">
                                     <div class="form-group floating-label">
-                                        <input type="text" class="form-control" id="regular2">
+                                        <input type="text" class="form-control" id="songTitle">
                                         <label for="regular2">Song Title</label>
                                         <p class="help-block">(Shake It Off)</p>
                                     </div>
                                     <div class="form-group floating-label">
-                                        <input type="text" class="form-control" id="password2">
+                                        <input type="text" class="form-control" id="songArtist">
                                         <label for="password2">Song Artist</label>
                                         <p class="help-block">Taylor Swift</p>
                                     </div>
                                     <div class="form-group floating-label">
-                                        <input type="text" class="form-control" id="placeholder2">
+                                        <input type="text" class="form-control" id="songAlbum">
                                         <label for="placeholder2">Song Album</label>
                                         <p class="help-block">Red</p>
                                     </div>
@@ -123,7 +123,7 @@
                                 </div>
                             </div><!--end .card-head -->
                             <div class="card-body">
-                                <ul class="list" data-sortable="true">
+                                <ul id="genreListContainer" class="list" data-sortable="true">
                                     <li class="tile">
                                         <div class="checkbox checkbox-styled tile-text">
                                             <label>
@@ -197,6 +197,7 @@
                             </div><!--end .card-body -->
                         </div><!--end .card -->
                         <em class="text-caption">See search results below</em>
+                        <button id="songSearchBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Search</button>
                     </div><!--end .col -->
                 </div><!--end .row -->
 </section>
