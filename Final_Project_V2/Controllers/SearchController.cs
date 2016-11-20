@@ -147,6 +147,14 @@ namespace FinalProject.Controllers.MainControllers
                 }
            }
 
+           /*
+           if (ratingFilterType != null && ratingFilterType != "" && ratingInput1 != null && ratingInput1 != "" && ratingInput2 != null && ratingInput2 != "")
+            {
+            1) Greater than code
+            2) Less than code
+            3)Between              
+            }
+            */
            //check genre dropdown
 
             query = query.OrderBy(s => s.SongTitle);
