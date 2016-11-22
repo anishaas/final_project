@@ -1,5 +1,4 @@
-﻿//DONE: Change the using statement here to match your project's name
-using Final_Project_V2.Models;
+﻿using Final_Project_V2.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -7,12 +6,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-//DONE: Change the namespace here to match your project's name
 namespace Final_Project_V2.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private AppDbContext db = new AppDbContext();
+
         public enum ManageMessageId
         {
             AddPhoneSuccess,
@@ -145,7 +145,7 @@ namespace Final_Project_V2.Controllers
             return View(model);
         }
 
-        // GET: /Account/Register
+        // GET: /Account/RegisterMember
         [AllowAnonymous]
         public ActionResult RegisterMember()
         {
