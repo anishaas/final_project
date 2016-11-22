@@ -1980,6 +1980,14 @@
     <Compile Include="Migrations\201611190349500_Temporarily removed datetime props.Designer.cs">
       <DependentUpon>201611190349500_Temporarily removed datetime props.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611200525414_Updated album model class genre property.cs" />
+    <Compile Include="Migrations\201611200525414_Updated album model class genre property.Designer.cs">
+      <DependentUpon>201611200525414_Updated album model class genre property.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611212342165_edited album model class.cs" />
+    <Compile Include="Migrations\201611212342165_edited album model class.Designer.cs">
+      <DependentUpon>201611212342165_edited album model class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumSongValue.cs" />
@@ -2036,6 +2044,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611190349500_Temporarily removed datetime props.resx">
       <DependentUpon>201611190349500_Temporarily removed datetime props.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611200525414_Updated album model class genre property.resx">
+      <DependentUpon>201611200525414_Updated album model class genre property.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611212342165_edited album model class.resx">
+      <DependentUpon>201611212342165_edited album model class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

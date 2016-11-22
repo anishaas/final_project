@@ -53,12 +53,37 @@ namespace Final_Project_V2.Models
         [Display(Name = "FirstName")]
         public string FirstName { get; set; }
 
-        public bool OKToText { get; set; }
+        [Display(Name = "Middle Initial")]
+        public string MI { get; set; }
 
         [Required]
-        [Display(Name = "Major")]
-        public string Major { get; set; }
+        [Display(Name = "Email")]
+        public string EmailAddress { get; set; }
 
+        [Required]
+        [Display(Name = "Phone Number")]
+        public string Phone { get; set; }
+
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Required]
+        [Display(Name = "Zip Code")]
+        public string ZipCode { get; set; }
+
+        //not required because they "may choose"
+        [Display(Name = "Credit Card 1 Number")]
+        public string CCNumber1 { get; set; }
+
+        [Display(Name = "Credit Card 1 Type")]
+        public string CCType1 { get; set; }
+
+        [Display(Name = "Credit Card 2 Number")]
+        public string CCNumber2 { get; set; }
+
+        [Display(Name = "Credit Card 2 Type")]
+        public string CCType2 { get; set; }
     }
 
     public class ChangePasswordViewModel
