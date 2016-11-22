@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Final_Project_V2.Models;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace FinalProject.Controllers.MainControllers
 {
@@ -105,6 +106,7 @@ namespace FinalProject.Controllers.MainControllers
 
         public string SearchResults()
         {
+            db.Configuration.ProxyCreationEnabled = false;
             //string songTitle, string songArtist, string songAlbum, string selectedGenre
             var songTitle = Request.Form["songTitle"];
             var artistName = Request.Form["artistName"];
@@ -156,9 +158,12 @@ namespace FinalProject.Controllers.MainControllers
 
             //order query
             //SelectedCustomers.OrderBy(c => c.LastName).ThenBy(c => c.FirstName).ThenBy(c => c.AverageSale);
-            var json = new JavaScriptSerializer().Serialize(SelectedSongs);
+            //var json = new JavaScriptSerializer().Serialize(SelectedSongs);
+            var jsonTest = JsonConvert.SerializeObject(SelectedSongs);
+            //string combinedString = String.Join(",", SelectedSongs);
+            //return new JsonResult() { Data = songs, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
-            return json;
+            return jsonTest;
         }
 
 

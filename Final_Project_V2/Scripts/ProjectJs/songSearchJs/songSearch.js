@@ -34,7 +34,10 @@
         ratingInput2 = $('#ratingInput2').val();
 
         //Validation checks
-        function validateForm(){
+        function validateForm() {
+
+            return true;
+
             if(songTitle == '' && songArtist == '' && songAlbum == '' && genreArray.length == 0 && ratingFilterType == '' && ratingInput1 == '' && ratingInput2 == ''){
                 alert("Please provide some search parameters.");
             }else if(ratingInput1 < 1 || ratingInput1 > 5){
@@ -46,6 +49,7 @@
             } else {
                 return true;
             }
+
         }
 
         if (validateForm() == true) {
@@ -60,7 +64,9 @@
                 ratingInput2: ratingInput2
             })
             .done(function (data) {
+                //var test = jQuery.parseJSON(data);
                 alert(data);
+                //alert(jQuery.parseJSON( '{ "name": "John" }' ));
             });
         }
        });
