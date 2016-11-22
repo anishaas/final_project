@@ -13,10 +13,19 @@ namespace FinalProject.Controllers.SandBoxControllers
         {
             return View("~/Views/SandBoxViews/userViewLayout.cshtml");
         }
+        public ActionResult getCustomerWelcomePage()
+        {
+            return View("~/Views/SandBoxViews/WelcomePage/customerWelcomePage.cshtml");
+        }
 
         public ActionResult getCustomerSongSearchPage()
         {
             return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
+        }
+
+        public ActionResult getMyMusicPage()
+        {
+            return View("~/Views/SandBoxViews/AccountScreens/MyMusic.cshtml");
         }
 
         public ActionResult getCustomerAlbumSearchPage()

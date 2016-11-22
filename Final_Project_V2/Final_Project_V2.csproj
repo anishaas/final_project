@@ -2021,6 +2021,8 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\SandBoxViews\Footers\userSongSearchFooter.cshtml" />
     <Content Include="Views\SandBoxViews\Footers\userViewFooter.cshtml" />
+    <Content Include="Views\SandBoxViews\WelcomePage\customerWelcomePage.cshtml" />
+    <Content Include="Views\SandBoxViews\AccountScreens\MyMusic.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2032,7 +2034,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AjaxControllers\CustomerSearchAjaxControllers\" />
     <Folder Include="Views\Customer\" />
-    <Folder Include="Views\SandBoxViews\WelcomePage\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611181949305_Initial Setup.resx">
