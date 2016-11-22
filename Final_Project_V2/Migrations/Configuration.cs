@@ -44,69 +44,71 @@ namespace Final_Project_V2.Migrations
             //create a list of artists
             var artists = new List<Artist>
             {
-                new Artist { ArtistName = "Drake", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "ADELE", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Rihanna", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Sam Hunt", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Eli Young Band", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Foster the People", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Bryent Oden", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Kanye West & JAY Z", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Calvin Harris", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "FLOW", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Hans Zimmer & James Newton Howard", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Justin Bieber", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Coldplay", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Snoop Dogg & Wiz Khalifa", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Cobra Starship", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Kelly Clarkson", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Selena Gomez & the Scene", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "T-Pain", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Flo-Rida", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "DEV", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Bruno Mars", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Christina Perri", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "B.o.B", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Pitbull", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Wale", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Alexandra Stan", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Nickleback", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Rick Ross", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Waka Flocka Flame", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Florence + the Machine", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Jessie J", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Martin Solvieg & Dragonette", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Jake Owen", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Sean Paul", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Hot Chelle Rae", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Miranda Lambert", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Roscoe Dash", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Chevelle", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "One Direction", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Nick Jonas", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Mark Ronson", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Hozier", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Kendrick Lamar", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Lady GaGa", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "James Bay", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Ariana Grande", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Maroon 5", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "David Guetta & Usher", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Lady Antebellum", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Nicki Minaj", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Blake Shelton", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "The Byars Family", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "LMFAO", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Luke Bryan", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "The Band Perry", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Bobby McFerrin", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Malvina Reynolds", ArtistGenres = new List<Genre>()},
-                new Artist { ArtistName = "Peter, Paul & Mary", ArtistGenres = new List<Genre>()}
+                new Artist { ArtistName = "Drake", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "ADELE", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Rihanna", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                                new Artist { ArtistName = "Sam Hunt", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Eli Young Band", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Foster the People", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Bryent Oden", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Kanye West & JAY Z", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Calvin Harris", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "FLOW", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Hans Zimmer & James Newton Howard", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Justin Bieber", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Coldplay", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Snoop Dogg & Wiz Khalifa", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Cobra Starship", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Kelly Clarkson", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Selena Gomez & the Scene", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "T-Pain", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Flo-Rida", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "DEV", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Bruno Mars", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Christina Perri", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "B.o.B", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Pitbull", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Wale", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Alexandra Stan", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Nickleback", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Rick Ross", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Waka Flocka Flame", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Florence + the Machine", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Jessie J", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Martin Solvieg & Dragonette", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Jake Owen", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Sean Paul", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Hot Chelle Rae", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Miranda Lambert", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Roscoe Dash", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Chevelle", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "One Direction", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Nick Jonas", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Mark Ronson", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Hozier", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Kendrick Lamar", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Lady GaGa", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "James Bay", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Ariana Grande", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Maroon 5", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "David Guetta & Usher", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Lady Antebellum", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Nicki Minaj", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Blake Shelton", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "The Byars Family", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "LMFAO", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Luke Bryan", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "The Band Perry", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Bobby McFerrin", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Malvina Reynolds", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Peter, Paul & Mary", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()}
             };
-                //add to database
+            
+                //add artists to database
                 artists.ForEach(a => db.Artists.AddOrUpdate(b => b.ArtistName, a));
                 db.SaveChanges();
-
+            
+            //update the artists genres
             AddOrUpdateArtistGenre(db, "Drake", "Hip Hop/Rap");
             AddOrUpdateArtistGenre(db, "ADELE", "Pop");
             AddOrUpdateArtistGenre(db, "Rihanna", "Pop");
@@ -178,8 +180,147 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateArtistGenre(db, "Peter, Paul & Mary", "Singer/Songwriter");
             AddOrUpdateArtistGenre(db, "Bobby McFerrin", "Reggae");
             AddOrUpdateArtistGenre(db, "Calvin Harris", "Pop");
-
             db.SaveChanges();
+
+            /*
+            //create a album
+            Album album1 = new Album();
+            album1.AlbumArtist = db.Artists.FirstOrDefault(a => a.ArtistName == "Drake");
+            album1.AlbumName = "Sorry for Party Rocking (Deluxe Version)";
+            album1.AlbumPrice = 9.99M;
+            db.Albums.AddOrUpdate(a => a.AlbumName, album1);
+            db.Albums.AddOrUpdate(a => a.AlbumPrice, album1);
+            db.SaveChanges();
+
+            //find the album just created
+            album1 = db.Albums.FirstOrDefault(a => a.AlbumName == "Sorry for Party Rocking (Deluxe Version)" && a.AlbumArtist.ArtistName == "LMFAO");
+            album1.AlbumGenres.Add(db.Genres.FirstOrDefault(a => a.GenreName == "Pop"));
+            db.SaveChanges();
+
+            //add genre to album
+            AddOrUpdateAlbumGenre(db, "Sorry for Party Rocking (Deluxe Version)", "Pop");
+            db.SaveChanges();
+            */
+
+
+            //create album list
+            var albums = new List<Album>
+            {
+                new Album { AlbumName = "21", AlbumGenres = new List<Genre>() },
+                new Album { AlbumName = "Loud", AlbumGenres = new List<Genre>() },
+                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>() }
+                /*
+                new Album { AlbumName = "21", AlbumGenres = new List<Genre>(), AlbumPrice = 10.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Loud", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>(), AlbumPrice = 12.99M, AlbumSongs = new List<Song>() }
+                new Album { AlbumName = "Torches", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Hands All Over", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Hands All Over (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Nothing But the Beat", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Born This Way", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Red River Blue (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 11.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Pink Friday (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Watch The Throne (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Tailgates & Tanlines", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "The Band Perry", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "When the Sun Goes Down", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "The Band Perry", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Own the Night", AlbumGenres = new List<Genre>(), AlbumPrice = 10.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Life At Best (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 11.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Songs From the Heart", AlbumGenres = new List<Genre>(), AlbumPrice = 13.37M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Chaos and the Calm", AlbumGenres = new List<Genre>(), AlbumPrice = 10.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "My Everything (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 12.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Ceremonials (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 10.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Sorry for Party Rocking (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Montevallo", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "X2C", AlbumGenres = new List<Genre>(), AlbumPrice = 3.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "The Best of Bobby McFerrin", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "Eat Randy - Single", AlbumGenres = new List<Genre>(), AlbumPrice = 1.29M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "The Duck song (The Duck and the Lemonade Stand)", AlbumGenres = new List<Genre>(), AlbumPrice = 1.29M, AlbumSongs = new List<Song>() },
+                */
+                };
+
+            //add to database
+            albums.ForEach(a => db.Albums.AddOrUpdate(y => y.AlbumName, a));
+            //albums.ForEach(a => db.Albums.AddOrUpdate(y => y.AlbumPrice, a));
+            db.SaveChanges();
+
+            AddOrUpdateAlbumGenre(db, "21", "Pop");
+            AddOrUpdateAlbumGenre(db, "Loud", "Pop");
+            AddOrUpdateAlbumGenre(db, "If You're Reading This It's Too Late", "Hip Hop/Rap");
+            /*
+            AddOrUpdateAlbumGenre(db, "Sorry for Party Rocking (Deluxe Version)", "Pop");
+            AddOrUpdateAlbumGenre(db, "Torches", "Alternative");
+            AddOrUpdateAlbumGenre(db, "Hands All Over", "Pop");
+            AddOrUpdateAlbumGenre(db, "Hands All Over (Deluxe Version)", "Pop");
+            AddOrUpdateAlbumGenre(db, "Nothing But the Beat", "Dance");
+            AddOrUpdateAlbumGenre(db, "Born This Way", "Pop");
+            AddOrUpdateAlbumGenre(db, "Red River Blue (Deluxe Version)", "Country");
+            AddOrUpdateAlbumGenre(db, "Red River Blue (Deluxe Version)", "Pop");
+            AddOrUpdateAlbumGenre(db, "Pink Friday (Deluxe Version)", "Hip Hop/Rap");
+            AddOrUpdateAlbumGenre(db, "Watch The Throne (Deluxe Version)", "Hop Hop/Rap");
+            AddOrUpdateAlbumGenre(db, "Tailgates & Tanlines", "Country");
+            AddOrUpdateAlbumGenre(db, "The Band Perry", "Country");
+            AddOrUpdateAlbumGenre(db, "When the Sun Goes Down", "Pop");
+            AddOrUpdateAlbumGenre(db, "Own the Night", "Country");
+            AddOrUpdateAlbumGenre(db, "Life At Best (Deluxe Version)", "Country");
+            AddOrUpdateAlbumGenre(db, "Songs From the Heart", "Country");
+            AddOrUpdateAlbumGenre(db, "Chaos and the Calm", "Alternative");
+            AddOrUpdateAlbumGenre(db, "My Everything (Deluxe Version", "Pop");
+            AddOrUpdateAlbumGenre(db, "Ceremonials (Deluxe Version)", "Alternative");
+            AddOrUpdateAlbumGenre(db, "Montevallo", "Country");
+            AddOrUpdateAlbumGenre(db, "X2C", "Country");
+            AddOrUpdateAlbumGenre(db, "The Best of Bobby McFerrin", "Reggae");
+            AddOrUpdateAlbumGenre(db, "Eat Randy - Single", "Comedy");
+            AddOrUpdateAlbumGenre(db, "The Duck Song (The Duck and the Lemonade Stand)", "Comedy");
+            AddOrUpdateAlbumGenre(db, "The Duck Song (The Duck and the Lemonade Stand)", "Children's Music");
+            AddOrUpdateAlbumGenre(db, "The Duck Song (The Duck and the Lemonade Stand)", "Singer/Songwriter");
+            */
+            db.SaveChanges();
+
+            //AddOrUpdateArtistAlbum(db, "Drake", "If You're Reading This It's Too Late");
+            //AddOrUpdateArtistAlbum(db, "ADELE", "21");
+            //AddOrUpdateArtistAlbum(db, "Rihanna", "Loud");
+            /*
+            AddOrUpdateAlbumArtist(db, "Sorry for Party Rocking (Deluxe Version)", "LMFAO");
+            AddOrUpdateAlbumArtist(db, "21", "ADELE");
+            AddOrUpdateAlbumArtist(db, "Torches", "Foster The People");
+            AddOrUpdateAlbumArtist(db, "Hands All Over", "Maroon 5");
+            AddOrUpdateAlbumArtist(db, "Hands All Over (Deluxe Version)", "Maroon 5");
+            AddOrUpdateAlbumArtist(db, "Nothing But the Beat", "David Guetta & Usher");
+            AddOrUpdateAlbumArtist(db, "Born This Way", "Lady GaGa");
+            AddOrUpdateAlbumArtist(db, "Loud", "Rihanna");
+            AddOrUpdateAlbumArtist(db, "Red River Blue (Deluxe Version)", "Blake Shleton");
+            AddOrUpdateAlbumArtist(db, "Pink Friday (Deluxe Version)", "Nicki Minaj");
+            AddOrUpdateAlbumArtist(db, "Watch The Throne (Deluxe Version)", "Kanye West & JAY Z");
+            AddOrUpdateAlbumArtist(db, "Tailgates & Tanlines", "Luke Bryan");
+            AddOrUpdateAlbumArtist(db, "The Band Perry", "The Band perry");
+            AddOrUpdateAlbumArtist(db, "When the SUn Goes Down", "Selena Gomez & the Scene");
+            AddOrUpdateAlbumArtist(db, "Own the Night", "Lady Antebellum");
+            AddOrUpdateAlbumArtist(db, "Life At Best (Deluxe Version)", "Eli Young Band");
+            AddOrUpdateAlbumArtist(db, "Songs From the Heart", "The Byars Family");
+            AddOrUpdateAlbumArtist(db, "Chaos and the Calm", "James Bay");
+            AddOrUpdateAlbumArtist(db, "My Everything (Deluxe Version", "Ariana Grande");
+            AddOrUpdateAlbumArtist(db, "Ceremonials (Deluxe Version)", "Florence + The Machine");
+            AddOrUpdateAlbumArtist(db, "If You're Reading This It's Too Late", "Drake");
+            AddOrUpdateAlbumArtist(db, "Montevallo", "Sam Hunt");
+            AddOrUpdateAlbumArtist(db, "X2C", "Sam Hunt");
+            AddOrUpdateAlbumArtist(db, "The Best of Bobby McFerrin", "Bobby McFerrin");
+            AddOrUpdateAlbumArtist(db, "Eat Randy - Single", "Julian Smith");
+            AddOrUpdateAlbumArtist(db, "The Duck Song (The Duck and the Lemonade Stand)", "Bryant Oden");
+            */
+            db.SaveChanges();
+        }
+
+        //add artist to the album
+        void AddOrUpdateAlbumArtist(AppDbContext db, string albumName, string artistName)
+        {
+            //find specified artist
+            Artist artist = db.Artists.SingleOrDefault(a => a.ArtistName == artistName);
+            //find specified album
+            Album album = db.Albums.SingleOrDefault(a => a.AlbumName == albumName);
+            //add artist to album
+            album.AlbumArtist = artist;
         }
 
         //add genre to the artist
@@ -192,5 +333,27 @@ namespace Final_Project_V2.Migrations
             //add genre to artist
             artist.ArtistGenres.Add(genre);
         }
+
+        //add genre to the album
+        void AddOrUpdateAlbumGenre(AppDbContext db, string albumName, string genreName)
+        {
+            //find specified genre
+            Genre genre = db.Genres.SingleOrDefault(g => g.GenreName == genreName);
+            //find specified artist
+            Album album = db.Albums.SingleOrDefault(a => a.AlbumName == albumName);
+            //add genre to artist
+            album.AlbumGenres.Add(genre);
+        }
+
+        //add album to the artist
+        void AddOrUpdateArtistAlbum(AppDbContext db, string artistName, string albumName)
+        {
+            //find specified album
+            Album album = db.Albums.SingleOrDefault(a => a.AlbumName == albumName);
+            //find specified artist
+            Artist artist = db.Artists.SingleOrDefault(a => a.ArtistName == artistName);
+            //add genre to artist
+            artist.ArtistAlbums.Add(album);
+        }       
     }
 }

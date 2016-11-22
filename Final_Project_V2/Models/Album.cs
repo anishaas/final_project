@@ -15,7 +15,7 @@ namespace Final_Project_V2.Models
         public bool Featured { get; set; }
 
         //navigational
-        public virtual Genre AlbumGenre { get; set; }
+        public virtual List<Genre> AlbumGenres { get; set; }
         public virtual Artist AlbumArtist { get; set; }
         public virtual List<Song> AlbumSongs { get; set; }
         
