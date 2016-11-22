@@ -47,7 +47,7 @@ namespace Final_Project_V2.Migrations
                 new Artist { ArtistName = "Drake", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
                 new Artist { ArtistName = "ADELE", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
                 new Artist { ArtistName = "Rihanna", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
-                                new Artist { ArtistName = "Sam Hunt", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Sam Hunt", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
                 new Artist { ArtistName = "Eli Young Band", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
                 new Artist { ArtistName = "Foster the People", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
                 new Artist { ArtistName = "Bryent Oden", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
@@ -208,11 +208,10 @@ namespace Final_Project_V2.Migrations
             {
                 new Album { AlbumName = "21", AlbumGenres = new List<Genre>() },
                 new Album { AlbumName = "Loud", AlbumGenres = new List<Genre>() },
-                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>() }
-                /*
+                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>() },
                 new Album { AlbumName = "21", AlbumGenres = new List<Genre>(), AlbumPrice = 10.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Loud", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>(), AlbumPrice = 12.99M, AlbumSongs = new List<Song>() }
+                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>(), AlbumPrice = 12.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Torches", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Hands All Over", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Hands All Over (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
@@ -237,7 +236,6 @@ namespace Final_Project_V2.Migrations
                 new Album { AlbumName = "The Best of Bobby McFerrin", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Eat Randy - Single", AlbumGenres = new List<Genre>(), AlbumPrice = 1.29M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "The Duck song (The Duck and the Lemonade Stand)", AlbumGenres = new List<Genre>(), AlbumPrice = 1.29M, AlbumSongs = new List<Song>() },
-                */
                 };
 
             //add to database
@@ -248,7 +246,6 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateAlbumGenre(db, "21", "Pop");
             AddOrUpdateAlbumGenre(db, "Loud", "Pop");
             AddOrUpdateAlbumGenre(db, "If You're Reading This It's Too Late", "Hip Hop/Rap");
-            /*
             AddOrUpdateAlbumGenre(db, "Sorry for Party Rocking (Deluxe Version)", "Pop");
             AddOrUpdateAlbumGenre(db, "Torches", "Alternative");
             AddOrUpdateAlbumGenre(db, "Hands All Over", "Pop");
@@ -275,13 +272,11 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateAlbumGenre(db, "The Duck Song (The Duck and the Lemonade Stand)", "Comedy");
             AddOrUpdateAlbumGenre(db, "The Duck Song (The Duck and the Lemonade Stand)", "Children's Music");
             AddOrUpdateAlbumGenre(db, "The Duck Song (The Duck and the Lemonade Stand)", "Singer/Songwriter");
-            */
             db.SaveChanges();
 
-            //AddOrUpdateArtistAlbum(db, "Drake", "If You're Reading This It's Too Late");
-            //AddOrUpdateArtistAlbum(db, "ADELE", "21");
-            //AddOrUpdateArtistAlbum(db, "Rihanna", "Loud");
-            /*
+            AddOrUpdateArtistAlbum(db, "Drake", "If You're Reading This It's Too Late");
+            AddOrUpdateArtistAlbum(db, "ADELE", "21");
+            AddOrUpdateArtistAlbum(db, "Rihanna", "Loud");
             AddOrUpdateAlbumArtist(db, "Sorry for Party Rocking (Deluxe Version)", "LMFAO");
             AddOrUpdateAlbumArtist(db, "21", "ADELE");
             AddOrUpdateAlbumArtist(db, "Torches", "Foster The People");
@@ -308,7 +303,6 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateAlbumArtist(db, "The Best of Bobby McFerrin", "Bobby McFerrin");
             AddOrUpdateAlbumArtist(db, "Eat Randy - Single", "Julian Smith");
             AddOrUpdateAlbumArtist(db, "The Duck Song (The Duck and the Lemonade Stand)", "Bryant Oden");
-            */
             db.SaveChanges();
         }
 
@@ -354,6 +348,9 @@ namespace Final_Project_V2.Migrations
             Artist artist = db.Artists.SingleOrDefault(a => a.ArtistName == artistName);
             //add genre to artist
             artist.ArtistAlbums.Add(album);
-        }       
+        }
+
+        //create a user manager to add users to the database
+            
     }
 }
