@@ -1929,7 +1929,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\RegisterAdmin.cshtml" />
-    <Content Include="Views\Account\RegisterMember.cshtml" />
+    <Content Include="Views\Account\RegisterCustomer.cshtml" />
     <Content Include="Views\Committees\Create.cshtml" />
     <Content Include="Views\Committees\Delete.cshtml" />
     <Content Include="Views\Committees\Details.cshtml" />
@@ -1960,6 +1960,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxControllers\DataControllers\DataController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainControllers\CustomerController.cs" />
     <Compile Include="Controllers\MainControllers\EmployeeController.cs" />
@@ -2024,7 +2025,8 @@
     <Content Include="Views\SandBoxViews\Footers\userViewFooter.cshtml" />
     <Content Include="Views\SandBoxViews\WelcomePage\customerWelcomePage.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\MyMusic.cshtml" />
-    <Content Include="Views\Account\EditEmployee.cshtml" />
+    <Content Include="Views\EditEmployee.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2035,7 +2037,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AjaxControllers\CustomerSearchAjaxControllers\" />
-    <Folder Include="Views\Customer\" />
     <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>

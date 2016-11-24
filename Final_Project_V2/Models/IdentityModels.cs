@@ -18,8 +18,8 @@ namespace Final_Project_V2.Models
     {
         //LATER: Put any additional fields that you need for your users here
         //For example:
-        [Key]
-        public string UserID { get; set; }
+        //[Key]
+        //public string UserID { get; set; }
 
         public string LastName { get; set; }
         public string FirstName { get; set; }
