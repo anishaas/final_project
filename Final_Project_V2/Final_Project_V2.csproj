@@ -1974,6 +1974,14 @@
     <Compile Include="Migrations\201611251914146_Initial.Designer.cs">
       <DependentUpon>201611251914146_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611251954592_New Updates.cs" />
+    <Compile Include="Migrations\201611251954592_New Updates.Designer.cs">
+      <DependentUpon>201611251954592_New Updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611252055480_Updating Song Model.cs" />
+    <Compile Include="Migrations\201611252055480_Updating Song Model.Designer.cs">
+      <DependentUpon>201611252055480_Updating Song Model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -2025,6 +2033,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611251914146_Initial.resx">
       <DependentUpon>201611251914146_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611251954592_New Updates.resx">
+      <DependentUpon>201611251954592_New Updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611252055480_Updating Song Model.resx">
+      <DependentUpon>201611252055480_Updating Song Model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

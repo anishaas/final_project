@@ -15,6 +15,7 @@ namespace FinalProject.Controllers.SandBoxControllers
         }
         public ActionResult getCustomerWelcomePage()
         {
+
             return View("~/Views/SandBoxViews/WelcomePage/customerWelcomePage.cshtml");
         }
 

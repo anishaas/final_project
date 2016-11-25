@@ -19,6 +19,7 @@ namespace Final_Project_V2.Migrations
 
         protected override void Seed(Final_Project_V2.Models.AppDbContext context)
         {
+            /*
             //create a list of genres to add
             var genres = new List<Genre>
             {
@@ -204,6 +205,7 @@ namespace Final_Project_V2.Migrations
 
 
             //create album list
+            /*
             var albums = new List<Album>
             {
                 new Album { AlbumName = "21", AlbumGenres = new List<Genre>() },
@@ -351,6 +353,7 @@ namespace Final_Project_V2.Migrations
         }
 
         //create a user manager to add users to the database
-
+        */
+        }
     }
 }

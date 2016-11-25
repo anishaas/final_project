@@ -19,7 +19,7 @@ namespace Final_Project_V2.Models
         //LATER: Put any additional fields that you need for your users here
         //For example:
         //[Key]
-        //public string UserID { get; set; }
+        public string UserID { get; set; }
 
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -28,7 +28,7 @@ namespace Final_Project_V2.Models
         public string Address { get; set; }
         public string ZipCode { get; set; }
         public string Phone { get; set; }
-        //public string EmailAddress { get; set; }
+        public string EmailAddress { get; set; }
         public string CCNumber1 { get; set; }
         public string CCType1 { get; set; }
         public string CCNumber2 { get; set; }

@@ -17,8 +17,10 @@ namespace Final_Project_V2.Models
 
         //navigational
         public List<Genre> AlbumGenres { get; set; }
+
         [InverseProperty("ArtistAlbums")]
         public Artist AlbumArtist { get; set; }
+
         [InverseProperty("SongAlbums")]
         public List<Song> AlbumSongs { get; set; }
         
