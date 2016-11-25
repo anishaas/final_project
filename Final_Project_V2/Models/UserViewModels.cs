@@ -22,10 +22,12 @@ namespace Final_Project_V2.Models
 
     public class RegisterViewModel
     {
+        /*
         [Required]
         [EmailAddress]
         [Display(Name = "UserID")]
         public string UserID { get; set; }
+        */
 
         [Required]
         [EmailAddress]
@@ -56,9 +58,11 @@ namespace Final_Project_V2.Models
         [Display(Name = "Middle Initial")]
         public string MI { get; set; }
 
+        /*
         [Required]
         [Display(Name = "Email")]
         public string EmailAddress { get; set; }
+        */
 
         [Required]
         [Display(Name = "Phone Number")]
