@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,9 +12,11 @@ namespace Final_Project_V2.Models
        // public DateTime GenreTimestamp { get; set; }
         public String GenreName { get; set; }
 
-        public virtual List<Album> GenreAlbums { get; set; }
-        public virtual List<Song> GenreSongs { get; set; }
-        public virtual List<Artist> GenreArtists { get; set; }
+        public List<Album> GenreAlbums { get; set; }
+        [InverseProperty("SongGenres")]
+        public List<Song> GenreSongs { get; set; }
+
+        public List<Artist> GenreArtists { get; set; }
 
     }
 }

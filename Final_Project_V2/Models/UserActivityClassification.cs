@@ -22,6 +22,5 @@ namespace Final_Project_V2.Models
         public DateTime UserActivityClassificationTimestamp { get; set; }
 
         //Navigational Properties
-        public UserActivityInput UserActivityInputID { get; set; }
     }
 }

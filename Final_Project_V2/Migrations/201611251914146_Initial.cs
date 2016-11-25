@@ -3,7 +3,7 @@ namespace Final_Project_V2.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialSetup : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -14,16 +14,12 @@ namespace Final_Project_V2.Migrations
                         AlbumID = c.Int(nullable: false, identity: true),
                         AlbumPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
                         AlbumName = c.String(),
-                        AlbumTimestamp = c.DateTime(nullable: false),
                         Featured = c.Boolean(nullable: false),
                         AlbumArtist_ArtistID = c.Int(),
-                        AlbumGenre_GenreID = c.Int(),
                     })
                 .PrimaryKey(t => t.AlbumID)
                 .ForeignKey("dbo.Artists", t => t.AlbumArtist_ArtistID)
-                .ForeignKey("dbo.Genres", t => t.AlbumGenre_GenreID)
-                .Index(t => t.AlbumArtist_ArtistID)
-                .Index(t => t.AlbumGenre_GenreID);
+                .Index(t => t.AlbumArtist_ArtistID);
             
             CreateTable(
                 "dbo.Artists",
@@ -31,7 +27,6 @@ namespace Final_Project_V2.Migrations
                     {
                         ArtistID = c.Int(nullable: false, identity: true),
                         ArtistName = c.String(),
-                        ArtistTimeStamp = c.DateTime(nullable: false),
                         Featured = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ArtistID);
@@ -41,7 +36,7 @@ namespace Final_Project_V2.Migrations
                 c => new
                     {
                         GenreID = c.Int(nullable: false, identity: true),
-                        GenreTimestamp = c.DateTime(nullable: false),
+                        GenreName = c.String(),
                     })
                 .PrimaryKey(t => t.GenreID);
             
@@ -51,31 +46,12 @@ namespace Final_Project_V2.Migrations
                     {
                         SongID = c.Int(nullable: false, identity: true),
                         SongTitle = c.String(),
-                        SongTimestamp = c.DateTime(nullable: false),
                         Featured = c.Boolean(nullable: false),
                         SongArtist_ArtistID = c.Int(),
-                        SongGenre_GenreID = c.Int(),
                     })
                 .PrimaryKey(t => t.SongID)
                 .ForeignKey("dbo.Artists", t => t.SongArtist_ArtistID)
-                .ForeignKey("dbo.Genres", t => t.SongGenre_GenreID)
-                .Index(t => t.SongArtist_ArtistID)
-                .Index(t => t.SongGenre_GenreID);
-            
-            CreateTable(
-                "dbo.AlbumSongValues",
-                c => new
-                    {
-                        AlbumSongValueID = c.Int(nullable: false, identity: true),
-                        AlbumSongTimestamp = c.DateTime(nullable: false),
-                        AlbumSongValueAlbum_AlbumID = c.Int(),
-                        AlbumSongValueSong_SongID = c.Int(),
-                    })
-                .PrimaryKey(t => t.AlbumSongValueID)
-                .ForeignKey("dbo.Albums", t => t.AlbumSongValueAlbum_AlbumID)
-                .ForeignKey("dbo.Songs", t => t.AlbumSongValueSong_SongID)
-                .Index(t => t.AlbumSongValueAlbum_AlbumID)
-                .Index(t => t.AlbumSongValueSong_SongID);
+                .Index(t => t.SongArtist_ArtistID);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -109,31 +85,9 @@ namespace Final_Project_V2.Migrations
                         DiscountAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         DiscountStatus = c.Boolean(nullable: false),
                         DiscountTimeStamp = c.DateTime(nullable: false),
-                        DiscountSong_SongID = c.Int(),
+                        DiscountedItemID = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.DiscountID)
-                .ForeignKey("dbo.Songs", t => t.DiscountSong_SongID)
-                .Index(t => t.DiscountSong_SongID);
-            
-            CreateTable(
-                "dbo.UserActivityInputs",
-                c => new
-                    {
-                        UserActivityInputID = c.Int(nullable: false, identity: true),
-                        UserActivityInputType = c.Int(nullable: false),
-                        UserActivityInputArg1 = c.String(),
-                        UserActivityInputArg2 = c.String(),
-                        UserActivityInputArg3 = c.String(),
-                        UserActivityInputArg4 = c.String(),
-                        UserActivityInputArg5 = c.String(),
-                        UserActivityInputTxt1 = c.String(),
-                        UserActivityInputTxt2 = c.String(),
-                        UserActivityInputTxt3 = c.String(),
-                        UserActivityInputTxt4 = c.String(),
-                        UserActivityInputTxt5 = c.String(),
-                        UserActivityInputTimestamp = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.UserActivityInputID);
+                .PrimaryKey(t => t.DiscountID);
             
             CreateTable(
                 "dbo.UserActivityClassifications",
@@ -152,11 +106,29 @@ namespace Final_Project_V2.Migrations
                         UserActivityTxt4 = c.String(),
                         UserActivityTxt5 = c.String(),
                         UserActivityClassificationTimestamp = c.DateTime(nullable: false),
-                        UserActivityInputID_UserActivityInputID = c.Int(),
                     })
-                .PrimaryKey(t => t.UserActivityClassificationID)
-                .ForeignKey("dbo.UserActivityInputs", t => t.UserActivityInputID_UserActivityInputID)
-                .Index(t => t.UserActivityInputID_UserActivityInputID);
+                .PrimaryKey(t => t.UserActivityClassificationID);
+            
+            CreateTable(
+                "dbo.UserActivityInputs",
+                c => new
+                    {
+                        UserActivityInputID = c.Int(nullable: false, identity: true),
+                        UserActivityInputType = c.Int(nullable: false),
+                        UserActivityInputArg1 = c.String(),
+                        UserActivityInputArg2 = c.String(),
+                        UserActivityInputArg3 = c.String(),
+                        UserActivityInputArg4 = c.String(),
+                        UserActivityInputArg5 = c.String(),
+                        UserActivityInputTxt1 = c.String(),
+                        UserActivityInputTxt2 = c.String(),
+                        UserActivityInputTxt3 = c.String(),
+                        UserActivityInputTxt4 = c.String(),
+                        UserActivityInputTxt5 = c.String(),
+                        UserActivityInputTimestamp = c.DateTime(nullable: false),
+                        UserActivityInputClassificationID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.UserActivityInputID);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -170,7 +142,6 @@ namespace Final_Project_V2.Migrations
                         Address = c.String(),
                         ZipCode = c.String(),
                         Phone = c.String(),
-                        EmailAddress = c.String(),
                         CCNumber1 = c.String(),
                         CCType1 = c.String(),
                         CCNumber2 = c.String(),
@@ -219,6 +190,19 @@ namespace Final_Project_V2.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.GenreAlbums",
+                c => new
+                    {
+                        Genre_GenreID = c.Int(nullable: false),
+                        Album_AlbumID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Genre_GenreID, t.Album_AlbumID })
+                .ForeignKey("dbo.Genres", t => t.Genre_GenreID, cascadeDelete: true)
+                .ForeignKey("dbo.Albums", t => t.Album_AlbumID, cascadeDelete: true)
+                .Index(t => t.Genre_GenreID)
+                .Index(t => t.Album_AlbumID);
+            
+            CreateTable(
                 "dbo.GenreArtists",
                 c => new
                     {
@@ -232,17 +216,30 @@ namespace Final_Project_V2.Migrations
                 .Index(t => t.Artist_ArtistID);
             
             CreateTable(
-                "dbo.SongAlbums",
+                "dbo.GenreSongs",
                 c => new
                     {
+                        Genre_GenreID = c.Int(nullable: false),
                         Song_SongID = c.Int(nullable: false),
-                        Album_AlbumID = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Song_SongID, t.Album_AlbumID })
+                .PrimaryKey(t => new { t.Genre_GenreID, t.Song_SongID })
+                .ForeignKey("dbo.Genres", t => t.Genre_GenreID, cascadeDelete: true)
                 .ForeignKey("dbo.Songs", t => t.Song_SongID, cascadeDelete: true)
+                .Index(t => t.Genre_GenreID)
+                .Index(t => t.Song_SongID);
+            
+            CreateTable(
+                "dbo.AlbumSongs",
+                c => new
+                    {
+                        Album_AlbumID = c.Int(nullable: false),
+                        Song_SongID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Album_AlbumID, t.Song_SongID })
                 .ForeignKey("dbo.Albums", t => t.Album_AlbumID, cascadeDelete: true)
-                .Index(t => t.Song_SongID)
-                .Index(t => t.Album_AlbumID);
+                .ForeignKey("dbo.Songs", t => t.Song_SongID, cascadeDelete: true)
+                .Index(t => t.Album_AlbumID)
+                .Index(t => t.Song_SongID);
             
         }
         
@@ -251,48 +248,45 @@ namespace Final_Project_V2.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.UserActivityClassifications", "UserActivityInputID_UserActivityInputID", "dbo.UserActivityInputs");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Discounts", "DiscountSong_SongID", "dbo.Songs");
-            DropForeignKey("dbo.AlbumSongValues", "AlbumSongValueSong_SongID", "dbo.Songs");
-            DropForeignKey("dbo.AlbumSongValues", "AlbumSongValueAlbum_AlbumID", "dbo.Albums");
-            DropForeignKey("dbo.Songs", "SongGenre_GenreID", "dbo.Genres");
+            DropForeignKey("dbo.AlbumSongs", "Song_SongID", "dbo.Songs");
+            DropForeignKey("dbo.AlbumSongs", "Album_AlbumID", "dbo.Albums");
+            DropForeignKey("dbo.Albums", "AlbumArtist_ArtistID", "dbo.Artists");
             DropForeignKey("dbo.Songs", "SongArtist_ArtistID", "dbo.Artists");
-            DropForeignKey("dbo.SongAlbums", "Album_AlbumID", "dbo.Albums");
-            DropForeignKey("dbo.SongAlbums", "Song_SongID", "dbo.Songs");
+            DropForeignKey("dbo.GenreSongs", "Song_SongID", "dbo.Songs");
+            DropForeignKey("dbo.GenreSongs", "Genre_GenreID", "dbo.Genres");
             DropForeignKey("dbo.GenreArtists", "Artist_ArtistID", "dbo.Artists");
             DropForeignKey("dbo.GenreArtists", "Genre_GenreID", "dbo.Genres");
-            DropForeignKey("dbo.Albums", "AlbumGenre_GenreID", "dbo.Genres");
-            DropForeignKey("dbo.Albums", "AlbumArtist_ArtistID", "dbo.Artists");
-            DropIndex("dbo.SongAlbums", new[] { "Album_AlbumID" });
-            DropIndex("dbo.SongAlbums", new[] { "Song_SongID" });
+            DropForeignKey("dbo.GenreAlbums", "Album_AlbumID", "dbo.Albums");
+            DropForeignKey("dbo.GenreAlbums", "Genre_GenreID", "dbo.Genres");
+            DropIndex("dbo.AlbumSongs", new[] { "Song_SongID" });
+            DropIndex("dbo.AlbumSongs", new[] { "Album_AlbumID" });
+            DropIndex("dbo.GenreSongs", new[] { "Song_SongID" });
+            DropIndex("dbo.GenreSongs", new[] { "Genre_GenreID" });
             DropIndex("dbo.GenreArtists", new[] { "Artist_ArtistID" });
             DropIndex("dbo.GenreArtists", new[] { "Genre_GenreID" });
+            DropIndex("dbo.GenreAlbums", new[] { "Album_AlbumID" });
+            DropIndex("dbo.GenreAlbums", new[] { "Genre_GenreID" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.UserActivityClassifications", new[] { "UserActivityInputID_UserActivityInputID" });
-            DropIndex("dbo.Discounts", new[] { "DiscountSong_SongID" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.AlbumSongValues", new[] { "AlbumSongValueSong_SongID" });
-            DropIndex("dbo.AlbumSongValues", new[] { "AlbumSongValueAlbum_AlbumID" });
-            DropIndex("dbo.Songs", new[] { "SongGenre_GenreID" });
             DropIndex("dbo.Songs", new[] { "SongArtist_ArtistID" });
-            DropIndex("dbo.Albums", new[] { "AlbumGenre_GenreID" });
             DropIndex("dbo.Albums", new[] { "AlbumArtist_ArtistID" });
-            DropTable("dbo.SongAlbums");
+            DropTable("dbo.AlbumSongs");
+            DropTable("dbo.GenreSongs");
             DropTable("dbo.GenreArtists");
+            DropTable("dbo.GenreAlbums");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.UserActivityClassifications");
             DropTable("dbo.UserActivityInputs");
+            DropTable("dbo.UserActivityClassifications");
             DropTable("dbo.Discounts");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.AlbumSongValues");
             DropTable("dbo.Songs");
             DropTable("dbo.Genres");
             DropTable("dbo.Artists");

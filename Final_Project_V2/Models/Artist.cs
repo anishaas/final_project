@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,8 +14,12 @@ namespace Final_Project_V2.Models
         public bool Featured { get; set; }
 
         //navigational
-        public virtual List<Genre> ArtistGenres { get; set; }
-        public virtual List<Album> ArtistAlbums { get; set; }
-        public virtual List<Song> ArtistSongs { get; set; }
+        public List<Genre> ArtistGenres { get; set; }
+
+        [InverseProperty("AlbumArtist")]
+        public List<Album> ArtistAlbums { get; set; }
+
+        [InverseProperty("SongArtist")]
+        public List<Song> ArtistSongs { get; set; }
     }
 }

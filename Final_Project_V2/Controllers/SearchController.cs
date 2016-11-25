@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Final_Project_V2.Migrations;
+//using Final_Project_V2.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -145,7 +145,8 @@ namespace FinalProject.Controllers.MainControllers
                 }     
                 foreach(string genre in GenresToCheck)
                 {
-                    query = query.Where(s => s.SongGenre.GenreName.Contains(genre));
+                    //TODO: Fix now that song genres is a list
+                    //query = query.Where(s => s.SongGenre.GenreName.Contains(genre));
                 }
            }
 

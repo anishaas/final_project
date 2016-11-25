@@ -6,7 +6,7 @@ namespace Final_Project_V2.Migrations
     using System.Collections.Generic;
     using System.Linq;
     using Final_Project_V2.Models;
-    
+
     internal sealed class Configuration : DbMigrationsConfiguration<Final_Project_V2.Models.AppDbContext>
     {
         public Configuration()
@@ -16,7 +16,7 @@ namespace Final_Project_V2.Migrations
 
         //instance of AppDbContext file
         private AppDbContext db = new AppDbContext();
-   
+
         protected override void Seed(Final_Project_V2.Models.AppDbContext context)
         {
             //create a list of genres to add
@@ -38,8 +38,8 @@ namespace Final_Project_V2.Migrations
                 new Genre { GenreName = "Comedy" },
                };
             //add to database
-                genres.ForEach(g => db.Genres.AddOrUpdate(x => x.GenreName, g));
-                db.SaveChanges();
+            genres.ForEach(g => db.Genres.AddOrUpdate(x => x.GenreName, g));
+            db.SaveChanges();
 
             //create a list of artists
             var artists = new List<Artist>
@@ -103,11 +103,11 @@ namespace Final_Project_V2.Migrations
                 new Artist { ArtistName = "Malvina Reynolds", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
                 new Artist { ArtistName = "Peter, Paul & Mary", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()}
             };
-            
-                //add artists to database
-                artists.ForEach(a => db.Artists.AddOrUpdate(b => b.ArtistName, a));
-                db.SaveChanges();
-            
+
+            //add artists to database
+            artists.ForEach(a => db.Artists.AddOrUpdate(b => b.ArtistName, a));
+            db.SaveChanges();
+
             //update the artists genres
             AddOrUpdateArtistGenre(db, "Drake", "Hip Hop/Rap");
             AddOrUpdateArtistGenre(db, "ADELE", "Pop");
@@ -118,8 +118,8 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateArtistGenre(db, "Kanye West & JAY Z", "Hip Hop/Rap");
             AddOrUpdateArtistGenre(db, "Calvin Harris", "Pop");
             AddOrUpdateArtistGenre(db, "LMFAO", "Pop");
-            AddOrUpdateArtistGenre(db, "Maroon 5","Pop");
-            AddOrUpdateArtistGenre(db, "David Guetta & Usher","Dance");
+            AddOrUpdateArtistGenre(db, "Maroon 5", "Pop");
+            AddOrUpdateArtistGenre(db, "David Guetta & Usher", "Dance");
             AddOrUpdateArtistGenre(db, "Lady GaGa", "Pop");
             AddOrUpdateArtistGenre(db, "Blake Shelton", "Pop");
             AddOrUpdateArtistGenre(db, "Nicki Minaj", "Hip Hop/Rap");
@@ -351,6 +351,6 @@ namespace Final_Project_V2.Migrations
         }
 
         //create a user manager to add users to the database
-            
+
     }
 }

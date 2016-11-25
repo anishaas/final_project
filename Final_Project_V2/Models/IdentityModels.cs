@@ -28,7 +28,7 @@ namespace Final_Project_V2.Models
         public string Address { get; set; }
         public string ZipCode { get; set; }
         public string Phone { get; set; }
-        public string EmailAddress { get; set; }
+        //public string EmailAddress { get; set; }
         public string CCNumber1 { get; set; }
         public string CCType1 { get; set; }
         public string CCNumber2 { get; set; }
@@ -65,8 +65,8 @@ namespace Final_Project_V2.Models
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Discount> Discounts { get; set; }
-        public DbSet<AlbumSongValue> AlbumSongValues { get; set; }
         public DbSet<UserActivityInput> UserActivityInputs { get; set; }
+        public DbSet<UserActivityClassification> UserActivityClassification { get; set; }
 
 
         public static AppDbContext Create()
