@@ -1,5 +1,4 @@
-﻿//DONE: Change the using statement here to match your project's name
-using Final_Project_V2.Models;
+﻿using Final_Project_V2.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -7,12 +6,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-//DONE: Change the namespace here to match your project's name
 namespace Final_Project_V2.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private AppDbContext db = new AppDbContext();
+
         public enum ManageMessageId
         {
             AddPhoneSuccess,
@@ -118,13 +118,10 @@ namespace Final_Project_V2.Controllers
             {
                 //TODO: Add fields to customer user here so they will be saved to the database 
                 //Create a new user with all the properties you need for the class
-                var user = new AppUser { UserID = model.UserID, Email = model.Email, LastName = model.LastName, FirstName = model.FirstName,  };
-
+                var user = new AppUser { UserID = model.UserID, Email = model.Email, LastName = model.LastName, FirstName = model.FirstName, MI = model.MI, Address = model.Address, CCNumber1 = model.CCNumber1, CCType1 = model. CCType1, CCNumber2 = model.CCNumber2, CCType2 = model.CCType2};
 
                 //Add the new user to the database
                 var result = await UserManager.CreateAsync(user, model.Password);
-
-
 
                 if (result.Succeeded) //user was created successfully
                 {
@@ -148,37 +145,32 @@ namespace Final_Project_V2.Controllers
             return View(model);
         }
 
-        // GET: /Account/Register
+        // GET: /Account/RegisterCustomer
         [AllowAnonymous]
-        public ActionResult RegisterMember()
+        public ActionResult RegisterCustomer()
         {
             return View();
         }
 
-        // POST: /Account/Register
+        // POST: /Account/RegisterCustomer
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterMember(RegisterViewModel model)
+        public async Task<ActionResult> RegisterCustomer(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 //DONE: Add fields to user here so they will be saved to the database 
                 //Create a new user with all the properties you need for the class
-                var user = new AppUser { UserName = model.Email, Email = model.Email, LastName = model.LastName, FirstName = model.FirstName};
+                var user = new AppUser { UserName = model.Email, Email = model.Email, EmailAddress = model.EmailAddress, LastName = model.LastName, FirstName = model.FirstName, Password = model.Password, Address = model.Address, PhoneNumber = model.Phone};
 
 
         //Add the new user to the database
         var result = await UserManager.CreateAsync(user, model.Password);
 
-               
-
                 if (result.Succeeded) //user was created successfully
                 {
-                    //TODO: Once you get roles working, you may want to add users to roles upon creation
-                    await UserManager.AddToRoleAsync(user.Id, "Member"); //adds user to role called "User"
-                    // --OR--
-                    //await UserManager.AddToRoleAsync(user.Id, "Employee"); //adds user to role called "Employee"
+                    await UserManager.AddToRoleAsync(user.Id, "Customer"); //adds user to role called "Customer"
                     
                     //sign the user in
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -192,7 +184,7 @@ namespace Final_Project_V2.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View();
         }
 
         // GET: /Account/RegisterAdmin
