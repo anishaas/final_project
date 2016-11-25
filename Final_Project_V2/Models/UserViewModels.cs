@@ -6,6 +6,7 @@ namespace Final_Project_V2.Models
 {
     public class LoginViewModel
     {
+
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]

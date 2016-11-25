@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -12,9 +13,8 @@ namespace Final_Project_V2.Models
         public decimal DiscountAmount { get; set; }
         public bool DiscountStatus { get; set; }
         public DateTime DiscountTimeStamp { get; set; }
+        public Int32 DiscountedItemID { get; set; }
 
-        //navigation 
-        //Can you only discount songs? Or all items?
-        public virtual Song DiscountSong { get; set; }
+
     }
 }
