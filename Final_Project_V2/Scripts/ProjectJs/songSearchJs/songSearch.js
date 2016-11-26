@@ -5,6 +5,7 @@
     songSearchHelperFunctions.setupGenres();
 
     songSearchBtn.on('click', function () {
+
         var songTitle = $('#songTitle').val();
         var songArtist = $('#songArtist').val();
         var songAlbum = $('#songAlbum').val();
@@ -16,7 +17,7 @@
         //Get selected genres
         $('.genreItem').each(function () {
             if ($(this).siblings('.genreCheckBox').prop("checked")) {
-                genreArray.push($(this).html());
+                genreArray.push($(this).text());
             }
         });
       
@@ -51,12 +52,20 @@
         }
 
         if (validateForm() == true) {
+   
+
+            var genreServerString = '';
+
+            genreArray.forEach(function(genre) {
+                genreServerString += genre + ','
+            });
+
             //send form data to the back end 
             $.post(songSearchURLs.searchSongURL, {
                 songTitle: songTitle,
                 songArtist: songArtist,
                 songAlbum: songAlbum,
-                genreArray: genreArray,
+                genreArray: genreServerString,
                 ratingFilterType: ratingFilterType,
                 ratingInput1: ratingInput1,
                 ratingInput2: ratingInput2
