@@ -22,21 +22,457 @@ namespace FinalProject.Controllers.MainControllers
             return View();
         }
 
-        public ActionResult albumSearch()
+        public string albumSearch()
         {
-            var albumTitle = Request.Form["albumTitle"];
-            //var songArtist = Request.Form["songArtist"];
+            var albumName = Request.Form["albumName"];
+            var artistName = Request.Form["artistName"];
+            var genreArray = Request.Form["genreArray"];
+            var ratingFilterType = Request.Form["ratingFilterType"];
+            var ratingInput1 = Request.Form["ratingInput1"];
+            var ratingInput2 = Request.Form["ratingInput2"];
 
-            //Find relevant songs
-            var query = from a in db.Albums
-                        select a;
-            query = query.Where(a => a.AlbumName.Contains(albumTitle));
-            List<Album> SelectedAlbums = query.ToList();
+            //Find relevant albums
+            var albumQuery = from ab in db.Albums
+                              select new
+                              {
+                                  albumName = ab.AlbumName,
+                                  albumArtist = ab.AlbumArtist,
+                                  albumGenres = ab.AlbumGenres
+                              };
+
+
+
+            if (albumName != null && albumName != "") //check for matching title 
+            {
+                albumQuery = albumQuery.Where(ab => ab.albumName.Contains(albumName));
+            }
+            
+            if (artistName != null && artistName != "")
+            {
+                albumQuery = albumQuery.Where(ab => ab.albumArtist.ArtistName.Contains(artistName));
+            }
+
+            if (genreArray != null && genreArray != "")
+            {
+
+                string[] genreStrings = genreArray.Split(',');
+
+                List<string> GenresToCheck = new List<string>();
+
+
+                foreach (string genreString in genreStrings)
+                {
+                    if (genreString != "")
+                    {
+                        GenresToCheck.Add(genreString);
+                    }
+
+                }
+
+                var genreCount = GenresToCheck.Count();
+
+                //Completely unoptimal code. But it's functional.
+                if (genreCount == 1)
+                {
+                    var genre1 = GenresToCheck[0];
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1)
+                    ));
+                }
+                else if (genreCount == 2)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2)
+                    ));
+                }
+                else if (genreCount == 3)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3)
+                    ));
+                }
+                else if (genreCount == 4)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4)
+                    ));
+                }
+                else if (genreCount == 5)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5)
+                    ));
+                }
+                else if (genreCount == 6)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+                    var genre6 = GenresToCheck[5];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5) ||
+                            sg.GenreName.Contains(genre6)
+                    ));
+                }
+                else if (genreCount == 7)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+                    var genre6 = GenresToCheck[5];
+                    var genre7 = GenresToCheck[6];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5) ||
+                            sg.GenreName.Contains(genre6) ||
+                            sg.GenreName.Contains(genre7)
+                    ));
+                }
+                else if (genreCount == 8)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+                    var genre6 = GenresToCheck[5];
+                    var genre7 = GenresToCheck[6];
+                    var genre8 = GenresToCheck[7];
+
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5) ||
+                            sg.GenreName.Contains(genre6) ||
+                            sg.GenreName.Contains(genre7) ||
+                            sg.GenreName.Contains(genre8)
+                    ));
+                }
+                else if (genreCount == 9)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+                    var genre6 = GenresToCheck[5];
+                    var genre7 = GenresToCheck[6];
+                    var genre8 = GenresToCheck[7];
+                    var genre9 = GenresToCheck[8];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5) ||
+                            sg.GenreName.Contains(genre6) ||
+                            sg.GenreName.Contains(genre7) ||
+                            sg.GenreName.Contains(genre8) ||
+                            sg.GenreName.Contains(genre9)
+                    ));
+                }
+                else if (genreCount == 10)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+                    var genre6 = GenresToCheck[5];
+                    var genre7 = GenresToCheck[6];
+                    var genre8 = GenresToCheck[7];
+                    var genre9 = GenresToCheck[8];
+                    var genre10 = GenresToCheck[9];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5) ||
+                            sg.GenreName.Contains(genre6) ||
+                            sg.GenreName.Contains(genre7) ||
+                            sg.GenreName.Contains(genre8) ||
+                            sg.GenreName.Contains(genre9) ||
+                            sg.GenreName.Contains(genre10)
+                    ));
+                }
+                else if (genreCount == 11)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+                    var genre6 = GenresToCheck[5];
+                    var genre7 = GenresToCheck[6];
+                    var genre8 = GenresToCheck[7];
+                    var genre9 = GenresToCheck[8];
+                    var genre10 = GenresToCheck[9];
+                    var genre11 = GenresToCheck[10];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5) ||
+                            sg.GenreName.Contains(genre6) ||
+                            sg.GenreName.Contains(genre7) ||
+                            sg.GenreName.Contains(genre8) ||
+                            sg.GenreName.Contains(genre9) ||
+                            sg.GenreName.Contains(genre10) ||
+                            sg.GenreName.Contains(genre11)
+                    ));
+                }
+                else if (genreCount == 12)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+                    var genre6 = GenresToCheck[5];
+                    var genre7 = GenresToCheck[6];
+                    var genre8 = GenresToCheck[7];
+                    var genre9 = GenresToCheck[8];
+                    var genre10 = GenresToCheck[9];
+                    var genre11 = GenresToCheck[10];
+                    var genre12 = GenresToCheck[11];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5) ||
+                            sg.GenreName.Contains(genre6) ||
+                            sg.GenreName.Contains(genre7) ||
+                            sg.GenreName.Contains(genre8) ||
+                            sg.GenreName.Contains(genre9) ||
+                            sg.GenreName.Contains(genre10) ||
+                            sg.GenreName.Contains(genre11) ||
+                            sg.GenreName.Contains(genre12)
+                    ));
+                }
+                else if (genreCount == 13)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+                    var genre6 = GenresToCheck[5];
+                    var genre7 = GenresToCheck[6];
+                    var genre8 = GenresToCheck[7];
+                    var genre9 = GenresToCheck[8];
+                    var genre10 = GenresToCheck[9];
+                    var genre11 = GenresToCheck[10];
+                    var genre12 = GenresToCheck[11];
+                    var genre13 = GenresToCheck[12];
+
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5) ||
+                            sg.GenreName.Contains(genre6) ||
+                            sg.GenreName.Contains(genre7) ||
+                            sg.GenreName.Contains(genre8) ||
+                            sg.GenreName.Contains(genre9) ||
+                            sg.GenreName.Contains(genre10) ||
+                            sg.GenreName.Contains(genre11) ||
+                            sg.GenreName.Contains(genre12) ||
+                            sg.GenreName.Contains(genre13)
+                    ));
+                }
+                else if (genreCount == 14)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+                    var genre6 = GenresToCheck[5];
+                    var genre7 = GenresToCheck[6];
+                    var genre8 = GenresToCheck[7];
+                    var genre9 = GenresToCheck[8];
+                    var genre10 = GenresToCheck[9];
+                    var genre11 = GenresToCheck[10];
+                    var genre12 = GenresToCheck[11];
+                    var genre13 = GenresToCheck[12];
+                    var genre14 = GenresToCheck[13];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5) ||
+                            sg.GenreName.Contains(genre6) ||
+                            sg.GenreName.Contains(genre7) ||
+                            sg.GenreName.Contains(genre8) ||
+                            sg.GenreName.Contains(genre9) ||
+                            sg.GenreName.Contains(genre10) ||
+                            sg.GenreName.Contains(genre11) ||
+                            sg.GenreName.Contains(genre12) ||
+                            sg.GenreName.Contains(genre13) ||
+                            sg.GenreName.Contains(genre14)
+                    ));
+                }
+                else if (genreCount == 15)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+                    var genre5 = GenresToCheck[4];
+                    var genre6 = GenresToCheck[5];
+                    var genre7 = GenresToCheck[6];
+                    var genre8 = GenresToCheck[7];
+                    var genre9 = GenresToCheck[8];
+                    var genre10 = GenresToCheck[9];
+                    var genre11 = GenresToCheck[10];
+                    var genre12 = GenresToCheck[11];
+                    var genre13 = GenresToCheck[12];
+                    var genre14 = GenresToCheck[13];
+                    var genre15 = GenresToCheck[14];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4) ||
+                            sg.GenreName.Contains(genre5) ||
+                            sg.GenreName.Contains(genre6) ||
+                            sg.GenreName.Contains(genre7) ||
+                            sg.GenreName.Contains(genre8) ||
+                            sg.GenreName.Contains(genre9) ||
+                            sg.GenreName.Contains(genre10) ||
+                            sg.GenreName.Contains(genre11) ||
+                            sg.GenreName.Contains(genre12) ||
+                            sg.GenreName.Contains(genre13) ||
+                            sg.GenreName.Contains(genre14) ||
+                            sg.GenreName.Contains(genre15)
+
+                    ));
+                }
+                //TODO Finish the rest of this code...
+                else if (genreCount == 16)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4)
+                    ));
+                }
+                else if (genreCount == 17)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4)
+                    ));
+                }
+                else if (genreCount == 18)
+                {
+                    var genre1 = GenresToCheck[0];
+                    var genre2 = GenresToCheck[1];
+                    var genre3 = GenresToCheck[2];
+                    var genre4 = GenresToCheck[3];
+
+                    albumQuery = albumQuery
+                    .Where(sq => sq.albumGenres
+                    .Any(sg => sg.GenreName.Contains(genre1) ||
+                            sg.GenreName.Contains(genre2) ||
+                            sg.GenreName.Contains(genre3) ||
+                            sg.GenreName.Contains(genre4)
+                    ));
+                }
+            }
+
+
 
             //convert songs objects to JSON for frontend
-            var json = new JavaScriptSerializer().Serialize(SelectedAlbums);
+            var albumJson = new JavaScriptSerializer().Serialize(albumQuery);
+            return albumJson;
 
-            return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
         }
 
         public string artistSearch()
@@ -47,7 +483,7 @@ namespace FinalProject.Controllers.MainControllers
             var ratingInput1 = Request.Form["ratingInput1"];
             var ratingInput2 = Request.Form["ratingInput2"];
 
-            //Find relevant songs
+            //Find relevant artists
             var artistQuery = from a in db.Artists
                               select new
                               {

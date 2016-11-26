@@ -1927,6 +1927,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\ProjectJs\AlbumJs\albumSearch.js" />
+    <Content Include="Scripts\ProjectJs\AlbumJs\albumSearchComponents.js" />
+    <Content Include="Scripts\ProjectJs\AlbumJs\albumSearchHelperFunctions.js" />
     <Content Include="Scripts\ProjectJs\ArtistSearchJs\artistSearch.js" />
     <Content Include="Scripts\ProjectJs\ArtistSearchJs\artistSearchComponents.js" />
     <Content Include="Scripts\ProjectJs\ArtistSearchJs\artistSearchHelperFunctions.js" />
