@@ -24,25 +24,20 @@ var songSearchHelperFunctions = {};
        
         var searchResultsJSONObject = jQuery.parseJSON(data);
 
-        var searchResultInsert = '';
+        //var searchResultInsert = '';
 
-        $.each(searchResultsJSONObject, function (index, item) {
-            var tableDataComponentHTML = htmlComponents.tableDataComponent;
-            var songNameUpdate = tableDataComponentHTML.replace("SONGTITLE", item.SongTitle);
-            var artistNameUpdate = songNameUpdate.replace("SONGARTIST", item.ArtistName);
-            var priceUpdate = artistNameUpdate.replace("SONGPRICE", item.SongPrice);
-            var songRatingUpdate = priceUpdate.replace("SONGRATING", "N/A");
+        $('#datatable1').dataTable().fnDestroy();
+        $('#datatable1').empty();
 
-            searchResultInsert += songRatingUpdate;
-        });
-
-        $('#dataContainer').html(searchResultInsert);
-
-        return;
-
-        $('#datatable1').DataTable({
+        var dataTable = $('#datatable1').DataTable({
             "dom": 'lCfrtip',
             "order": [],
+            "columns": [
+            { "title": "Song Title", "targets": 0 },
+            { "title": "Song Artist", "targets": 0 },
+            { "title": "Song Price", "targets": 0 },
+            { "title": "Song Rating", "targets": 0 }
+            ],
             "colVis": {
                 "buttonText": "Columns",
                 "overlayFade": 0,
@@ -58,10 +53,24 @@ var songSearchHelperFunctions = {};
             }
         });
 
+
         $('#datatable1 tbody').on('click', 'tr', function () {
             $(this).toggleClass('selected');
         });
 
+        $.each(searchResultsJSONObject, function (index, item) {
+            /*
+            var tableDataComponentHTML = htmlComponents.tableDataComponent;
+            var songNameUpdate = tableDataComponentHTML.replace("SONGTITLE", item.SongTitle);
+            var artistNameUpdate = songNameUpdate.replace("SONGARTIST", item.ArtistName);
+            var priceUpdate = artistNameUpdate.replace("SONGPRICE", item.SongPrice);
+            var songRatingUpdate = priceUpdate.replace("SONGRATING", "N/A");
+
+            searchResultInsert += songRatingUpdate;
+            */
+
+            dataTable.row.add([item.SongTitle, item.ArtistName, item.SongPrice, "N/A"]).draw();
+        });
     }
 
     context.setupGenres = function setupGenres() {
