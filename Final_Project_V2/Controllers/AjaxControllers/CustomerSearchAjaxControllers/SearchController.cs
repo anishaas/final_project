@@ -106,19 +106,58 @@ namespace FinalProject.Controllers.MainControllers
 
         public string SearchResults()
         {
-            db.Configuration.ProxyCreationEnabled = false;
+            //db.Configuration.ProxyCreationEnabled = false;
             //string songTitle, string songArtist, string songAlbum, string selectedGenre
             var songTitle = Request.Form["songTitle"];
-            var artistName = Request.Form["artistName"];
-            var albumName = Request.Form["albumName"];
+            var artistName = Request.Form["songArtist"];
+            var albumName = Request.Form["songAlbum"];
             var genreArray = Request.Form["genreArray"];
             var ratingFilterType = Request.Form["ratingFilterType"];
             var ratingInput1 = Request.Form["ratingInput1"];
             var ratingInput2 = Request.Form["ratingInput2"];
 
-            var query = from s in db.Songs
-                        select s;
+            //var query = from s in db.Songs
+            //            select s;
 
+            var songsQuery = from song in db.Songs
+                          select new
+                          {
+                              SongTitle = song.SongTitle,
+                              SongPrice = song.SongPrice,
+                              ArtistName = song.SongArtist.ArtistName,
+                              Featured = song.Featured, 
+                              SongGenres = song.SongGenres,
+                              SongAlbums = song.SongAlbums
+                          };
+
+            if (songTitle != null && songTitle != "") //check for matching title 
+            {
+                songsQuery = songsQuery.Where(s => s.SongTitle.Contains(songTitle));
+            }
+
+            if (artistName != null && artistName != "")
+            {
+                songsQuery = songsQuery.Where(s => s.ArtistName.Contains(artistName));
+            }
+
+            return JsonConvert.SerializeObject(songsQuery);
+
+
+
+            var songTest = db.Songs;
+                //.Include("SongArtist");
+                            //.Include("SongGenres")
+                //.Include("SongAlbums");
+
+
+            List<Song> songTestList = songTest.ToList();
+
+            var jsonTest = JsonConvert.SerializeObject(songTestList);
+            //string combinedString = String.Join(",", SelectedSongs);
+            //return new JsonResult() { Data = songs, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+            return jsonTest;
+            /*
             if (songTitle != null && songTitle != "") //check for matching title 
             {
                 query = query.Where(s => s.SongTitle.Contains(songTitle));
@@ -129,12 +168,12 @@ namespace FinalProject.Controllers.MainControllers
                 query = query.Where(s => s.SongArtist.ArtistName.Contains(artistName));
             }
 
-            /*
+
             if (albumName != null && albumName != "")
             {
                 query = query.Where(a => a.SongAlbums.AlbumName.Contains(artistName));
             }
-            */
+  
 
            if (genreArray != null && genreArray != "")
            {
@@ -159,7 +198,7 @@ namespace FinalProject.Controllers.MainControllers
             }
             */
            //check genre dropdown
-
+           /*
             query = query.OrderBy(s => s.SongTitle);
             List<Song> SelectedSongs = query.ToList();
             ViewBag.SelectedSongCount = SelectedSongs.Count();
@@ -173,6 +212,7 @@ namespace FinalProject.Controllers.MainControllers
             //return new JsonResult() { Data = songs, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
             return jsonTest;
+            */
         }
 
 

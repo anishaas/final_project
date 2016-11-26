@@ -35,9 +35,7 @@
 
         //Validation checks
         function validateForm() {
-
             return true;
-
             if(songTitle == '' && songArtist == '' && songAlbum == '' && genreArray.length == 0 && ratingFilterType == '' && ratingInput1 == '' && ratingInput2 == ''){
                 alert("Please provide some search parameters.");
             }else if(ratingInput1 < 1 || ratingInput1 > 5){
