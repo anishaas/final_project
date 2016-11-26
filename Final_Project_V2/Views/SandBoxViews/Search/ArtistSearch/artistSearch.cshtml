@@ -1,12 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "SandBox1";
+    ViewBag.Title = "PA Consulting";
 }
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title id="pageTitle"></title>
     <!--@Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHeader.cshtml"))-->
     <link type="text/css" rel="stylesheet" href="../../MaterialDesignAssets/css/theme-default/libs/select2/select2.css?1424887856" />
     <link type="text/css" rel="stylesheet" href="../../MaterialDesignAssets/css/theme-default/libs/multi-select/multi-select.css?1424887857" />
@@ -24,12 +23,12 @@
             <section>
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="text-primary">Song Search</h1>
+                        <h1 class="text-primary">Artist Search</h1>
                     </div><!--end .col -->
                     <div class="col-lg-8">
                         <article class="margin-bottom-xxl">
                             <p class="lead">
-                                Search with song title, genre, artist, album, or rating
+                                Search with artist name, genre, or rating
                             </p>
                         </article>
                     </div><!--end .col -->
@@ -41,19 +40,9 @@
                             <div class="card-body">
                                 <form class="form" role="form">
                                     <div class="form-group floating-label">
-                                        <input type="text" class="form-control" id="songTitle">
-                                        <label for="regular2">Song Title</label>
-                                        <p class="help-block">(Shake It Off)</p>
-                                    </div>
-                                    <div class="form-group floating-label">
-                                        <input type="text" class="form-control" id="songArtist">
-                                        <label for="password2">Song Artist</label>
-                                        <p class="help-block">Taylor Swift</p>
-                                    </div>
-                                    <div class="form-group floating-label">
-                                        <input type="text" class="form-control" id="songAlbum">
-                                        <label for="placeholder2">Song Album</label>
-                                        <p class="help-block">Red</p>
+                                        <input type="text" class="form-control" id="artistName">
+                                        <label for="regular2">Artist Name</label>
+                                        <p class="help-block">(Drake)</p>
                                     </div>
                                 </form>
                             </div><!--end .card-body -->
@@ -74,8 +63,7 @@
                                 </div>
                             </div><!--end .card-head -->
                             <div class="card-body">
-                                <ul id="genreListContainer" class="list" data-sortable="true">
-                                </ul>
+                                <ul id="genreListContainerArtist" class="list" data-sortable="true"></ul>
                             </div><!--end .card-body -->
                         </div><!--end .card -->
                         <em class="text-caption">Select a Rating Range Below</em>
@@ -118,10 +106,10 @@
                             </div><!--end .card-body -->
                         </div><!--end .card -->
                         <em class="text-caption">See search results below</em>
-                        <button id="songSearchBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Search</button>
+                        <button id="artistSearchBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Search</button>
                     </div><!--end .col -->
                 </div><!--end .row -->
-                <br/><br/>
+                <br /><br />
                 <!-- BEGIN DATATABLE 1 -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -129,22 +117,19 @@
                             <table id="datatable1" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Song Title</th>
-                                        <th>Song Artist</th>
-                                        <th class="sort-numeric">Song Price</th>
+                                        <th>Artist Name</th>
+                                        <th>Artist Genres</th>
                                         <th class="sort-numeric">Song Rating</th>
-          
+
                                     </tr>
                                 </thead>
-                                <tbody id="dataContainer">
-                                   
-                                </tbody>
+                                <tbody id="dataContainer"></tbody>
                             </table>
                         </div><!--end .table-responsive -->
                     </div><!--end .col -->
                 </div><!--end .row -->
                 <!-- END DATATABLE 1 -->
-        </section>
+            </section>
         </div><!--end #content-->
         <!-- END CONTENT -->
         <div id="htmlComponentsContainer" style="display:none;">
@@ -154,7 +139,7 @@
     <!-- END BASE -->
     <!-- BEGIN JAVASCRIPT -->
     <!-- END JAVASCRIPT -->
-    
+
 </body>
 </html>
 
