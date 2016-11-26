@@ -59,7 +59,7 @@
             genreArray.forEach(function(genre) {
                 genreServerString += genre + ','
             });
-
+  
             //send form data to the back end 
             $.post(songSearchURLs.searchSongURL, {
                 songTitle: songTitle,
@@ -71,9 +71,7 @@
                 ratingInput2: ratingInput2
             })
             .done(function (data) {
-                //var test = jQuery.parseJSON(data);
-                alert(data);
-                //alert(jQuery.parseJSON( '{ "name": "John" }' ));
+                songSearchHelperFunctions.displaySearchResults(data);
             });
         }
        });
