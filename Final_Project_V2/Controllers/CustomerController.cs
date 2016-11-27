@@ -65,7 +65,7 @@ namespace Final_Project_V2.Controllers
             }
             AppUser @customer = db.Users.Find(id);
             //if unauthorized attempt, send back to login
-            if (customer.Id != User.Identity.GetUserId() && !User.IsInRole("Admin") && !User.IsInRole("Employee"))
+            if (@customer.Id != User.Identity.GetUserId() && !User.IsInRole("Admin") && !User.IsInRole("Employee"))
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -86,14 +86,12 @@ namespace Final_Project_V2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,LastName,FirstName,EmailAddress,Phone,CCType1,CCNumber1,CCType2,CCNumber2")] AppUser @customer)
+        public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,EmailAddress,Phone,CCType1,CCNumber1,CCType2,CCNumber2")] AppUser @customer)
         {
             if (ModelState.IsValid)
             {
                 //Find associated member
                 AppUser customerToChange = db.Users.Find(@customer.Id);
-
-                //update customer properties based on edits
                 customerToChange.LastName = @customer.LastName;
                 customerToChange.FirstName = @customer.FirstName;
                 customerToChange.Email = @customer.Email;
