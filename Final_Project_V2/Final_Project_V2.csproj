@@ -1977,9 +1977,6 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="Controllers\MainControllers\CustomerController.cs" />
-    <Compile Include="Controllers\MainControllers\EmployeeController.cs" />
     <Compile Include="Controllers\AjaxControllers\SearchAjaxControllers\SearchController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SandBoxControllers\SandBoxController.cs" />
@@ -2048,7 +2045,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AjaxControllers\CustomerSearchAjaxControllers\" />
     <Folder Include="Controllers\MainControllers\" />
-    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611251914146_Initial.resx">

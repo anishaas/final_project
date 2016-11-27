@@ -37,19 +37,23 @@ namespace Final_Project_V2.Controllers
                 return HttpContext.GetOwinContext().Get<AppRoleManager>();
             }
         }
-        // GET: Customers
+        */
+        //  GET: Customers
         public ActionResult Index()
         {
+            
             var query = from c in db.Users
                         select c;
-
+            List <AppUser> allCustomers = query.ToList();
+            /*
             List<AppUser> allCustomers = query.ToList();
             var roleManager = new RoleManager<>(new RoleStore(db));
             var customerRole = roleManager.FindByName("Customer");
             allCustomers = db.Users.Where(x => x.Roles.Any(s => s.RoleId == customerRole.Id)).ToList();
             return View(allCustomers);
+            */
+            return View(allCustomers);
         }
-        */
 
         // GET: Customers/Edit/5
         //[Authorize(Roles = "Admin")]
