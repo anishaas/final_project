@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -9,51 +7,21 @@ using System.Web.Mvc;
 using Final_Project_V2.Models;
 using Microsoft.AspNet.Identity;
 
-
 namespace Final_Project_V2.Controllers
 {
-    public class CustomerController : Controller
+    public class EmployeeController : Controller
     {
         private AppDbContext db = new AppDbContext();
-
-        /*
-        public AppUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-        */
-        /*
-        private AppRoleManager RoleManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Get<AppRoleManager>();
-            }
-        }
-        // GET: Customers
+        // GET: Employee
         public ActionResult Index()
         {
-            var query = from c in db.Users
-                        select c;
-
-            List<AppUser> allCustomers = query.ToList();
-            var roleManager = new RoleManager<>(new RoleStore(db));
-            var customerRole = roleManager.FindByName("Customer");
-            allCustomers = db.Users.Where(x => x.Roles.Any(s => s.RoleId == customerRole.Id)).ToList();
-            return View(allCustomers);
+            return View();
         }
-        */
 
-        // GET: Customers/Edit/5
-        //[Authorize(Roles = "Admin")]
-        public ActionResult Edit(int? id)
+        // GET: Employee/Customers/Edit/5
+        //Add admin as authorized! 
+        //[Authorize(Roles = "Employee")]
+        public ActionResult EmployeeEditCustomer(int? id)
         {
             if (id == null)
             {
@@ -61,7 +29,7 @@ namespace Final_Project_V2.Controllers
             }
             AppUser @customer = db.Users.Find(id);
             //if unauthorized attempt, send back to login
-            if (customer.Id != User.Identity.GetUserId() && !User.IsInRole("Admin") && !User.IsInRole("Employee"))
+            if (!User.IsInRole("Admin") && !User.IsInRole("Employee"))
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -77,12 +45,12 @@ namespace Final_Project_V2.Controllers
             return View(@customer);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Employee/Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,LastName,FirstName,EmailAddress,Phone,CCType1,CCNumber1,CCType2,CCNumber2")] AppUser @customer)
+        public ActionResult EmployeeEditCustomer([Bind(Include = "UserID,LastName,FirstName,EmailAddress,Phone,CCType1,CCNumber1,CCType2,CCNumber2")] AppUser @customer)
         {
             if (ModelState.IsValid)
             {
@@ -100,19 +68,24 @@ namespace Final_Project_V2.Controllers
                 if (@customer.CCNumber1.Length == 15)
                 {
                     @customer.CCType1 = "AmericanExpress";
-                //All other cards
-                } else if (@customer.CCNumber1.Length == 16)
+                    //All other cards
+                }
+                else if (@customer.CCNumber1.Length == 16)
                 {
                     if (@customer.CCNumber1.Substring(0, 2) == "54")
                     {
                         @customer.CCType1 = "MasterCard";
-                    } else if (@customer.CCNumber1.Substring(0,1) == "4")
+                    }
+                    else if (@customer.CCNumber1.Substring(0, 1) == "4")
                     {
                         @customer.CCType1 = "Visa";
-                    } else if (@customer.CCNumber1.Substring(0, 1) == "6")
+                    }
+                    else if (@customer.CCNumber1.Substring(0, 1) == "6")
                     {
                         @customer.CCType1 = "Discover";
-                    } else {
+                    }
+                    else
+                    {
                         //error message to ViewBag
                         ViewBag.ErrorMessage = "That is not a valid credit card number. Please enter a valid credit card number";
                     }
@@ -122,14 +95,14 @@ namespace Final_Project_V2.Controllers
                 customerToChange.CCType1 = @customer.CCType1;
                 customerToChange.CCNumber1 = @customer.CCNumber1;
                 customerToChange.CCType2 = @customer.CCType2;
-                customerToChange.CCNumber2 = @customer.CCNumber2; 
+                customerToChange.CCNumber2 = @customer.CCNumber2;
 
 
                 db.Entry(customerToChange).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-            return View(@customer);
+            return View("~/Views/Employee/EditCustomer.cshtml",@customer);
         }
     }
 }

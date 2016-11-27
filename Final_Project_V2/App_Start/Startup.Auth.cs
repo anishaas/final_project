@@ -19,10 +19,10 @@ namespace Final_Project_V2
             app.CreatePerOwinContext(AppDbContext.Create);
             app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
             app.CreatePerOwinContext<AppSignInManager>(AppSignInManager.Create);
-            
+            //app.CreatePerOwinContext<AppRoleManager>(AppRoleManager.Create);
+
             //NOTE: This code is absolutely required to make roles work
             app.CreatePerOwinContext<AppRoleManager>(AppRoleManager.Create);
-
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider

@@ -13,6 +13,7 @@ namespace Final_Project_V2.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
+
         public enum ManageMessageId
         {
             AddPhoneSuccess,
@@ -187,7 +188,7 @@ namespace Final_Project_V2.Controllers
             return View();
         }
 
-        // GET: /Account/RegisterAdmin
+                // GET: /Account/RegisterAdmin
         [Authorize(Roles = "admin")]
         public ActionResult RegisterAdmin()
         {
@@ -218,6 +219,51 @@ namespace Final_Project_V2.Controllers
                     await UserManager.AddToRoleAsync(user.Id, "Admin"); //adds user to role called "User"
                     // --OR--
                     //await UserManager.AddToRoleAsync(user.Id, "Employee"); //adds user to role called "Employee"
+
+                    //sign the user in
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    //send them to the home page
+                    return RedirectToAction("Index", "Home");
+                }
+
+                //if there was a problem, add the error messages to what we will display
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        // GET: /Account/RegisterEmployee
+        [Authorize(Roles = "Admin")]
+        public ActionResult RegisterEmployee()
+        {
+            return View();
+        }
+
+        // POST: /Account/RegisterEmployee
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterEmployee(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //LATER: Add fields to user here so they will be saved to the database 
+                //Create a new user with all the properties you need for the class
+                var user = new AppUser { UserName = model.Email, Email = model.Email, LastName = model.LastName, FirstName = model.FirstName};
+
+
+                //Add the new user to the database
+                var result = await UserManager.CreateAsync(user, model.Password);
+
+
+
+                if (result.Succeeded) //user was created successfully
+                {
+                    //TODO: Once you get roles working, you may want to add users to roles upon creation
+                    await UserManager.AddToRoleAsync(user.Id, "Employee"); //adds user to role called "User"
 
                     //sign the user in
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

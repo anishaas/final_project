@@ -1961,9 +1961,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxControllers\DataControllers\DataController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MainControllers\CustomerController.cs" />
-    <Compile Include="Controllers\MainControllers\EmployeeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SandBoxControllers\SandBoxController.cs" />
@@ -2016,8 +2015,10 @@
     <Content Include="Views\SandBoxViews\Footers\userViewFooter.cshtml" />
     <Content Include="Views\SandBoxViews\WelcomePage\customerWelcomePage.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\MyMusic.cshtml" />
-    <Content Include="Views\EditEmployee.cshtml" />
+    <Content Include="Views\Employee\EditEmployee.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Employee\EditCustomer.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2028,7 +2029,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AjaxControllers\CustomerSearchAjaxControllers\" />
-    <Folder Include="Views\Employee\" />
+    <Folder Include="Controllers\MainControllers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611251914146_Initial.resx">
