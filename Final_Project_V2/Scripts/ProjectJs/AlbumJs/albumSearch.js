@@ -1,14 +1,13 @@
 ﻿jQuery(document).ready(function () {
 
-    var songSearchBtn = $("#songSearchBtn");
+    var albumSearchBtn = $("#albumSearchBtn");
 
-    songSearchHelperFunctions.setupGenres();
+    albumSearchHelperFunctions.setupGenres();
 
-    songSearchBtn.on('click', function () {
+    albumSearchBtn.on('click', function () {
 
-        var songTitle = $('#songTitle').val();
-        var songArtist = $('#songArtist').val();
-        var songAlbum = $('#songAlbum').val();
+        var albumName = $('#albumName').val();
+        var artistName = $('#artistName').val();
         var genreArray = [];
         var ratingFilterType = '';
         var ratingInput1 = '';
@@ -53,7 +52,6 @@
 
         if (validateForm() == true) {
    
-
             var genreServerString = '';
 
             genreArray.forEach(function(genre) {
@@ -61,25 +59,18 @@
             });
    
             //send form data to the back end 
-            $.post(songSearchURLs.searchSongURL, {
-                songTitle: songTitle,
-                songArtist: songArtist,
-                songAlbum: songAlbum,
+            $.post(albumSearchURLs.searchAlbumURL, {
+                albumName: albumName,
+                artistName: artistName,
                 genreArray: genreServerString,
                 ratingFilterType: ratingFilterType,
                 ratingInput1: ratingInput1,
                 ratingInput2: ratingInput2
             })
             .done(function (data) {
-                songSearchHelperFunctions.displaySearchResults(data);
+                albumSearchHelperFunctions.displaySearchResults(data);
             });
         }
        });
 
-    /*
-    $.post("/search/searchbySongTitle", { songTitle: "John", songArtist: "2pm" })
-    .done(function (data) {
-      alert("Data Loaded: " + data);
-  });
-  */
 });

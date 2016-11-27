@@ -1,5 +1,5 @@
 ﻿//This holds a js object that makes it easy to call helper functions in the main execution js file
-var songSearchHelperFunctions = {};
+var artistSearchHelperFunctions = {};
 
 (function (context) {
     //Private scope 
@@ -7,7 +7,8 @@ var songSearchHelperFunctions = {};
 
     //Public API's	
     context.test = function () {
-        $.post(songSearchURLs.getGenreDataURL)
+        $.post(artistSearchURLs
+            .getGenreDataURL)
         .done(function (data) {
             if (data != "fail") {
                 //alert(data);
@@ -20,7 +21,7 @@ var songSearchHelperFunctions = {};
     };
 
     context.displaySearchResults = function (data) {      
-       
+        alert(data);
         var searchResultsJSONObject = jQuery.parseJSON(data);
 
         //var searchResultInsert = '';
@@ -32,10 +33,9 @@ var songSearchHelperFunctions = {};
             "dom": 'lCfrtip',
             "order": [],
             "columns": [
-            { "title": "Song Title", "targets": 0 },
-            { "title": "Song Artist", "targets": 0 },
-            { "title": "Song Price", "targets": 0 },
-            { "title": "Song Rating", "targets": 0 }
+            { "title": "Artist Name", "targets": 0 },
+            { "title": "Artist Genres", "targets": 0 },
+            { "title": "Artist Rating", "targets": 0 }
             ],
             "colVis": {
                 "buttonText": "Columns",
@@ -58,23 +58,20 @@ var songSearchHelperFunctions = {};
         });
 
         $.each(searchResultsJSONObject, function (index, item) {
-            /*
-            var tableDataComponentHTML = htmlComponents.tableDataComponent;
-            var songNameUpdate = tableDataComponentHTML.replace("SONGTITLE", item.SongTitle);
-            var artistNameUpdate = songNameUpdate.replace("SONGARTIST", item.ArtistName);
-            var priceUpdate = artistNameUpdate.replace("SONGPRICE", item.SongPrice);
-            var songRatingUpdate = priceUpdate.replace("SONGRATING", "N/A");
 
-            searchResultInsert += songRatingUpdate;
-            */
+            var genreString = '';
 
-            dataTable.row.add([item.SongTitle, item.ArtistName, item.SongPrice, "N/A"]).draw();
+            $.each(item.ArtistGenres, function (index, item) {
+                genreString += item.GenreName + ', ';
+            });
+
+            dataTable.row.add([item.ArtistName, genreString, "N/A"]).draw();
         });
     }
 
     context.setupGenres = function setupGenres() {
 
-        $.post(songSearchURLs.getGenreDataURL)
+        $.post(artistSearchURLs.getGenreDataURL)
         .done(function (data) {
             genreJSONObject = jQuery.parseJSON(data);
             if (data != "fail") {
@@ -87,7 +84,7 @@ var songSearchHelperFunctions = {};
                     genreListInsert += genreListHTMLUpdated;
                 });
 
-                $('#genreListContainer').html(genreListInsert);
+                $('#genreListContainerArtist').html(genreListInsert);
             }
         });
 
@@ -95,4 +92,4 @@ var songSearchHelperFunctions = {};
 
     
 
-})(songSearchHelperFunctions);
+})(artistSearchHelperFunctions);

@@ -19,20 +19,31 @@ namespace FinalProject.Controllers.SandBoxControllers
             return View("~/Views/SandBoxViews/WelcomePage/customerWelcomePage.cshtml");
         }
 
+        //SEARCH RELATED
         public ActionResult getCustomerSongSearchPage()
         {
             return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
         }
+
+        public ActionResult getCustomerAlbumSearchPage()
+        {
+            return View("~/Views/SandBoxViews/Search/AlbumSearch/customerAlbumSearch.cshtml");
+        }
+
+        public ActionResult getCustomerArtistSearchPage()
+        {
+            return View("~/Views/SandBoxViews/Search/ArtistSearch/artistSearch.cshtml");
+        }
+
+
+
 
         public ActionResult getMyMusicPage()
         {
             return View("~/Views/SandBoxViews/AccountScreens/MyMusic.cshtml");
         }
 
-        public ActionResult getCustomerAlbumSearchPage()
-        {
-            return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
-        }
+
 
         public ActionResult getSongDetailsPage()
         {

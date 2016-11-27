@@ -5,9 +5,9 @@ var htmlComponents = {
     tableDataComponent:''
 }
 
-var songSearchURLs = {
+var albumSearchURLs = {
     getGenreDataURL: '/data/getGenreData',
-    searchSongURL: '/search/searchResults'
+    searchAlbumURL: '/search/albumSearch'
 }
 
 $(document).ready(function () {

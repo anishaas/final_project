@@ -1,14 +1,12 @@
 ﻿jQuery(document).ready(function () {
 
-    var songSearchBtn = $("#songSearchBtn");
+    var artistSearchBtn = $("#artistSearchBtn");
 
-    songSearchHelperFunctions.setupGenres();
+    artistSearchHelperFunctions.setupGenres();
 
-    songSearchBtn.on('click', function () {
+    artistSearchBtn.on('click', function () {
 
-        var songTitle = $('#songTitle').val();
-        var songArtist = $('#songArtist').val();
-        var songAlbum = $('#songAlbum').val();
+        var artistName = $('#artistName').val();
         var genreArray = [];
         var ratingFilterType = '';
         var ratingInput1 = '';
@@ -53,7 +51,6 @@
 
         if (validateForm() == true) {
    
-
             var genreServerString = '';
 
             genreArray.forEach(function(genre) {
@@ -61,17 +58,15 @@
             });
    
             //send form data to the back end 
-            $.post(songSearchURLs.searchSongURL, {
-                songTitle: songTitle,
-                songArtist: songArtist,
-                songAlbum: songAlbum,
+            $.post(artistSearchURLs.searchArtistURL, {
+                artistName: artistName,
                 genreArray: genreServerString,
                 ratingFilterType: ratingFilterType,
                 ratingInput1: ratingInput1,
                 ratingInput2: ratingInput2
             })
             .done(function (data) {
-                songSearchHelperFunctions.displaySearchResults(data);
+                artistSearchHelperFunctions.displaySearchResults(data);
             });
         }
        });

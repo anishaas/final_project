@@ -24,10 +24,10 @@ namespace FinalProject.Controllers.MainControllers
         [HttpPost]
         public String getGenreData()
         {
-            string[] n3 = { "Rock", "Rap", "Pop"};
+            var genreData = from g in db.Genres select g;
 
-            string json = JsonConvert.SerializeObject(n3);
-            return json;
+            return JsonConvert.SerializeObject(genreData);
+
         }
 
 
