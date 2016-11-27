@@ -57,7 +57,7 @@ namespace Final_Project_V2.Controllers
 
         // GET: Customers/Edit/5
         //[Authorize(Roles = "Admin")]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {

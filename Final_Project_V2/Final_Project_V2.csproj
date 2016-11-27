@@ -1995,6 +1995,10 @@
     <Compile Include="Migrations\201611252055480_Updating Song Model.Designer.cs">
       <DependentUpon>201611252055480_Updating Song Model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611271811244_Commented out UserId Property for users.cs" />
+    <Compile Include="Migrations\201611271811244_Commented out UserId Property for users.Designer.cs">
+      <DependentUpon>201611271811244_Commented out UserId Property for users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -2055,6 +2059,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611252055480_Updating Song Model.resx">
       <DependentUpon>201611252055480_Updating Song Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611271811244_Commented out UserId Property for users.resx">
+      <DependentUpon>201611271811244_Commented out UserId Property for users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
