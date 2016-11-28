@@ -1980,6 +1980,7 @@
     <Compile Include="Controllers\AjaxControllers\SearchAjaxControllers\SearchController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SandBoxControllers\SandBoxController.cs" />
+    <Compile Include="Controllers\SongController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2049,6 +2050,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AjaxControllers\CustomerSearchAjaxControllers\" />
     <Folder Include="Controllers\MainControllers\" />
+    <Folder Include="Views\Song\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611251914146_Initial.resx">
