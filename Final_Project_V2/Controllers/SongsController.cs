@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Final_Project_V2.Controllers
 {
-    public class SongController : Controller
+    public class SongsController : Controller
     {
         private AppDbContext db = new AppDbContext();
 
@@ -39,14 +39,14 @@ namespace Final_Project_V2.Controllers
         }
 
 
-        // GET: Songs/Create
+        // GET: /Songs/Create
         public ActionResult Create()
         {
             return View();
         }
 
 
-        // POST: Songs/Create
+        // POST: /Songs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]

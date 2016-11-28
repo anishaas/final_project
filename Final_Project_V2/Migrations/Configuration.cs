@@ -19,7 +19,7 @@ namespace Final_Project_V2.Migrations
 
         protected override void Seed(Final_Project_V2.Models.AppDbContext context)
         {
-            /*
+
             //create a list of genres to add
             var genres = new List<Genre>
             {
@@ -45,9 +45,10 @@ namespace Final_Project_V2.Migrations
             //create a list of artists
             var artists = new List<Artist>
             {
-                new Artist { ArtistName = "Drake", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
-                new Artist { ArtistName = "ADELE", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
-                new Artist { ArtistName = "Rihanna", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
+                new Artist { ArtistName = "Drake", ArtistGenres = new List<Genre>()},
+                new Artist { ArtistName = "ADELE", ArtistGenres = new List<Genre>()},
+                new Artist { ArtistName = "Rihanna", ArtistGenres = new List<Genre>()}
+                /*
                 new Artist { ArtistName = "Sam Hunt", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
                 new Artist { ArtistName = "Eli Young Band", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
                 new Artist { ArtistName = "Foster the People", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
@@ -103,6 +104,7 @@ namespace Final_Project_V2.Migrations
                 new Artist { ArtistName = "Bobby McFerrin", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
                 new Artist { ArtistName = "Malvina Reynolds", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()},
                 new Artist { ArtistName = "Peter, Paul & Mary", ArtistGenres = new List<Genre>(), ArtistAlbums = new List<Album>()}
+                */
             };
 
             //add artists to database
@@ -113,6 +115,7 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateArtistGenre(db, "Drake", "Hip Hop/Rap");
             AddOrUpdateArtistGenre(db, "ADELE", "Pop");
             AddOrUpdateArtistGenre(db, "Rihanna", "Pop");
+            /*
             AddOrUpdateArtistGenre(db, "Sam Hunt", "Country");
             AddOrUpdateArtistGenre(db, "Eli Young Band", "Country");
             AddOrUpdateArtistGenre(db, "Foster The People", "Alternative");
@@ -181,6 +184,7 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateArtistGenre(db, "Peter, Paul & Mary", "Singer/Songwriter");
             AddOrUpdateArtistGenre(db, "Bobby McFerrin", "Reggae");
             AddOrUpdateArtistGenre(db, "Calvin Harris", "Pop");
+            */
             db.SaveChanges();
 
             /*
@@ -203,17 +207,42 @@ namespace Final_Project_V2.Migrations
             db.SaveChanges();
             */
 
+            var songs = new List<Song>
+            {
+                new Song { SongTitle = "Rolling In The Deep", SongPrice = 1.29M, SongGenres = new List<Genre>(), SongAlbums = new List<Album>() },
+                new Song { SongTitle = "Energy", SongPrice = 1.19M, SongGenres = new List<Genre>(), SongAlbums = new List<Album>() },
+                new Song { SongTitle = "S&M", SongPrice = 1.19M, SongGenres = new List<Genre>(), SongAlbums = new List<Album>() },
+
+                /*
+                new Song { },
+                new Song { },
+                new Song { },
+                new Song { },
+                new Song { },
+                */
+            };
+
+            songs.ForEach(s => db.Songs.AddOrUpdate(y => y.SongTitle, s));
+            songs.ForEach(a => db.Songs.AddOrUpdate(y => y.SongPrice, a));
+
+            //add genre to song
+            AddOrUpdateSongGenre(db, "Rolling In the Deep", "Pop");
+            AddOrUpdateSongGenre(db, "S&M", "Pop");
+            AddOrUpdateSongGenre(db, "Energy", "Hip Hop/Rap");
+
+            //add artist to song
+            AddOrUpdateSongArtist(db, "Rolling in the Deep", "ADELE");
+            AddOrUpdateSongArtist(db, "Energy", "Drake");
+            AddOrUpdateSongArtist(db, "S&M", "Rihanna");
+            db.SaveChanges();
 
             //create album list
-            /*
             var albums = new List<Album>
             {
-                new Album { AlbumName = "21", AlbumGenres = new List<Genre>() },
-                new Album { AlbumName = "Loud", AlbumGenres = new List<Genre>() },
-                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>() },
                 new Album { AlbumName = "21", AlbumGenres = new List<Genre>(), AlbumPrice = 10.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Loud", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>(), AlbumPrice = 12.99M, AlbumSongs = new List<Song>() },
+                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>(), AlbumPrice = 12.99M, AlbumSongs = new List<Song>() }
+                /*
                 new Album { AlbumName = "Torches", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Hands All Over", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Hands All Over (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
@@ -238,16 +267,18 @@ namespace Final_Project_V2.Migrations
                 new Album { AlbumName = "The Best of Bobby McFerrin", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Eat Randy - Single", AlbumGenres = new List<Genre>(), AlbumPrice = 1.29M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "The Duck song (The Duck and the Lemonade Stand)", AlbumGenres = new List<Genre>(), AlbumPrice = 1.29M, AlbumSongs = new List<Song>() },
+                */
                 };
 
             //add to database
             albums.ForEach(a => db.Albums.AddOrUpdate(y => y.AlbumName, a));
-            //albums.ForEach(a => db.Albums.AddOrUpdate(y => y.AlbumPrice, a));
+            albums.ForEach(a => db.Albums.AddOrUpdate(y => y.AlbumPrice, a));
             db.SaveChanges();
 
             AddOrUpdateAlbumGenre(db, "21", "Pop");
             AddOrUpdateAlbumGenre(db, "Loud", "Pop");
             AddOrUpdateAlbumGenre(db, "If You're Reading This It's Too Late", "Hip Hop/Rap");
+            /*
             AddOrUpdateAlbumGenre(db, "Sorry for Party Rocking (Deluxe Version)", "Pop");
             AddOrUpdateAlbumGenre(db, "Torches", "Alternative");
             AddOrUpdateAlbumGenre(db, "Hands All Over", "Pop");
@@ -275,10 +306,12 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateAlbumGenre(db, "The Duck Song (The Duck and the Lemonade Stand)", "Children's Music");
             AddOrUpdateAlbumGenre(db, "The Duck Song (The Duck and the Lemonade Stand)", "Singer/Songwriter");
             db.SaveChanges();
+            */
 
             AddOrUpdateArtistAlbum(db, "Drake", "If You're Reading This It's Too Late");
             AddOrUpdateArtistAlbum(db, "ADELE", "21");
             AddOrUpdateArtistAlbum(db, "Rihanna", "Loud");
+            /*
             AddOrUpdateAlbumArtist(db, "Sorry for Party Rocking (Deluxe Version)", "LMFAO");
             AddOrUpdateAlbumArtist(db, "21", "ADELE");
             AddOrUpdateAlbumArtist(db, "Torches", "Foster The People");
@@ -305,7 +338,25 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateAlbumArtist(db, "The Best of Bobby McFerrin", "Bobby McFerrin");
             AddOrUpdateAlbumArtist(db, "Eat Randy - Single", "Julian Smith");
             AddOrUpdateAlbumArtist(db, "The Duck Song (The Duck and the Lemonade Stand)", "Bryant Oden");
+            */
             db.SaveChanges();
+
+            //add album to song
+            AddOrUpdateSongAlbum(db, "Rolling In the Deep", "21");
+            AddOrUpdateSongAlbum(db, "Energy", "If You're Reading This It's Too Late");
+            AddOrUpdateSongAlbum(db, "S&M", "Loud");
+        }
+
+
+        //add artist to the album
+        void AddOrUpdateSongArtist(AppDbContext db, string songName, string artistName)
+        {
+            //find specified artist
+            Artist artist = db.Artists.SingleOrDefault(a => a.ArtistName == artistName);
+            //find specified song
+            Song song = db.Songs.SingleOrDefault(s => s.SongTitle == songName);
+            //add artist to album
+            song.SongArtist = artist;
         }
 
         //add artist to the album
@@ -330,6 +381,17 @@ namespace Final_Project_V2.Migrations
             artist.ArtistGenres.Add(genre);
         }
 
+        //add genre to the song
+        void AddOrUpdateSongGenre(AppDbContext db, string songName, string genreName)
+        {
+            //find specified genre
+            Genre genre = db.Genres.SingleOrDefault(g => g.GenreName == genreName);
+            //find specified song
+            Song song = db.Songs.SingleOrDefault(s => s.SongTitle == songName);
+            //add genre to song
+            song.SongGenres.Add(genre);
+        }
+
         //add genre to the album
         void AddOrUpdateAlbumGenre(AppDbContext db, string albumName, string genreName)
         {
@@ -339,6 +401,17 @@ namespace Final_Project_V2.Migrations
             Album album = db.Albums.SingleOrDefault(a => a.AlbumName == albumName);
             //add genre to artist
             album.AlbumGenres.Add(genre);
+        }
+
+        //add album to the song
+        void AddOrUpdateSongAlbum(AppDbContext db, string songName, string albumName)
+        {
+            //find specified song
+            Song song = db.Songs.SingleOrDefault(s => s.SongTitle == songName);
+            //find specified album
+            Album album = db.Albums.SingleOrDefault(a => a.AlbumName == albumName);
+            //add album to song
+            song.SongAlbums.Add(album);
         }
 
         //add album to the artist
@@ -353,7 +426,6 @@ namespace Final_Project_V2.Migrations
         }
 
         //create a user manager to add users to the database
-        */
         }
     }
-}
+

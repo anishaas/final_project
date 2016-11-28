@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Final_Project_V2.Models;
 using Microsoft.AspNet.Identity;
-
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Final_Project_V2.Controllers
 {
@@ -29,15 +29,22 @@ namespace Final_Project_V2.Controllers
             }
         }
         */
-        /*
-        private AppRoleManager RoleManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Get<AppRoleManager>();
-            }
-        }
-        */
+        //private AppUserManager _userManager;
+        //public AppUserManager UserManager
+        //{
+        //    get
+        //    {
+        //        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+        //    }
+        //    private set
+        //    {
+        //        _userManager = value;
+        //    }
+        //}
+
+        //private RoleManager<AppRole> _roleManager;
+
+
         //  GET: Customers
         public ActionResult Index()
         {
@@ -45,14 +52,14 @@ namespace Final_Project_V2.Controllers
             var query = from c in db.Users
                         select c;
             List <AppUser> allCustomers = query.ToList();
-            /*
-            List<AppUser> allCustomers = query.ToList();
-            var roleManager = new RoleManager<>(new RoleStore(db));
-            var customerRole = roleManager.FindByName("Customer");
-            allCustomers = db.Users.Where(x => x.Roles.Any(s => s.RoleId == customerRole.Id)).ToList();
+
+            //List<AppUser> allCustomers = query.ToList();
+            //var roleManager = new RoleManager<>(new RoleStore(db));
+            String CustomerGUID = db.AppRoles.FirstOrDefault(r => r.Name == "Customer").Id;
+            allCustomers = db.Users.Where(x => x.Roles.Any(s => s.RoleId == CustomerGUID)).ToList();
             return View(allCustomers);
-            */
-            return View(allCustomers);
+
+            //return View(allCustomers);
         }
 
         // GET: Customers/Edit/5
