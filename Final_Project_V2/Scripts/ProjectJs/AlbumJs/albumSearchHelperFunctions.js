@@ -51,7 +51,7 @@ var albumSearchHelperFunctions = {};
                 genreString += item.GenreName + ', ';
             });
 
-            dataTable.row.add([item.albumName, item.albumArtist.ArtistName, genreString, "N/A"]).draw();
+            dataTable.row.add(["<a href='/details/getAlbumDetailsPage/" + item.albumID + "'>" + item.albumName + "</a>", item.albumArtist.ArtistName, genreString, "N/A"]).draw();
         });
     }
 

@@ -35,6 +35,7 @@ namespace FinalProject.Controllers.MainControllers
             var albumQuery = from ab in db.Albums
                               select new
                               {
+                                  albumID = ab.AlbumID,
                                   albumName = ab.AlbumName,
                                   albumArtist = ab.AlbumArtist,
                                   albumGenres = ab.AlbumGenres
