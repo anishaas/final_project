@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Final_Project_V2.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,6 +11,9 @@ namespace FinalProject.Controllers.SandBoxControllers
 {
     public class SandBoxController : Controller
     {
+        //instance of AppDbContext file
+        private AppDbContext db = new AppDbContext();
+
         // GET: SandBox
         public ActionResult Index()
         {
@@ -44,11 +50,44 @@ namespace FinalProject.Controllers.SandBoxControllers
         }
 
 
+        //DETAILS RELATED
 
-        public ActionResult getSongDetailsPage()
+        public ActionResult getSongDetailsPage(int? id)
         {
-            return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var songDetailsQuery = from song in db.Songs
+                             select new
+                             {
+                                 SongID = song.SongID,
+                                 SongTitle = song.SongTitle,
+                                 SongPrice = song.SongPrice,
+                                 ArtistName = song.SongArtist.ArtistName,
+                                 Featured = song.Featured,
+                                 SongGenres = song.SongGenres,
+                                 SongAlbums = song.SongAlbums
+                             };
+
+            songDetailsQuery = songDetailsQuery.Where(s => s.SongID == id);
+
+            if (songDetailsQuery == null)
+            {
+                return HttpNotFound();
+            }
+
+            var songDetailsList = songDetailsQuery.ToList();
+            /*
+            ViewBag.songTitle = songDetailsList[1];
+            ViewBag.songPrice = songDetailsList[2];
+            ViewBag.artistName = songDetailsList[3];
+            ViewBag.songRating = "N/A";
+            */
+            ViewBag.test = JsonConvert.SerializeObject(songDetailsList);
+            return View("~/Views/SandBoxViews/Details/songDetails.cshtml");
         }
+
         public ActionResult getAlbumDetailsPage()
         {
             return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");

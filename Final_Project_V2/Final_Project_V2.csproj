@@ -2033,6 +2033,7 @@
     <Content Include="Views\EditEmployee.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\SandBoxViews\Search\ArtistSearch\artistSearch.cshtml" />
+    <Content Include="Views\SandBoxViews\Details\songDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

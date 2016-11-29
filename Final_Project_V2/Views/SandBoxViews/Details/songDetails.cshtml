@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "PA Consulting";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--@Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHeader.cshtml"))-->
+    <link type="text/css" rel="stylesheet" href="../../MaterialDesignAssets/css/theme-default/libs/select2/select2.css?1424887856" />
+    <link type="text/css" rel="stylesheet" href="../../MaterialDesignAssets/css/theme-default/libs/multi-select/multi-select.css?1424887857" />
+</head>
+<body class="menubar-hoverable header-fixed menubar-pin ">
+    <!-- BEGIN BASE-->
+    <div id="base">
+        <!-- END OFFCANVAS LEFT -->
+        <!-- BEGIN CONTENT-->
+        <div id="content">
+            <section>
+                <br/><br/>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-head style-primary">
+                            <header>Know Yourself</header>
+                        </div>
+                        <div class="card-body text-default-light">
+                            <h3>Artist: @ViewBag.artistName</h3>
+                            <h3>Album: </h3>
+                            <h3>Price: @ViewBag.songPrice</h3>
+                            <h3>Rating:</h3>
+                        </div><!--end .card-body -->
+                        <div class="card-actionbar">
+                            <div class="card-actionbar-row">
+                                <!--<a href="javascript:void(0);" class="btn btn-flat btn-default ink-reaction">Rate</a>-->
+                                <a href="javascript:void(0);" class="btn btn-flat btn-accent ink-reaction">Add to Cart</a>
+                            </div>
+                        </div><!--end .card-actionbar -->
+                    </div><!--end .card -->
+                </div><!--end .row -->
+            </section>
+        </div><!--end #content-->
+        <!-- END CONTENT -->
+        <div id="htmlComponentsContainer" style="display:none;">
+            @Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHTMLComponents.cshtml"))
+        </div>
+    </div><!--end #base-->
+    <!-- END BASE -->
+    <!-- BEGIN JAVASCRIPT -->
+    <!-- END JAVASCRIPT -->
+    <script>
+        alert(@ViewBag.test);
+    </script>
+</body>
+</html>
+
