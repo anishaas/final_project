@@ -2047,6 +2047,7 @@
     <Content Include="Views\Songs\Create.cshtml" />
     <Content Include="Views\SandBoxViews\Details\songDetails.cshtml" />
     <Content Include="Views\SandBoxViews\Details\AlbumDetails.cshtml" />
+    <Content Include="Views\SandBoxViews\Details\artistDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

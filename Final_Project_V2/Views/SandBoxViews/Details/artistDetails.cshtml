@@ -21,13 +21,13 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-head style-primary">
-                            <header id="albumName"></header>
+                            <header id="artistName"></header>
                         </div>
                         <div class="card-body text-default-light">
-                            <h3>Artist: <span id="artistSpan"></span></h3>
                             <h3>Genres: <span id="genreSpan"></span> </h3>
-                            <h3>Price: <span id="priceSpan"></span></h3>
                             <h3>Rating: <span id="ratingSpan"></span></h3>
+                            <h3>Albums: <span id="albumSpan"></span></h3>
+                            <h3>Songs: <span id="songSpan"></span></h3>
                         </div><!--end .card-body -->
                         <div class="card-actionbar">
                             <div class="card-actionbar-row">
@@ -52,25 +52,49 @@
 
         $(document).ready(function () {
 
-            var albumDetailsJSONString = "@ViewBag.albumDetailJSON";
+            var artistDetailJSON = "@ViewBag.artistDetailJSON";
+            
 
-            var albumDetailsJSONStringParsed = albumDetailsJSONString.replace(/&quot;/g, '\"');
-            var albumDetailsObject = JSON.parse(albumDetailsJSONStringParsed);
+            var artistDetailsJSONStringParsed = artistDetailJSON.replace(/&quot;/g, '\"');
+            var artistDetailsObject = JSON.parse(artistDetailsJSONStringParsed);
 
-            $('#albumName').html(albumDetailsObject[0].albumName);
-            $('#artistSpan').html(albumDetailsObject[0].albumArtist);
+            $('#artistName').html(artistDetailsObject[0].artistName);
 
             var genreString = '';
 
             //alert(songDetailsObject[0].SongGenres[0].GenreName);
-            albumDetailsObject[0].albumGenres.forEach(function (arrayItem) {
+            artistDetailsObject[0].artistGenres.forEach(function (arrayItem) {
 
                 genreString = genreString + arrayItem.GenreName + ", ";
 
             });
 
             $('#genreSpan').html(" " + genreString);
-            $('#priceSpan').html(" " + albumDetailsObject[0].albumPrice);
+
+            //
+
+            var albumString = '';
+
+            artistDetailsObject[0].artistAlbums.forEach(function (arrayItem) {
+
+                albumString = albumString + "<a href='/details/getAlbumDetailsPage/" + arrayItem.AlbumID + "'>" + arrayItem.AlbumName + "</a>" + ", ";
+
+            });
+
+            $('#albumSpan').html(" " + albumString);
+
+            //
+
+            var songString = ''
+
+            artistDetailsObject[0].artistSongs.forEach(function (arrayItem) {
+
+                songString = songString + "<a href='/sandbox/getSongDetailsPage/" + arrayItem.SongID + "'>" + arrayItem.SongTitle + "</a>" + ", ";
+
+            });
+
+            $('#songSpan').html(" " + songString);
+
 
         });
     </script>
