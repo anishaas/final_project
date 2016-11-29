@@ -1978,6 +1978,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AjaxControllers\SearchAjaxControllers\SearchController.cs" />
+    <Compile Include="Controllers\MainControllers\DetailsController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SandBoxControllers\SandBoxController.cs" />
     <Compile Include="Controllers\SongsController.cs" />
@@ -2040,6 +2041,8 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\SandBoxViews\Search\ArtistSearch\artistSearch.cshtml" />
     <Content Include="Views\Songs\Create.cshtml" />
+    <Content Include="Views\SandBoxViews\Details\songDetails.cshtml" />
+    <Content Include="Views\SandBoxViews\Details\AlbumDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2050,7 +2053,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AjaxControllers\CustomerSearchAjaxControllers\" />
-    <Folder Include="Controllers\MainControllers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611251914146_Initial.resx">

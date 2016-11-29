@@ -24,10 +24,9 @@ namespace FinalProject.Controllers.MainControllers
         [HttpPost]
         public String getGenreData()
         {
-            // var genreData = from g in db.Genres select g;
+            var genreData = from g in db.Genres select g;
 
-            //return JsonConvert.SerializeObject(genreData);
-            return "string";
+            return JsonConvert.SerializeObject(genreData);
         }
 
 

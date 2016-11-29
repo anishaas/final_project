@@ -78,20 +78,17 @@ namespace FinalProject.Controllers.SandBoxControllers
             }
 
             var songDetailsList = songDetailsQuery.ToList();
+          
             /*
-            ViewBag.songTitle = songDetailsList[1];
             ViewBag.songPrice = songDetailsList[2];
             ViewBag.artistName = songDetailsList[3];
             ViewBag.songRating = "N/A";
             */
-            ViewBag.test = JsonConvert.SerializeObject(songDetailsList);
+            ViewBag.songDetailJSON = JsonConvert.SerializeObject(songDetailsList);
             return View("~/Views/SandBoxViews/Details/songDetails.cshtml");
         }
 
-        public ActionResult getAlbumDetailsPage()
-        {
-            return View("~/Views/SandBoxViews/Search/SongSearch/customerSongSearch.cshtml");
-        }
+
         public ActionResult getUserAccountPage()
         {
             return View("~/Views/SandBoxViews/AccountScreens/ManageAccount.cshtml");
