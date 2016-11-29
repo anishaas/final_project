@@ -1975,12 +1975,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxControllers\DataControllers\DataController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MainControllers\CustomerController.cs" />
-    <Compile Include="Controllers\MainControllers\EmployeeController.cs" />
     <Compile Include="Controllers\AjaxControllers\SearchAjaxControllers\SearchController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SandBoxControllers\SandBoxController.cs" />
+    <Compile Include="Controllers\SongsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1995,6 +1995,10 @@
     <Compile Include="Migrations\201611252055480_Updating Song Model.cs" />
     <Compile Include="Migrations\201611252055480_Updating Song Model.Designer.cs">
       <DependentUpon>201611252055480_Updating Song Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611271811244_Commented out UserId Property for users.cs" />
+    <Compile Include="Migrations\201611271811244_Commented out UserId Property for users.Designer.cs">
+      <DependentUpon>201611271811244_Commented out UserId Property for users.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -2030,10 +2034,12 @@
     <Content Include="Views\SandBoxViews\Footers\userViewFooter.cshtml" />
     <Content Include="Views\SandBoxViews\WelcomePage\customerWelcomePage.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\MyMusic.cshtml" />
-    <Content Include="Views\EditEmployee.cshtml" />
+    <Content Include="Views\Employee\EditEmployee.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Employee\EditCustomer.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\SandBoxViews\Search\ArtistSearch\artistSearch.cshtml" />
-    <Content Include="Views\SandBoxViews\Details\songDetails.cshtml" />
+    <Content Include="Views\Songs\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2043,7 +2049,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Employee\" />
+    <Folder Include="Controllers\AjaxControllers\CustomerSearchAjaxControllers\" />
+    <Folder Include="Controllers\MainControllers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611251914146_Initial.resx">
@@ -2054,6 +2061,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611252055480_Updating Song Model.resx">
       <DependentUpon>201611252055480_Updating Song Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611271811244_Commented out UserId Property for users.resx">
+      <DependentUpon>201611271811244_Commented out UserId Property for users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

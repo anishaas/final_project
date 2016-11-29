@@ -19,8 +19,8 @@ namespace Final_Project_V2.Models
         //LATER: Put any additional fields that you need for your users here
         //For example:
         //[Key]
-        public string UserID { get; set; }
-
+        //public string UserID { get; set; }
+        
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string MI { get; set; }
@@ -76,6 +76,8 @@ namespace Final_Project_V2.Models
         
         //Add dbSet for roles
          public DbSet<AppRole> AppRoles { get; set; }
+
+        //public System.Data.Entity.DbSet<Final_Project_V2.Models.AppUser> AppUsers { get; set; }
 
         //public System.Data.Entity.DbSet<Final_Project_V2.Models.AppUser> AppUsers { get; set; }
     }
