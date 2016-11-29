@@ -27,7 +27,6 @@ namespace FinalProject.Controllers.MainControllers
             var genreData = from g in db.Genres select g;
 
             return JsonConvert.SerializeObject(genreData);
-
         }
 
 

@@ -932,6 +932,7 @@ namespace FinalProject.Controllers.MainControllers
             var songsQuery = from song in db.Songs
                           select new
                           {
+                              SongID = song.SongID,
                               SongTitle = song.SongTitle,
                               SongPrice = song.SongPrice,
                               ArtistName = song.SongArtist.ArtistName,

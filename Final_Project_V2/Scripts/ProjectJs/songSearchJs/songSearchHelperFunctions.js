@@ -68,7 +68,7 @@ var songSearchHelperFunctions = {};
             searchResultInsert += songRatingUpdate;
             */
 
-            dataTable.row.add([item.SongTitle, item.ArtistName, item.SongPrice, "N/A"]).draw();
+            dataTable.row.add(["<a href='/sandbox/getSongDetailsPage/" + item.SongID + "'>" + item.SongTitle +  "</a>" , item.ArtistName, item.SongPrice, "N/A"]).draw();
         });
     }
 
