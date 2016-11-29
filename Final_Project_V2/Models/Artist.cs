@@ -12,6 +12,8 @@ namespace Final_Project_V2.Models
         public Artist()
         {
            this.ArtistGenres = new List<Genre>();
+           this.ArtistAlbums = new List<Album>();
+           this.ArtistSongs = new List<Song>(); 
         }
         
         public Int32 ArtistID { get; set; }

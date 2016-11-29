@@ -8,6 +8,13 @@ namespace Final_Project_V2.Models
 {
     public class Album
     {
+        //constructor
+        public Album()
+        {
+            this.AlbumGenres = new List<Genre>();
+            this.AlbumSongs = new List<Song>();
+        }
+
         //scalar 
         public Int32 AlbumID { get; set; }
         public decimal AlbumPrice { get; set; }

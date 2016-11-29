@@ -2000,6 +2000,10 @@
     <Compile Include="Migrations\201611271811244_Commented out UserId Property for users.Designer.cs">
       <DependentUpon>201611271811244_Commented out UserId Property for users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611290704389_Added constructor functions to model classes.cs" />
+    <Compile Include="Migrations\201611290704389_Added constructor functions to model classes.Designer.cs">
+      <DependentUpon>201611290704389_Added constructor functions to model classes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -2064,6 +2068,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611271811244_Commented out UserId Property for users.resx">
       <DependentUpon>201611271811244_Commented out UserId Property for users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611290704389_Added constructor functions to model classes.resx">
+      <DependentUpon>201611290704389_Added constructor functions to model classes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

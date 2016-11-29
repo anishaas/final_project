@@ -209,11 +209,14 @@ namespace Final_Project_V2.Migrations
 
             var songs = new List<Song>
             {
-                new Song { SongTitle = "Rolling In The Deep", SongPrice = 1.29M, SongGenres = new List<Genre>(), SongAlbums = new List<Album>() },
-                new Song { SongTitle = "Energy", SongPrice = 1.19M, SongGenres = new List<Genre>(), SongAlbums = new List<Album>() },
-                new Song { SongTitle = "S&M", SongPrice = 1.19M, SongGenres = new List<Genre>(), SongAlbums = new List<Album>() },
+                new Song { SongTitle = "Rolling In The Deep", SongPrice = 1.29M },
+                new Song { SongTitle = "Energy", SongPrice = 1.19M },
+                new Song { SongTitle = "S&M", SongPrice = 1.19M }
 
                 /*
+                 SongGenres = new List<Genre>(), SongAlbums = new List<Album>()
+                 SongGenres = new List<Genre>(), SongAlbums = new List<Album>() 
+                 SongGenres = new List<Genre>(), SongAlbums = new List<Album>()
                 new Song { },
                 new Song { },
                 new Song { },

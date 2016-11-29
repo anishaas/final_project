@@ -8,6 +8,13 @@ namespace Final_Project_V2.Models
 {
     public class Song
     {
+        //constructor
+        public Song()
+        {
+            this.SongGenres = new List<Genre>();
+            this.SongAlbums = new List<Album>();
+        }
+
         //scalar
         public Int32 SongID { get; set; }
         public string SongTitle { get; set; }
