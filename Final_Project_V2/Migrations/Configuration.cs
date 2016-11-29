@@ -214,7 +214,7 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "S&M", SongPrice = 1.19M }
 
                 /*
-                 SongGenres = new List<Genre>(), SongAlbums = new List<Album>()
+                 * 
                  SongGenres = new List<Genre>(), SongAlbums = new List<Album>() 
                  SongGenres = new List<Genre>(), SongAlbums = new List<Album>()
                 new Song { },
@@ -239,13 +239,13 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateSongArtist(db, "S&M", "Rihanna");
             db.SaveChanges();
 
+            /*
             //create album list
             var albums = new List<Album>
             {
                 new Album { AlbumName = "21", AlbumGenres = new List<Genre>(), AlbumPrice = 10.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Loud", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>(), AlbumPrice = 12.99M, AlbumSongs = new List<Song>() }
-                /*
+                new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>(), AlbumPrice = 12.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Torches", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Hands All Over", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Hands All Over (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
@@ -270,7 +270,6 @@ namespace Final_Project_V2.Migrations
                 new Album { AlbumName = "The Best of Bobby McFerrin", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "Eat Randy - Single", AlbumGenres = new List<Genre>(), AlbumPrice = 1.29M, AlbumSongs = new List<Song>() },
                 new Album { AlbumName = "The Duck song (The Duck and the Lemonade Stand)", AlbumGenres = new List<Genre>(), AlbumPrice = 1.29M, AlbumSongs = new List<Song>() },
-                */
                 };
 
             //add to database
@@ -281,7 +280,7 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateAlbumGenre(db, "21", "Pop");
             AddOrUpdateAlbumGenre(db, "Loud", "Pop");
             AddOrUpdateAlbumGenre(db, "If You're Reading This It's Too Late", "Hip Hop/Rap");
-            /*
+
             AddOrUpdateAlbumGenre(db, "Sorry for Party Rocking (Deluxe Version)", "Pop");
             AddOrUpdateAlbumGenre(db, "Torches", "Alternative");
             AddOrUpdateAlbumGenre(db, "Hands All Over", "Pop");
@@ -309,11 +308,10 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateAlbumGenre(db, "The Duck Song (The Duck and the Lemonade Stand)", "Children's Music");
             AddOrUpdateAlbumGenre(db, "The Duck Song (The Duck and the Lemonade Stand)", "Singer/Songwriter");
             db.SaveChanges();
-            */
-
             AddOrUpdateArtistAlbum(db, "Drake", "If You're Reading This It's Too Late");
             AddOrUpdateArtistAlbum(db, "ADELE", "21");
             AddOrUpdateArtistAlbum(db, "Rihanna", "Loud");
+            
             /*
             AddOrUpdateAlbumArtist(db, "Sorry for Party Rocking (Deluxe Version)", "LMFAO");
             AddOrUpdateAlbumArtist(db, "21", "ADELE");

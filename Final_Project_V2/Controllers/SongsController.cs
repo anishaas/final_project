@@ -38,14 +38,14 @@ namespace Final_Project_V2.Controllers
             return View(songs);
         }
 
-
+        //AUTHORIZE: Managers Only! 
         // GET: /Songs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-
+        
         // POST: /Songs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
