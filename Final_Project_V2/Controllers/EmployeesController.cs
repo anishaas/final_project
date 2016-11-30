@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -6,15 +8,54 @@ using System.Web;
 using System.Web.Mvc;
 using Final_Project_V2.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Final_Project_V2.Controllers
 {
-    public class EmployeeController : Controller
+    public class EmployeesController : Controller
     {
         private AppDbContext db = new AppDbContext();
         // GET: Employee
         public ActionResult Index()
         {
+
+            var query = from c in db.Users
+                        select c;
+            List<AppUser> allEmployees = query.ToList();
+            String EmployeeGUID = db.AppRoles.FirstOrDefault(r => r.Name == "Employee").Id;
+            allEmployees = db.Users.Where(x => x.Roles.Any(s => s.RoleId == EmployeeGUID)).ToList();
+            return View(allEmployees);
+        }
+
+        //[Authorize]
+        // GET: Employees/Edit
+        public ActionResult Edit()
+        {
+            //if the logged in user is an employee, just do this
+            string id = User.Identity.GetUserId();
+            AppUser @employee = db.Users.Find(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View(@employee);
+        }
+
+        // POST: Employees/Edit
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "UserID,Address,Phone,Password")] AppUser @employee)
+        {
+            if (ModelState.IsValid)
+            {
+                //Find associated member
+                AppUser employeeToChange = db.Users.Find(@employee.Id);
+
+                db.Entry(employeeToChange).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return View();
         }
 

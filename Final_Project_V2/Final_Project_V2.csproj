@@ -1976,7 +1976,7 @@
     <Compile Include="Controllers\AjaxControllers\DataControllers\DataController.cs" />
     <Compile Include="Controllers\AjaxControllers\TransactionAjaxControllers\TransactionsAjaxController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AjaxControllers\SearchAjaxControllers\SearchController.cs" />
     <Compile Include="Controllers\MainControllers\TransactionsController.cs" />

@@ -14,36 +14,7 @@ namespace Final_Project_V2.Controllers
 {
     public class CustomerController : Controller
     {
-        private AppDbContext db = new AppDbContext();
-
-        /*
-        public AppUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-        */
-        //private AppUserManager _userManager;
-        //public AppUserManager UserManager
-        //{
-        //    get
-        //    {
-        //        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-        //    }
-        //    private set
-        //    {
-        //        _userManager = value;
-        //    }
-        //}
-
-        //private RoleManager<AppRole> _roleManager;
-
+        private AppDbContext db = new AppDbContext();  
 
         //  GET: Customers
         public ActionResult Index()
