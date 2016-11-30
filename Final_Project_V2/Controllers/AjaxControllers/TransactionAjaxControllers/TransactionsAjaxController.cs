@@ -101,7 +101,7 @@ namespace Final_Project_V2.Controllers.MainControllers
         public string getUserShoppingCartSongs()
         {
             var userID = Request.Form["userID"];
-            var shoppingCartSongs = db.UserActivityInputs.Where(u => u.UserActivityInputType == 1 && u.UserActivityInputArg2 == userID);
+            var shoppingCartSongs = db.UserActivityInputs.Where(u => u.UserActivityInputType == 1 && u.UserActivityInputArg2 == userID && u.UserActivityInputArg3 == "no");
 
             return JsonConvert.SerializeObject(shoppingCartSongs);
         }
@@ -109,7 +109,7 @@ namespace Final_Project_V2.Controllers.MainControllers
         public string getUserShoppingCartAlbums()
         {
             var userID = Request.Form["userID"];
-            var shoppingCartAlbums = db.UserActivityInputs.Where(u => u.UserActivityInputType == 2 && u.UserActivityInputArg2 == userID);
+            var shoppingCartAlbums = db.UserActivityInputs.Where(u => u.UserActivityInputType == 2 && u.UserActivityInputArg2 == userID && u.UserActivityInputArg3 == "no");
 
             return JsonConvert.SerializeObject(shoppingCartAlbums);
         }
@@ -168,13 +168,15 @@ namespace Final_Project_V2.Controllers.MainControllers
         {
             var albumID = Request.Form["albumID"];
             var albumIDInt = Int32.Parse(albumID);
+
             var albumDetailsQuery = from album in db.Albums
                                    select new
                                    {
                                        albumID = album.AlbumID,
                                        albumName = album.AlbumName,
                                        albumPrice = album.AlbumPrice,
-                                       albumArtist = album.AlbumArtist.ArtistName
+                                       albumArtist = album.AlbumArtist.ArtistName,
+                                       albumSongs = album.AlbumSongs
                                    };
 
             albumDetailsQuery = albumDetailsQuery.Where(a => a.albumID == albumIDInt);
@@ -188,5 +190,31 @@ namespace Final_Project_V2.Controllers.MainControllers
 
             return JsonConvert.SerializeObject(albumDetailsList);
         }
+
+        public string deleteAlbum()
+        {
+            var albumID = Request.Form["albumID"];
+
+            var cartAlbumToDelete = (from u in db.UserActivityInputs
+                                    where u.UserActivityInputArg1 == albumID
+                                    select u).FirstOrDefault();
+
+            //Delete it from memory
+            db.UserActivityInputs.Remove(cartAlbumToDelete);
+            //Save to database
+            try
+            {
+                db.SaveChanges();
+                return "success";
+            }
+            catch
+            {
+                return "fail";
+            }
+        }
+
+
     }
+
+
 }

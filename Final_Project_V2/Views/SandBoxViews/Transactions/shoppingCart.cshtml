@@ -67,6 +67,22 @@
                         </div><!--end .card -->
                     </div><!--end .row -->
                   </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <article class="margin-bottom-xxl">
+                            <h3>SubTotal:</h3> <span id="subtotal">Updating...Please give a few seconds</span>
+                        </article>
+                    </div><!--end .col -->
+                </div><!--end .row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <article class="margin-bottom-xxl">
+                            <h3>Total:</h3> <span id="total">Updating...Please give a few seconds</span>
+                        </article>
+                    </div><!--end .col -->
+                </div><!--end .row -->
+                <button id="checkoutBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Check Out</button>
+
         </section>
         </div><!--end #content-->
         <!-- END CONTENT -->
@@ -90,12 +106,27 @@
             });
         }
 
+        function deleteAlbum(elm) {
+            var albumID = $(elm).attr("data-song-id");
+
+            $.post('/transactionsajax/deleteAlbum', { albumID: albumID })
+            .done(function (data) {
+                if (data == "success") {
+                    $(elm).parent().remove();
+                }
+
+            });
+        }
+
         $(document).ready(function () {
 
             var userID = "@ViewBag.userID";
             
             //Get user song cart data
             var shoppingCartSongsInsert = '';
+
+            var albumSongsArray = [];
+            var songsArray = [];
 
             $.post("/transactionsAjax/getUserShoppingCartSongs", { userID: userID })
             .done(function (data) {
@@ -108,7 +139,7 @@
                     .done(function (data) {
       
                         var songDetailsObject = JSON.parse(data);
-
+                        songsArray.push(songDetailsObject[0].SongTitle);
                         //var songCartHTML = $('#shoppingCartSongItem')[0].outerHTML;
 
                         var songCartHTML = '<li id="shoppingCartSongItem" class="tile"> \
@@ -116,7 +147,7 @@
                                                         <div class="tile-icon">\
                                                             <i class="fa fa-music"></i>\
                                                         </div>\
-                                                         <div class="tile-text"><b>Title:</b> <span> SONGTITLE </span> <b>Artist:</b> <span>SONGARTIST</span> <b>Rating: </b><span>SONGRATING</span> <b>Price: </b><span>SONGPRICE</span></div>\
+                                                         <div class="tile-text"><b>Title:</b> <span> SONGTITLE </span> <b>Artist:</b> <span>SONGARTIST</span> <b>Rating: </b><span>SONGRATING</span> <b>Price: </b><span class="songPrice">SONGPRICE</span></div>\
                                                     </a>\
                                                     <a onclick="deleteSong(this)" class="deleteSongBtn" data-song-id="SONGID" class="btn btn-flat ink-reaction">\
                                                         <i class="fa fa-trash"></i>\
@@ -141,24 +172,31 @@
 
             $.post("/transactionsAjax/getUserShoppingCartAlbums", { userID: userID })
             .done(function (data) {
-
+          
                 var albumListingDataObject = JSON.parse(data);
 
                 $.each(albumListingDataObject, function (index, item) {
 
-                    $.post("/transactionsAjax/getAlbumDetails", { songID: item.UserActivityInputArg1 })
+                    $.post("/transactionsAjax/getAlbumDetails", { albumID: item.UserActivityInputArg1 })
                     .done(function (data) {
-
+                        
                         var albumDetailsObject = JSON.parse(data);
+                        albumDetailsObject[0].albumSongs.forEach(function (arrayItem) {
+
+                            albumSongsArray.push(arrayItem.SongTitle);
+
+                        });
+
+                        
 
                         //var songCartHTML = $('#shoppingCartSongItem')[0].outerHTML;
 
                         var albumCartHTML = '<li id="shoppingCartSongItem" class="tile"> \
-                                                    <a href="/sandbox/getsongdetailspage/ALBUMID" class="tile-content ink-reaction">\
+                                                    <a href="/Details/getAlbumDetailsPage/ALBUMID" class="tile-content ink-reaction">\
                                                         <div class="tile-icon">\
                                                             <i class="fa fa-music"></i>\
                                                         </div>\
-                                                         <div class="tile-text"><b>Title:</b> <span> ALBUMTITLE </span> <b>Artist:</b> <span>ALBUMARTIST</span> <b>Rating: </b><span>ALBUMRATING</span> <b>Price: </b><span>ALBUMPRICE</span></div>\
+                                                         <div class="tile-text"><b>Title:</b> <span> ALBUMTITLE </span> <b>Artist:</b> <span>ALBUMARTIST</span> <b>Rating: </b><span>ALBUMRATING</span> <b>Price: </b><span class="albumPrice">ALBUMPRICE</span></div>\
                                                     </a>\
                                                     <a onclick="deleteAlbum(this)" class="deleteAlbumBtn" data-song-id="ALBUMID" class="btn btn-flat ink-reaction">\
                                                         <i class="fa fa-trash"></i>\
@@ -167,15 +205,66 @@
                         ;
 
                         albumCartHTML = albumCartHTML.replace(/ALBUMID/g, albumDetailsObject[0].albumID);
-                        albumCartHTML = albumCartHTML.replace("SONGTITLE", albumDetailsObject[0].albumName);
-                        albumCartHTML = albumCartHTML.replace("SONGARTIST", albumDetailsObject[0].albumArtist);
-                        albumCartHTML = albumCartHTML.replace("SONGPRICE", albumDetailsObject[0].albumPrice);
-                        albumCartHTML = albumCartHTML.replace("SONGRATING", "fml");
+                        albumCartHTML = albumCartHTML.replace("ALBUMTITLE", albumDetailsObject[0].albumName);
+                        albumCartHTML = albumCartHTML.replace("ALBUMARTIST", albumDetailsObject[0].albumArtist);
+                        albumCartHTML = albumCartHTML.replace("ALBUMPRICE", albumDetailsObject[0].albumPrice);
+                        albumCartHTML = albumCartHTML.replace("ALBUMRATING", "fml");
 
                         $('#albumListContainer').append(albumCartHTML);
                     });
                 });
             });
+
+            $('#checkoutBtn').on('click', function () {
+                var duplicateCheck = true;
+
+                if ($('#total').html() == 'Updating...Please give a few seconds') {
+                    alert('Please wait for totals to update');
+                }
+
+                var duplicateSongs = [];
+
+                $.each(songsArray, function (key, value) {
+                    var index = $.inArray(value, albumSongsArray);
+                    if (index != -1) {
+                        duplicateCheck = false;
+                        duplicateSongs.push(value);
+                    }
+                });
+
+                if(duplicateCheck == false){
+                    alert('The following are duplicate songs in your shopping cart, please remove them before proceeding to checkout: ' + duplicateSongs);
+                }
+            });
+
+            setTimeout(
+              function () {
+                  var songTotal = 0;
+                  $('.songPrice').each(function () {
+                      var priceString = $(this).html();
+                      var priceFloat = parseFloat(priceString);
+                      songTotal += priceFloat;
+                  });
+                  
+                  var albumTotal = 0;
+                  $('.albumPrice').each(function () {
+                      var priceString = $(this).html();
+                      var priceFloat = parseFloat(priceString);
+                      albumTotal += priceFloat;
+                  });
+                  
+                  var subtotal = songTotal + albumTotal;
+
+                  $('#subtotal').html("$" + subtotal);
+
+                  var total = subtotal * 1.0825;
+                  var totalFixed = total.toFixed(2);
+                  $('#total').html("$" + totalFixed);
+
+                 
+                  //alert(albumSongsArray);
+                  //alert(songsArray);
+              }, 5000);
 
         });
 
