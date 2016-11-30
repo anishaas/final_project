@@ -96,18 +96,23 @@ namespace Final_Project_V2.Controllers
         // POST: Employees/EditCustomer/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditCustomer([Bind(Include = "UserID,LastName,FirstName,EmailAddress,Phone,CCType1,CCNumber1,CCType2,CCNumber2")] AppUser @customer)
+        public ActionResult EditCustomer([Bind(Include = "Id,Phone,ActiveCustomer,Password")] AppUser @customer)
+        //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)
             {
                 //Find associated customer
                 AppUser customerToChange = db.Users.Find(@customer.Id);
 
+                customerToChange.Email = @customer.Email;
+                customerToChange.Phone = @customer.Phone;
+                customerToChange.Password = @customer.Password;
+                customerToChange.ActiveCustomer = @customer.ActiveCustomer;
+
+                /*
                 //update customer properties based on edits
                 customerToChange.LastName = @customer.LastName;
                 customerToChange.FirstName = @customer.FirstName;
-                customerToChange.Email = @customer.Email;
-                customerToChange.Phone = @customer.Phone;
 
                 //assign credit card type
                 //AmericanExpress
@@ -142,7 +147,7 @@ namespace Final_Project_V2.Controllers
                 customerToChange.CCNumber1 = @customer.CCNumber1;
                 customerToChange.CCType2 = @customer.CCType2;
                 customerToChange.CCNumber2 = @customer.CCNumber2;
-
+                */
 
                 db.Entry(customerToChange).State = EntityState.Modified;
                 db.SaveChanges();
