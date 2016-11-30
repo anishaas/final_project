@@ -1973,6 +1973,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\AjaxControllers\DataControllers\DataController.cs" />
     <Compile Include="Controllers\AjaxControllers\TransactionAjaxControllers\TransactionsAjaxController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -2059,6 +2060,7 @@
     <Content Include="Views\Account\RegisterEmployee.cshtml" />
     <Content Include="Views\Employees\ManageCustomers.cshtml" />
     <Content Include="Views\Songs\Index.cshtml" />
+    <Content Include="Views\Admins\ManageSongs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

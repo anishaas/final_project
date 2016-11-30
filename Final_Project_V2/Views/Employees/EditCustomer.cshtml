@@ -5,7 +5,7 @@
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("EmployeeEditCustomer", "Employee", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("EditCustomer", "Employees", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ActiveCustomer, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ActiveCustomer, htmlAttributes: new { @class = "control-label col-md-2" }) Disable Customer? 
         <div class="col-md-10">
             <div class="checkbox">
                 @Html.EditorFor(model => model.ActiveCustomer)
@@ -44,7 +44,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value="Edit" />
         </div>
     </div>
 }

@@ -47,6 +47,9 @@
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActiveCustomer)
+        </th>
         <th></th>
     </tr>
 
@@ -92,10 +95,10 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PasswordHash)
+            @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @Html.DisplayFor(modelItem => item.ActiveCustomer)
         </td>
         <td>
             @Html.ActionLink("Edit", "EditCustomer", new { id=item.Id }) |
