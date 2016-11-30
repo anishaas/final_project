@@ -2039,15 +2039,17 @@
     <Content Include="Views\SandBoxViews\Footers\userViewFooter.cshtml" />
     <Content Include="Views\SandBoxViews\WelcomePage\customerWelcomePage.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\MyMusic.cshtml" />
-    <Content Include="Views\Employee\EditEmployee.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
-    <Content Include="Views\Employee\EditCustomer.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\SandBoxViews\Search\ArtistSearch\artistSearch.cshtml" />
     <Content Include="Views\Songs\Create.cshtml" />
     <Content Include="Views\SandBoxViews\Details\songDetails.cshtml" />
     <Content Include="Views\SandBoxViews\Details\AlbumDetails.cshtml" />
     <Content Include="Views\SandBoxViews\Details\artistDetails.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\EditCustomer.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Account\RegisterEmployee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
