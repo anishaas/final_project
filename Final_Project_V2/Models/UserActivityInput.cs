@@ -20,7 +20,7 @@ namespace Final_Project_V2.Models
         public String UserActivityInputTxt3 { get; set; }
         public String UserActivityInputTxt4 { get; set; }
         public String UserActivityInputTxt5 { get; set; }
-        public DateTime UserActivityInputTimestamp { get; set; }
+        //public DateTime UserActivityInputTimestamp { get; set; }
         public Int32 UserActivityInputClassificationID { get; set; }
 
         //Navigational Properties

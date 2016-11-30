@@ -29,11 +29,12 @@
                             <h3>Album:<span id="albumSpan"></span> </h3>
                             <h3>Price: <span id="priceSpan"></span></h3>
                             <h3>Rating: <span id="ratingSpan"></span></h3>
+                            <input type="hidden" id="songID" value=""/>
                         </div><!--end .card-body -->
                         <div class="card-actionbar">
                             <div class="card-actionbar-row">
                                 <!--<a href="javascript:void(0);" class="btn btn-flat btn-default ink-reaction">Rate</a>-->
-                                <a href="javascript:void(0);" class="btn btn-flat btn-accent ink-reaction">Add to Cart</a>
+                                <a href="javascript:void(0);" id="addCart" class="btn btn-flat btn-accent ink-reaction">Add to Cart</a>
                             </div>
                         </div><!--end .card-actionbar -->
                     </div><!--end .card -->
@@ -52,12 +53,18 @@
     <script>
 
         $(document).ready(function () {
+
+            //SONG DETAIL SETUP
             var songDetailsJSONString = "@ViewBag.songDetailJSON";
-            
+
             var songDetailsJSONStringParsed = songDetailsJSONString.replace(/&quot;/g, '\"');
             var songDetailsObject = JSON.parse(songDetailsJSONStringParsed);
+
+            $('#songID').val(songDetailsObject[0].SongID);
+
             $('#songName').html(songDetailsObject[0].SongTitle);
             $('#artistSpan').html(songDetailsObject[0].ArtistName);
+            
 
             var genreString = '';
 
@@ -68,11 +75,31 @@
 
             });
 
-            $('#genreSpan').html(" " + genreString);
+            //$('#genreSpan').html(" " + genreString);
             $('#priceSpan').html(" " + songDetailsObject[0].SongPrice);
-            $('#albumSpan').html(" " + songDetailsObject[0].SongAlbums[0].AlbumName);
+            //$('#albumSpan').html(" " + songDetailsObject[0].SongAlbums[0].AlbumName);
 
+            //ADD TO CART LOGIC (Put this below Song detail setup later)
+            $('#addCart').on('click', function () {
+                if (authenticationStatus != 'none') {
+                    var songID = $('#songID').val();
+                    var userID = $('#userID').val();
 
+                    $.post("/TransactionsAjax/addSongToCart", { songID: songID, userID: userID })
+                    .done(function (data) {
+                        alert(data);
+                        if(data == 'exists'){
+                            alert('This song already exists in your cart');
+                        }else if(data == 'success'){
+                            alert('Song successfully added to your cart');
+                        } else {
+                            alert('Failed to add song, internal server error');
+                        }
+                    });
+                }
+
+            });
+  
         });
     </script>
 </body>
