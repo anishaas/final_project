@@ -68,41 +68,51 @@ namespace Final_Project_V2.Controllers.MainControllers
             return "success";
         }
 
-
-
-        public ActionResult getArtistDetailsPage(int? id)
+        public string getUserShoppingCartSongs()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var artistDetailsQuery = from artist in db.Artists
-                                    select new
-                                    {
-                                        artistId = artist.ArtistID,
-                                        artistName = artist.ArtistName,
-                                        artistGenres = artist.ArtistGenres,
-                                        artistSongs = artist.ArtistSongs,
-                                        artistAlbums = artist.ArtistAlbums
-                                    };
+            var userID = Request.Form["userID"];
+            var shoppingCartSongs = db.UserActivityInputs.Where(u => u.UserActivityInputType == 1 && u.UserActivityInputArg2 == userID);
 
-            artistDetailsQuery = artistDetailsQuery.Where(artist => artist.artistId == id);
-
-            if (artistDetailsQuery == null)
-            {
-                return HttpNotFound();
-            }
-
-            var albumDetailsList = artistDetailsQuery.ToList();
-
-            /*
-            ViewBag.songPrice = songDetailsList[2];
-            ViewBag.artistName = songDetailsList[3];
-            ViewBag.songRating = "N/A";
-            */
-            ViewBag.artistDetailJSON = JsonConvert.SerializeObject(albumDetailsList);
-            return View("~/Views/SandBoxViews/Details/artistDetails.cshtml");
+            return JsonConvert.SerializeObject(shoppingCartSongs);
         }
+
+        public string getUserShoppingCartAlbums()
+        {
+            var userID = Request.Form["userID"];
+            var shoppingCartAlbums = db.UserActivityInputs.Where(u => u.UserActivityInputType == 2 && u.UserActivityInputArg2 == userID);
+
+            return JsonConvert.SerializeObject(shoppingCartAlbums);
+        }
+
+        public string getSongDetails()
+        {
+            var songID = Request.Form["songID"];
+            var songIDInt = Int32.Parse(songID);
+            var songDetailsQuery = from song in db.Songs
+                                   select new
+                                   {
+                                       SongID = song.SongID,
+                                       SongTitle = song.SongTitle,
+                                       SongPrice = song.SongPrice,
+                                       ArtistName = song.SongArtist.ArtistName,
+                                       Featured = song.Featured,
+                                       SongGenres = song.SongGenres,
+                                       SongAlbums = song.SongAlbums
+                                   };
+
+            songDetailsQuery = songDetailsQuery.Where(s => s.SongID == songIDInt);
+
+            if (songDetailsQuery == null)
+            {
+                return "Details not found";
+            }
+
+            var songDetailsList = songDetailsQuery.ToList();
+
+            return JsonConvert.SerializeObject(songDetailsList);
+        }
+
+      
 
     }
 }
