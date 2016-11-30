@@ -37,7 +37,7 @@ namespace Final_Project_V2.Controllers
         [Authorize(Roles = "Employee")]
         public ActionResult Edit()
         {
-            //if the logged in user is an employee, just do this
+            //if the logged in user is an employee, they edit their own account
             string id = User.Identity.GetUserId();
             AppUser @employee = db.Users.Find(id);
             if (id == null)
@@ -66,7 +66,22 @@ namespace Final_Project_V2.Controllers
             return View();
         }
 
-        // GET: Employee/Customers/Edit/5
+        //GET: Employees/ManageCustomers
+        [Authorize(Roles = "Employee")]
+        public ActionResult ManageCustomers()
+        {
+
+            var query = from c in db.Users
+                        select c;
+            List<AppUser> allCustomers = query.ToList();
+
+            String CustomerGUID = db.AppRoles.FirstOrDefault(r => r.Name == "Customer").Id;
+            allCustomers = db.Users.Where(x => x.Roles.Any(s => s.RoleId == CustomerGUID)).ToList();
+            return View(allCustomers);
+        }
+
+
+        // GET: Employees/Customers/Edit/5
         [Authorize(Roles = "Employee")]
         public ActionResult EmployeeEditCustomer(int? id)
         {
@@ -94,7 +109,7 @@ namespace Final_Project_V2.Controllers
         }
 
         [Authorize(Roles = "Employee")]
-        // POST: Employee/Customers/Edit/5
+        // POST: Employees/Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]

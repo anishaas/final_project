@@ -2053,6 +2053,7 @@
     <Content Include="Views\Employees\EditCustomer.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Account\RegisterEmployee.cshtml" />
+    <Content Include="Views\Employees\ManageCustomers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

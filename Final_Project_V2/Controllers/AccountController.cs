@@ -188,7 +188,7 @@ namespace Final_Project_V2.Controllers
             return View();
         }
 
-                // GET: /Account/RegisterAdmin
+       // GET: /Account/RegisterAdmin
         [Authorize(Roles = "admin")]
         public ActionResult RegisterAdmin()
         {
