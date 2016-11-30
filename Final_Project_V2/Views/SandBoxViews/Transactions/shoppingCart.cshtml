@@ -78,7 +78,20 @@
     <!-- BEGIN JAVASCRIPT -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
+        function deleteSong(elm) {
+            var songID = $(elm).attr("data-song-id");
+
+            $.post('/transactionsajax/deleteSong', { songID: songID })
+            .done(function (data) {
+                if(data == "success"){
+                    $(elm).parent().remove();
+                }
+
+            });
+        }
+
         $(document).ready(function () {
+
             var userID = "@ViewBag.userID";
             
             //Get user song cart data
@@ -105,13 +118,13 @@
                                                         </div>\
                                                          <div class="tile-text"><b>Title:</b> <span> SONGTITLE </span> <b>Artist:</b> <span>SONGARTIST</span> <b>Rating: </b><span>SONGRATING</span> <b>Price: </b><span>SONGPRICE</span></div>\
                                                     </a>\
-                                                    <a class="btn btn-flat ink-reaction">\
+                                                    <a onclick="deleteSong(this)" class="deleteSongBtn" data-song-id="SONGID" class="btn btn-flat ink-reaction">\
                                                         <i class="fa fa-trash"></i>\
                                                     </a>\
                                                 </li>'
                         ;
-
-                        songCartHTML = songCartHTML.replace("SONGID", songDetailsObject[0].SongID);
+               
+                        songCartHTML = songCartHTML.replace(/SONGID/g, songDetailsObject[0].SongID);
                         songCartHTML = songCartHTML.replace("SONGTITLE", songDetailsObject[0].SongTitle);
                         songCartHTML = songCartHTML.replace("SONGARTIST", songDetailsObject[0].ArtistName);
                         songCartHTML = songCartHTML.replace("SONGPRICE", songDetailsObject[0].SongPrice);
@@ -120,12 +133,52 @@
                         $('#songListingContainer').append(songCartHTML);
                     });
                 });
-
             });
             
 
             //Get user album cart data
+            var shoppingCartAlbumsInsert = '';
+
+            $.post("/transactionsAjax/getUserShoppingCartAlbums", { userID: userID })
+            .done(function (data) {
+
+                var albumListingDataObject = JSON.parse(data);
+
+                $.each(albumListingDataObject, function (index, item) {
+
+                    $.post("/transactionsAjax/getAlbumDetails", { songID: item.UserActivityInputArg1 })
+                    .done(function (data) {
+
+                        var albumDetailsObject = JSON.parse(data);
+
+                        //var songCartHTML = $('#shoppingCartSongItem')[0].outerHTML;
+
+                        var albumCartHTML = '<li id="shoppingCartSongItem" class="tile"> \
+                                                    <a href="/sandbox/getsongdetailspage/ALBUMID" class="tile-content ink-reaction">\
+                                                        <div class="tile-icon">\
+                                                            <i class="fa fa-music"></i>\
+                                                        </div>\
+                                                         <div class="tile-text"><b>Title:</b> <span> ALBUMTITLE </span> <b>Artist:</b> <span>ALBUMARTIST</span> <b>Rating: </b><span>ALBUMRATING</span> <b>Price: </b><span>ALBUMPRICE</span></div>\
+                                                    </a>\
+                                                    <a onclick="deleteAlbum(this)" class="deleteAlbumBtn" data-song-id="ALBUMID" class="btn btn-flat ink-reaction">\
+                                                        <i class="fa fa-trash"></i>\
+                                                    </a>\
+                                                </li>'
+                        ;
+
+                        albumCartHTML = albumCartHTML.replace(/ALBUMID/g, albumDetailsObject[0].albumID);
+                        albumCartHTML = albumCartHTML.replace("SONGTITLE", albumDetailsObject[0].albumName);
+                        albumCartHTML = albumCartHTML.replace("SONGARTIST", albumDetailsObject[0].albumArtist);
+                        albumCartHTML = albumCartHTML.replace("SONGPRICE", albumDetailsObject[0].albumPrice);
+                        albumCartHTML = albumCartHTML.replace("SONGRATING", "fml");
+
+                        $('#albumListContainer').append(albumCartHTML);
+                    });
+                });
+            });
+
         });
+
     </script>
     <!-- END JAVASCRIPT -->
 
