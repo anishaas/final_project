@@ -37,7 +37,7 @@ namespace Final_Project_V2.Controllers
         [Authorize(Roles = "Employee")]
         public ActionResult Edit()
         {
-            //if the logged in user is an employee, just do this
+            //if the logged in user is an employee, they edit their own account
             string id = User.Identity.GetUserId();
             AppUser @employee = db.Users.Find(id);
             if (id == null)
@@ -66,44 +66,41 @@ namespace Final_Project_V2.Controllers
             return View();
         }
 
-        // GET: Employee/Customers/Edit/5
+        //GET: Employees/ManageCustomers
         [Authorize(Roles = "Employee")]
-        public ActionResult EmployeeEditCustomer(int? id)
+        public ActionResult ManageCustomers()
+        {
+
+            var query = from c in db.Users
+                        select c;
+            List<AppUser> allCustomers = query.ToList();
+
+            String CustomerGUID = db.AppRoles.FirstOrDefault(r => r.Name == "Customer").Id;
+            allCustomers = db.Users.Where(x => x.Roles.Any(s => s.RoleId == CustomerGUID)).ToList();
+            return View(allCustomers);
+        }
+
+        // GET: Employees/EditCustomer/5
+        [Authorize(Roles = "Employee")]
+        public ActionResult EditCustomer(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             AppUser @customer = db.Users.Find(id);
-
-            //if unauthorized attempt, send back to login
-            if (!User.IsInRole("Admin") && !User.IsInRole("Employee"))
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            if (@customer == null)
-            {
-                return HttpNotFound();
-            }
-            /*
-            //Might need these for some property?
-            ViewBag.AllCardTypes = GetAllCommittees(@event);
-            ViewBag.AllMembers = GetAllMembers(@event);
-            */
-            return View(@customer);
+            return View("~/Views/Employees/EditCustomer.cshtml", @customer);
         }
 
         [Authorize(Roles = "Employee")]
-        // POST: Employee/Customers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Employees/EditCustomer/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EmployeeEditCustomer([Bind(Include = "UserID,LastName,FirstName,EmailAddress,Phone,CCType1,CCNumber1,CCType2,CCNumber2")] AppUser @customer)
+        public ActionResult EditCustomer([Bind(Include = "UserID,LastName,FirstName,EmailAddress,Phone,CCType1,CCNumber1,CCType2,CCNumber2")] AppUser @customer)
         {
             if (ModelState.IsValid)
             {
-                //Find associated member
+                //Find associated customer
                 AppUser customerToChange = db.Users.Find(@customer.Id);
 
                 //update customer properties based on edits
@@ -151,7 +148,7 @@ namespace Final_Project_V2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-            return View("~/Views/Employee/EditCustomer.cshtml",@customer);
+            return View("~/Views/Employees/EditCustomer.cshtml",@customer);
         }
     }
 }
