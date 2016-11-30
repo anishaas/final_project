@@ -22,6 +22,72 @@ namespace Final_Project_V2.Controllers
             return View();
         }
 
+        // GET: Admins/CreateSong
+        public ActionResult CreateSong()
+        {
+            return View();
+        }
+
+        // POST: Admins/CreateSong
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,Featured")] Song @song)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Songs.Add(song);
+                db.SaveChanges();
+                return RedirectToAction("ManageSongs");
+            }
+
+
+            return View(song);
+        }
+
+
+        // GET: Admins/CreateAlbum
+        public ActionResult CreateAlbum()
+        {
+            return View();
+        }
+
+        // POST: Admins/CreateAlbum
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured")] Album @album)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Albums.Add(album);
+                db.SaveChanges();
+                return RedirectToAction("ManageAlbums");
+            }
+
+
+            return View(album);
+        }
+
+        // GET: Admins/CreateArtist
+        public ActionResult CreateArtist()
+        {
+            return View();
+        }
+
+        // POST: Admins/CreateArtist
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateArtist([Bind(Include = "ArtistID,ArtistName,Featured")] Artist @artist)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Artists.Add(artist);
+                db.SaveChanges();
+                return RedirectToAction("ManageArtists");
+            }
+
+            return View(artist);
+        }
+
         //GET: Admins/ManageSongs
         [Authorize(Roles = "Admin")]
         public ActionResult ManageSongs()
