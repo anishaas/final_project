@@ -2007,6 +2007,10 @@
     <Compile Include="Migrations\201611290704389_Added constructor functions to model classes.Designer.cs">
       <DependentUpon>201611290704389_Added constructor functions to model classes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611300511335_Added ActiveCustomer boolean to AppUser model class.cs" />
+    <Compile Include="Migrations\201611300511335_Added ActiveCustomer boolean to AppUser model class.Designer.cs">
+      <DependentUpon>201611300511335_Added ActiveCustomer boolean to AppUser model class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -2054,6 +2058,7 @@
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Account\RegisterEmployee.cshtml" />
     <Content Include="Views\Employees\ManageCustomers.cshtml" />
+    <Content Include="Views\Songs\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2080,6 +2085,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611290704389_Added constructor functions to model classes.resx">
       <DependentUpon>201611290704389_Added constructor functions to model classes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611300511335_Added ActiveCustomer boolean to AppUser model class.resx">
+      <DependentUpon>201611300511335_Added ActiveCustomer boolean to AppUser model class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

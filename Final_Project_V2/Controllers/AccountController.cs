@@ -164,7 +164,7 @@ namespace Final_Project_V2.Controllers
                 //DONE: Add fields to user here so they will be saved to the database 
                 //Create a new user with all the properties you need for the class
                 var user = new AppUser { UserName = model.Email, Email = model.Email, LastName = model.LastName, FirstName = model.FirstName, Password = model.Password, Address = model.Address, PhoneNumber = model.Phone};
-                user.EmpType = "Customer";
+                user.EmpType = "ActiveCustomerAccount";
 
                 //Add the new user to the database
                 var result = await UserManager.CreateAsync(user, model.Password);

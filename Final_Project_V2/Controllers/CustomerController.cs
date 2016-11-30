@@ -24,8 +24,6 @@ namespace Final_Project_V2.Controllers
                         select c;
             List <AppUser> allCustomers = query.ToList();
 
-            //List<AppUser> allCustomers = query.ToList();
-            //var roleManager = new RoleManager<>(new RoleStore(db));
             String CustomerGUID = db.AppRoles.FirstOrDefault(r => r.Name == "Customer").Id;
             allCustomers = db.Users.Where(x => x.Roles.Any(s => s.RoleId == CustomerGUID)).ToList();
             return View(allCustomers);
