@@ -114,5 +114,50 @@ namespace Final_Project_V2.Controllers
             }
             return View("~/Views/Admins/EditAlbum.cshtml", @album);
         }
+
+        //GET: Admins/ManageArtists
+        [Authorize(Roles = "Admin")]
+        public ActionResult ManageArtists()
+        {
+
+            var query = from a in db.Artists
+                        select a;
+            List<Artist> allArtists = query.ToList();
+            return View(allArtists);
+        }
+
+        // GET: Admins/EditArtist/5
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditArtist(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Artist @artist = db.Artists.Find(id);
+            return View("~/Views/Admins/EditArtist.cshtml", @artist);
+        }
+
+        [Authorize(Roles = "Admin")]
+        // POST: Admins/EditArtist/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditArtist([Bind(Include = "ArtistID,ArtistName,Featured")] Artist @artist)
+        {
+            if (ModelState.IsValid)
+            {
+                //Find associated artist
+                Artist artistToChange = db.Artists.Find(@artist.ArtistID);
+
+                artistToChange.ArtistName = @artist.ArtistName;
+                artistToChange.Featured = @artist.Featured;
+
+
+                db.Entry(artistToChange).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageArtists", "Admins");
+            }
+            return View("~/Views/Admins/EditArtist.cshtml", @artist);
+        }
     }
 }

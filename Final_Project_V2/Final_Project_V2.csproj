@@ -2068,6 +2068,8 @@
     <Content Include="Views\Admins\EditSong.cshtml" />
     <Content Include="Views\Admins\ManageAlbums.cshtml" />
     <Content Include="Views\Admins\EditAlbum.cshtml" />
+    <Content Include="Views\Admins\EditArtist.cshtml" />
+    <Content Include="Views\Admins\ManageArtists.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
