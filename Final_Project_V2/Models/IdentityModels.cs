@@ -77,6 +77,8 @@ namespace Final_Project_V2.Models
         //Add dbSet for roles
          public DbSet<AppRole> AppRoles { get; set; }
 
+       // public System.Data.Entity.DbSet<Final_Project_V2.Models.AppUser> AppUsers { get; set; }
+
         //public System.Data.Entity.DbSet<Final_Project_V2.Models.AppUser> AppUsers { get; set; }
 
         //public System.Data.Entity.DbSet<Final_Project_V2.Models.AppUser> AppUsers { get; set; }

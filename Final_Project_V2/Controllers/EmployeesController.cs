@@ -15,9 +15,15 @@ namespace Final_Project_V2.Controllers
     public class EmployeesController : Controller
     {
         private AppDbContext db = new AppDbContext();
-        // GET: Employee
+
+        // GET: Employees
+        [Authorize(Roles = "Employee")]
         public ActionResult Index()
         {
+            if (!User.IsInRole("Employee"))
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             var query = from c in db.Users
                         select c;
@@ -27,8 +33,8 @@ namespace Final_Project_V2.Controllers
             return View(allEmployees);
         }
 
-        //[Authorize]
         // GET: Employees/Edit
+        [Authorize(Roles = "Employee")]
         public ActionResult Edit()
         {
             //if the logged in user is an employee, just do this
@@ -42,6 +48,7 @@ namespace Final_Project_V2.Controllers
         }
 
         // POST: Employees/Edit
+        [Authorize(Roles = "Employee")]
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -60,8 +67,7 @@ namespace Final_Project_V2.Controllers
         }
 
         // GET: Employee/Customers/Edit/5
-        //Add admin as authorized! 
-        //[Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employee")]
         public ActionResult EmployeeEditCustomer(int? id)
         {
             if (id == null)
@@ -69,6 +75,7 @@ namespace Final_Project_V2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             AppUser @customer = db.Users.Find(id);
+
             //if unauthorized attempt, send back to login
             if (!User.IsInRole("Admin") && !User.IsInRole("Employee"))
             {
@@ -86,6 +93,7 @@ namespace Final_Project_V2.Controllers
             return View(@customer);
         }
 
+        [Authorize(Roles = "Employee")]
         // POST: Employee/Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

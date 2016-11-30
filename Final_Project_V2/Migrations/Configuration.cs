@@ -231,6 +231,7 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "The Queen", SongPrice = 1.29M },
                 new Song { SongTitle = "You And I", SongPrice = 1.29M },
                 new Song { SongTitle = "The Edge of Glory", SongPrice = 1.29M },
+
                 //Florence
                 new Song { SongTitle = "Only If For A Night", SongPrice = 0.99M },
                 new Song { SongTitle = "Shake It Out", SongPrice = 1.29M },
@@ -247,6 +248,7 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Remain Nameless", SongPrice = 0.99M },
                 new Song { SongTitle = "Strangeness and Charm", SongPrice = 0.99M },
                 new Song { SongTitle = "Bedroom Hymns", SongPrice = 0.99M },
+
                 //James Bay
                 new Song { SongTitle = "Craving", SongPrice = 1.29M },
                 new Song { SongTitle = "Hold Back the River", SongPrice = 1.29M },
@@ -260,8 +262,10 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Get Out While You Can", SongPrice = 1.29M },
                 new Song { SongTitle = "Need the Sun to Break", SongPrice = 1.29M },
                 new Song { SongTitle = "Incomplete", SongPrice = 1.29M },
+
                 //Julian Smith
                 new Song { SongTitle = "Eat Randy", SongPrice = 1.29M },
+
                 //Maroon 5
                 new Song { SongTitle = "Misery", SongPrice = 0.99M },
                 new Song { SongTitle = "Give a Little More", SongPrice = 1.29M },
@@ -281,6 +285,7 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "No Curtain Call", SongPrice = 1.19M },
                 new Song { SongTitle = "If I Ain't Got You", SongPrice = 1.29M },
                 new Song { SongTitle = "The Air That I Breathe", SongPrice = 1.29M },
+
                 //Drake
                 new Song { SongTitle = "Legend", SongPrice = 0.99M },
                 new Song { SongTitle = "Energy", SongPrice = 1.19M },
@@ -318,6 +323,8 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Go Outside and Dance", SongPrice = 0.89M }
                 new Song { SongTitle = "Me and Jack (Demo)", SongPrice = 1.29M }
                 */
+
+                //***Peter, start here with Rihanna's song data. Thank you!!"
             };
 
             //Find record based on a property and add/update
