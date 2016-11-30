@@ -80,6 +80,7 @@ namespace FinalProject.Controllers.SandBoxControllers
 
             ViewBag.songDetailJSON = JsonConvert.SerializeObject(songDetailsList);
 
+            //PROVIDING USER DATA TO THE VIEWBAG
             var userLastName = "";
             var userFirstName = "";
             var userID = User.Identity.GetUserId();
