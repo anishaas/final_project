@@ -64,9 +64,55 @@ namespace Final_Project_V2.Controllers
 
                 db.Entry(songToChange).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ManageSongs", "Admin");
+                return RedirectToAction("ManageSongs", "Admins");
             }
             return View("~/Views/Admins/EditSong.cshtml", @song);
+        }
+
+        //GET: Admins/ManageAlbums
+        [Authorize(Roles = "Admin")]
+        public ActionResult ManageAlbums()
+        {
+
+            var query = from a in db.Albums
+                        select a;
+            List<Album> allAlbums = query.ToList();
+            return View(allAlbums);
+        }
+
+        // GET: Admins/EditAlbum/5
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditAlbum(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Album @album = db.Albums.Find(id);
+            return View("~/Views/Admins/EditAlbum.cshtml", @album);
+        }
+
+        [Authorize(Roles = "Admin")]
+        // POST: Admins/EditAlbum/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist")] Album @album)
+        //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
+        {
+            if (ModelState.IsValid)
+            {
+                //Find associated customer
+                Album albumToChange = db.Albums.Find(@album.AlbumID);
+
+                albumToChange.AlbumName = @album.AlbumName;
+                albumToChange.AlbumPrice = @album.AlbumPrice;
+
+
+                db.Entry(albumToChange).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageSongs", "Admins");
+            }
+            return View("~/Views/Admins/EditAlbum.cshtml", @album);
         }
     }
 }
