@@ -1974,10 +1974,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxControllers\DataControllers\DataController.cs" />
+    <Compile Include="Controllers\AjaxControllers\TransactionAjaxControllers\TransactionsAjaxController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AjaxControllers\SearchAjaxControllers\SearchController.cs" />
+    <Compile Include="Controllers\MainControllers\TransactionsController.cs" />
     <Compile Include="Controllers\MainControllers\DetailsController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SandBoxControllers\SandBoxController.cs" />
@@ -2004,6 +2006,10 @@
     <Compile Include="Migrations\201611290704389_Added constructor functions to model classes.cs" />
     <Compile Include="Migrations\201611290704389_Added constructor functions to model classes.Designer.cs">
       <DependentUpon>201611290704389_Added constructor functions to model classes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611300220228_Editing the useractivityinput class to not have a timestamp.cs" />
+    <Compile Include="Migrations\201611300220228_Editing the useractivityinput class to not have a timestamp.Designer.cs">
+      <DependentUpon>201611300220228_Editing the useractivityinput class to not have a timestamp.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -2039,17 +2045,16 @@
     <Content Include="Views\SandBoxViews\Footers\userViewFooter.cshtml" />
     <Content Include="Views\SandBoxViews\WelcomePage\customerWelcomePage.cshtml" />
     <Content Include="Views\SandBoxViews\AccountScreens\MyMusic.cshtml" />
+    <Content Include="Views\Employee\EditEmployee.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Employee\EditCustomer.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\SandBoxViews\Search\ArtistSearch\artistSearch.cshtml" />
     <Content Include="Views\Songs\Create.cshtml" />
     <Content Include="Views\SandBoxViews\Details\songDetails.cshtml" />
     <Content Include="Views\SandBoxViews\Details\AlbumDetails.cshtml" />
     <Content Include="Views\SandBoxViews\Details\artistDetails.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\EditCustomer.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Account\RegisterEmployee.cshtml" />
+    <Content Include="Views\SandBoxViews\Transactions\shoppingCart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2076,6 +2081,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611290704389_Added constructor functions to model classes.resx">
       <DependentUpon>201611290704389_Added constructor functions to model classes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611300220228_Editing the useractivityinput class to not have a timestamp.resx">
+      <DependentUpon>201611300220228_Editing the useractivityinput class to not have a timestamp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

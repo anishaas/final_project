@@ -1,4 +1,6 @@
 ﻿using Final_Project_V2.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -41,9 +43,6 @@ namespace FinalProject.Controllers.SandBoxControllers
             return View("~/Views/SandBoxViews/Search/ArtistSearch/artistSearch.cshtml");
         }
 
-
-
-
         public ActionResult getMyMusicPage()
         {
             return View("~/Views/SandBoxViews/AccountScreens/MyMusic.cshtml");
@@ -78,13 +77,31 @@ namespace FinalProject.Controllers.SandBoxControllers
             }
 
             var songDetailsList = songDetailsQuery.ToList();
-          
-            /*
-            ViewBag.songPrice = songDetailsList[2];
-            ViewBag.artistName = songDetailsList[3];
-            ViewBag.songRating = "N/A";
-            */
+
             ViewBag.songDetailJSON = JsonConvert.SerializeObject(songDetailsList);
+
+            var userLastName = "";
+            var userFirstName = "";
+            var userID = User.Identity.GetUserId();
+            var authenticationStatus = "none";
+
+            if (User.Identity.IsAuthenticated)
+            {
+
+                var userStore = new UserStore<AppUser>(new AppDbContext());
+                var manager = new UserManager<AppUser>(userStore);
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+
+                userLastName = currentUser.LastName;
+                userFirstName = currentUser.FirstName;
+                authenticationStatus = currentUser.EmpType;
+
+            }
+            ViewBag.authenticationStatus = authenticationStatus;
+            ViewBag.userLastName = userLastName;
+            ViewBag.userFirstName = userFirstName;
+            ViewBag.userID = userID;
+
             return View("~/Views/SandBoxViews/Details/songDetails.cshtml");
         }
 

@@ -6,12 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Final_Project_V2.Controllers.MainControllers
 {
-    public class DetailsController : Controller
+    public class TransactionsAjaxController : Controller
     {
         //instance of AppDbContext file
         private AppDbContext db = new AppDbContext();
@@ -23,35 +21,54 @@ namespace Final_Project_V2.Controllers.MainControllers
         }
 
 
-        public ActionResult getAlbumDetailsPage(int? id)
+        public string addSongToCart()
         {
-            if (id == null)
+            var userID = Request.Form["userID"];
+            var songID = Request.Form["songID"];
+
+            // Create a new Order object.
+            UserActivityInput userInput = new UserActivityInput
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var albumDetailsQuery = from album in db.Albums
-                                   select new
-                                   {
-                                       albumId = album.AlbumID,
-                                       albumName = album.AlbumName,
-                                       albumPrice = album.AlbumPrice,
-                                       albumArtist = album.AlbumArtist.ArtistName,
-                                       albumGenres = album.AlbumGenres,
-                                       albumSongs = album.AlbumSongs
-                                   };
+                UserActivityInputType = 1,
+                UserActivityInputArg1 = songID,
+                UserActivityInputArg2 = userID,
+                UserActivityInputArg3 = "no"
+            };
 
-            albumDetailsQuery = albumDetailsQuery.Where(album => album.albumId == id);
-
-            if (albumDetailsQuery == null)
+            if (!db.UserActivityInputs.Any(u => u.UserActivityInputArg1 == songID && u.UserActivityInputArg2 == userID && u.UserActivityInputArg3 == "no"))
             {
-                return HttpNotFound();
+                db.UserActivityInputs.Add(userInput);
+                //db.SaveChanges();
+
+
+                // Submit the change to the database.
+                try
+                {
+                    db.SaveChanges();
+                    return "success";
+                }
+                catch (Exception e)
+                {
+                    
+                    return e.ToString();
+                }
+            }else
+            {
+                return "exists";
             }
 
-            var albumDetailsList = albumDetailsQuery.ToList();
-
-            ViewBag.albumDetailJSON = JsonConvert.SerializeObject(albumDetailsList);
-            return View("~/Views/SandBoxViews/Details/AlbumDetails.cshtml");
         }
+
+        public string addAlbumToCart()
+        {
+            var userID = Request.Form["userID"];
+            var albumID = Request.Form["albumID"];
+
+
+            return "success";
+        }
+
+
 
         public ActionResult getArtistDetailsPage(int? id)
         {

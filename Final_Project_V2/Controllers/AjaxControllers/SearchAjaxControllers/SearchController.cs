@@ -488,6 +488,7 @@ namespace FinalProject.Controllers.MainControllers
             var artistQuery = from a in db.Artists
                               select new
                               {
+                                  ArtistID = a.ArtistID,
                                   ArtistName = a.ArtistName,
                                   ArtistGenres = a.ArtistGenres
                               };

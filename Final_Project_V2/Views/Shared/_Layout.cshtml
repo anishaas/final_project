@@ -10,23 +10,6 @@
     @Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHeader.cshtml")) 
 </head>
 <body>
-    <!--
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
-        </div>
-    </div>
-    -->
     <header id="header">
         <div class="headerbar">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,8 +37,9 @@
                         <a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
                             <img src="http://www.rallyall.com/img/session/icon_Profile.png" alt="" />
                             <span class="profile-info">
-                                <span id="userName"> Daniel Johnson </span>
-                                <small id="userClassification">Customer</small>
+                                <span id="userName"> Not Logged In </span>
+                                <small id="userClassification"></small>
+                                <input id="userID" type="hidden" value=""/>
                             </span>
                         </a>
                         <ul class="dropdown-menu animation-dock">
@@ -154,7 +138,7 @@
                     <li>
                         <a href="#">
                             <div class="gui-icon"><i class="fa fa-shopping-cart"></i></div>
-                            <span class="title">Check Out</span>
+                            <span class="title">Shopping Cart</span>
                         </a>
                     </li><!--end /menu-li -->
 
@@ -175,6 +159,23 @@
         <footer>
             @Html.Partial(@Url.Content("~/Views/SandBoxViews/Footers/userSongSearchFooter.cshtml"))
         </footer>
+        <script>
+            //USER DETAIL SETUP
+            var authenticationStatus = 'none';
+            if ("@ViewBag.authenticationStatus" != "none") {
+                var userLastName = "@ViewBag.userLastName";
+                var userFirstName = "@ViewBag.userFirstName";
+                var userID = "@ViewBag.userID";
+                authenticationStatus = "@ViewBag.authenticationStatus";
+                if (authenticationStatus == 'Emp') {
+                    authenticationStatus = 'employer';
+                }
+
+                $('#userName').html(userFirstName + " " + userLastName);
+                $('#userClassification').html(authenticationStatus);
+                $('#userID').val(userID);
+            }
+        </script>
     </div>
 </body>
 </html>

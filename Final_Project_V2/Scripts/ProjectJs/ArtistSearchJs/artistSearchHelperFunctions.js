@@ -21,7 +21,6 @@ var artistSearchHelperFunctions = {};
     };
 
     context.displaySearchResults = function (data) {      
-        alert(data);
         var searchResultsJSONObject = jQuery.parseJSON(data);
 
         //var searchResultInsert = '';
@@ -65,7 +64,7 @@ var artistSearchHelperFunctions = {};
                 genreString += item.GenreName + ', ';
             });
 
-            dataTable.row.add([item.ArtistName, genreString, "N/A"]).draw();
+            dataTable.row.add(["<a href='/details/getArtistDetailsPage/" + item.ArtistID + "'>" + item.ArtistName + "</a>", genreString, "N/A"]).draw();
         });
     }
 
