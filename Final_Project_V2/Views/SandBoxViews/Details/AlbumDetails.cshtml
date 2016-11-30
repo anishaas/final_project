@@ -28,11 +28,12 @@
                             <h3>Genres: <span id="genreSpan"></span> </h3>
                             <h3>Price: <span id="priceSpan"></span></h3>
                             <h3>Rating: <span id="ratingSpan"></span></h3>
+                            <input type="hidden" id="albumID" value="" />
                         </div><!--end .card-body -->
                         <div class="card-actionbar">
                             <div class="card-actionbar-row">
                                 <!--<a href="javascript:void(0);" class="btn btn-flat btn-default ink-reaction">Rate</a>-->
-                                <a href="javascript:void(0);" class="btn btn-flat btn-accent ink-reaction">Add to Cart</a>
+                                <a href="javascript:void(0);" id="addCart" class="btn btn-flat btn-accent ink-reaction">Add to Cart</a>
                             </div>
                         </div><!--end .card-actionbar -->
                     </div><!--end .card -->
@@ -57,6 +58,8 @@
             var albumDetailsJSONStringParsed = albumDetailsJSONString.replace(/&quot;/g, '\"');
             var albumDetailsObject = JSON.parse(albumDetailsJSONStringParsed);
 
+            $('#albumID').val(albumDetailsObject[0].albumId);
+
             $('#albumName').html(albumDetailsObject[0].albumName);
             $('#artistSpan').html(albumDetailsObject[0].albumArtist);
 
@@ -72,6 +75,26 @@
             $('#genreSpan').html(" " + genreString);
             $('#priceSpan').html(" " + albumDetailsObject[0].albumPrice);
 
+            //Add to cart logic
+            //ADD TO CART LOGIC (Put this below Song detail setup later)
+            $('#addCart').on('click', function () {
+                if (authenticationStatus != 'none') {
+                    var albumID = $('#albumID').val();
+                    var userID = $('#userID').val();
+
+                    $.post("/TransactionsAjax/addAlbumToCart", { albumID: albumID, userID: userID })
+                    .done(function (data) {
+                        if (data == 'exists') {
+                            alert('This song already exists in your cart');
+                        } else if (data == 'success') {
+                            alert('Song successfully added to your cart');
+                        } else {
+                            alert('Failed to add song, internal server error');
+                        }
+                    });
+                }
+
+            });
         });
     </script>
 </body>

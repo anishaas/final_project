@@ -35,7 +35,7 @@ namespace Final_Project_V2.Controllers.MainControllers
                 UserActivityInputArg3 = "no"
             };
 
-            if (!db.UserActivityInputs.Any(u => u.UserActivityInputArg1 == songID && u.UserActivityInputArg2 == userID && u.UserActivityInputArg3 == "no"))
+            if (!db.UserActivityInputs.Any(u => u.UserActivityInputType == 1 && u.UserActivityInputArg1 == songID && u.UserActivityInputArg2 == userID && u.UserActivityInputArg3 == "no"))
             {
                 db.UserActivityInputs.Add(userInput);
                 //db.SaveChanges();
@@ -64,14 +64,44 @@ namespace Final_Project_V2.Controllers.MainControllers
             var userID = Request.Form["userID"];
             var albumID = Request.Form["albumID"];
 
+            // Create a new Order object.
+            UserActivityInput userInput = new UserActivityInput
+            {
+                UserActivityInputType = 2,
+                UserActivityInputArg1 = albumID,
+                UserActivityInputArg2 = userID,
+                UserActivityInputArg3 = "no"
+            };
 
-            return "success";
+            if (!db.UserActivityInputs.Any(u => u.UserActivityInputType == 2 && u.UserActivityInputArg1 == albumID && u.UserActivityInputArg2 == userID && u.UserActivityInputArg3 == "no"))
+            {
+                db.UserActivityInputs.Add(userInput);
+                //db.SaveChanges();
+
+
+                // Submit the change to the database.
+                try
+                {
+                    db.SaveChanges();
+                    return "success";
+                }
+                catch (Exception e)
+                {
+
+                    return e.ToString();
+                }
+            }
+            else
+            {
+                return "exists";
+            }
+
         }
 
         public string getUserShoppingCartSongs()
         {
             var userID = Request.Form["userID"];
-            var shoppingCartSongs = db.UserActivityInputs.Where(u => u.UserActivityInputType == 1 && u.UserActivityInputArg2 == userID);
+            var shoppingCartSongs = db.UserActivityInputs.Where(u => u.UserActivityInputType == 1 && u.UserActivityInputArg2 == userID && u.UserActivityInputArg3 == "no");
 
             return JsonConvert.SerializeObject(shoppingCartSongs);
         }
@@ -79,7 +109,7 @@ namespace Final_Project_V2.Controllers.MainControllers
         public string getUserShoppingCartAlbums()
         {
             var userID = Request.Form["userID"];
-            var shoppingCartAlbums = db.UserActivityInputs.Where(u => u.UserActivityInputType == 2 && u.UserActivityInputArg2 == userID);
+            var shoppingCartAlbums = db.UserActivityInputs.Where(u => u.UserActivityInputType == 2 && u.UserActivityInputArg2 == userID && u.UserActivityInputArg3 == "no");
 
             return JsonConvert.SerializeObject(shoppingCartAlbums);
         }
@@ -112,7 +142,79 @@ namespace Final_Project_V2.Controllers.MainControllers
             return JsonConvert.SerializeObject(songDetailsList);
         }
 
-      
+        public string deleteSong()
+        {
+            var songID = Request.Form["songID"];
+
+            var cartSongToDelete = (from u in db.UserActivityInputs
+                        where u.UserActivityInputArg1 == songID
+                                    select u).FirstOrDefault();
+
+            //Delete it from memory
+            db.UserActivityInputs.Remove(cartSongToDelete);
+            //Save to database
+            try
+            {
+                db.SaveChanges();
+                return "success";
+            }
+            catch
+            {
+                return "fail";
+            }
+        }
+
+        public string getAlbumDetails()
+        {
+            var albumID = Request.Form["albumID"];
+            var albumIDInt = Int32.Parse(albumID);
+
+            var albumDetailsQuery = from album in db.Albums
+                                   select new
+                                   {
+                                       albumID = album.AlbumID,
+                                       albumName = album.AlbumName,
+                                       albumPrice = album.AlbumPrice,
+                                       albumArtist = album.AlbumArtist.ArtistName,
+                                       albumSongs = album.AlbumSongs
+                                   };
+
+            albumDetailsQuery = albumDetailsQuery.Where(a => a.albumID == albumIDInt);
+
+            if (albumDetailsQuery == null)
+            {
+                return "Details not found";
+            }
+
+            var albumDetailsList = albumDetailsQuery.ToList();
+
+            return JsonConvert.SerializeObject(albumDetailsList);
+        }
+
+        public string deleteAlbum()
+        {
+            var albumID = Request.Form["albumID"];
+
+            var cartAlbumToDelete = (from u in db.UserActivityInputs
+                                    where u.UserActivityInputArg1 == albumID
+                                    select u).FirstOrDefault();
+
+            //Delete it from memory
+            db.UserActivityInputs.Remove(cartAlbumToDelete);
+            //Save to database
+            try
+            {
+                db.SaveChanges();
+                return "success";
+            }
+            catch
+            {
+                return "fail";
+            }
+        }
+
 
     }
+
+
 }
