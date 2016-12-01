@@ -31,6 +31,10 @@ namespace Final_Project_V2.Controllers.MainControllers
             var userFirstName = "";
             var userID = User.Identity.GetUserId();
             var authenticationStatus = "none";
+            var cc1 = "";
+            var cc1Type = "";
+            var cc2 = "";
+            var cc2Type = "";
 
             if (User.Identity.IsAuthenticated)
             {
@@ -42,12 +46,20 @@ namespace Final_Project_V2.Controllers.MainControllers
                 userLastName = currentUser.LastName;
                 userFirstName = currentUser.FirstName;
                 authenticationStatus = currentUser.EmpType;
-
+                cc1 = currentUser.CCNumber1;
+                cc1Type = currentUser.CCType1;
+                cc2 = currentUser.CCNumber2;
+                cc2Type = currentUser.CCType2;
             }
+
             ViewBag.authenticationStatus = authenticationStatus;
             ViewBag.userLastName = userLastName;
             ViewBag.userFirstName = userFirstName;
             ViewBag.userID = userID;
+            ViewBag.CCNumber1 = cc1;
+            ViewBag.CCType1 = cc1Type;
+            ViewBag.CCNumber2 = cc2;
+            ViewBag.CCType2 = cc2Type;
 
             return View("~/Views/SandBoxViews/Transactions/shoppingCart.cshtml");
         }

@@ -75,8 +75,6 @@ var songSearchHelperFunctions = {};
                 artistString += item.ArtistName + ', ';
             });
             */
-            alert('test');
-            alert(item.ArtistName);
             dataTable.row.add(["<a href='/sandbox/getSongDetailsPage/" + item.SongID + "'>" + item.SongTitle + "</a>", item.ArtistName, item.SongPrice, "N/A"]).draw();
         });
     }

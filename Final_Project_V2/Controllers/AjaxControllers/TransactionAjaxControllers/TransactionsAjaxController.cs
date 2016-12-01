@@ -20,7 +20,18 @@ namespace Final_Project_V2.Controllers.MainControllers
             return View();
         }
 
-
+        public string checkIfUserExists()
+        {
+            var userID = Request.Form["userID"];
+            var emailAddress = Request.Form["emailAddress"];
+            if (db.Users.Any(u => u.EmailAddress == emailAddress))
+            {
+                return "true";
+            }else
+            {
+                return "fail";
+            }
+        }
         public string addSongToCart()
         {
             var userID = Request.Form["userID"];
