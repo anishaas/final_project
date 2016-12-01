@@ -27,7 +27,7 @@ namespace Final_Project_V2.Models
         [InverseProperty("AlbumArtist")]
         public List<Album> ArtistAlbums { get; set; }
 
-        [InverseProperty("SongArtist")]
+        [InverseProperty("SongArtists")]
         public List<Song> ArtistSongs { get; set; }
     }
 }

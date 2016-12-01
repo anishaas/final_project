@@ -25,23 +25,43 @@ namespace Final_Project_V2.Controllers
         // GET: Admins/CreateSong
         public ActionResult CreateSong()
         {
+            ViewBag.AllGenres = GetAllGenres();
+            ViewBag.AllArtists = GetAllArtists();
             return View();
         }
 
         // POST: Admins/CreateSong
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,Featured")] Song @song)
+        public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,Featured")] Song @song, Int32[] SelectedGenres, Int32[] SelectedArtists)
         {
             if (ModelState.IsValid)
             {
-                db.Songs.Add(song);
+                //add genres
+                if (SelectedGenres != null)
+                {
+                    foreach (int Id in SelectedGenres)
+                    {
+                        Genre genreToAdd = db.Genres.Find(Id);
+                        @song.SongGenres.Add(genreToAdd);
+                    }
+                }
+                //add artists
+                if (SelectedArtists != null)
+                {
+                    foreach (int Id in SelectedArtists)
+                    {
+                        Artist artistToAdd = db.Artists.Find(Id);
+                        @song.SongArtists.Add(artistToAdd);
+                    }
+                }
+                //save song to database
+                db.Songs.Add(@song);
                 db.SaveChanges();
                 return RedirectToAction("ManageSongs");
             }
 
-
-            return View(song);
+            return View(@song);
         }
 
 
@@ -115,7 +135,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditSong/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist")] Song @song)
+        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtists")] Song @song)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)
@@ -125,7 +145,7 @@ namespace Final_Project_V2.Controllers
 
                 songToChange.SongTitle = @song.SongTitle;
                 songToChange.SongPrice = @song.SongPrice;
-                songToChange.SongArtist = @song.SongArtist;
+                songToChange.SongArtists = @song.SongArtists;
                 songToChange.Featured = @song.Featured;
 
                 db.Entry(songToChange).State = EntityState.Modified;
@@ -224,6 +244,36 @@ namespace Final_Project_V2.Controllers
                 return RedirectToAction("ManageArtists", "Admins");
             }
             return View("~/Views/Admins/EditArtist.cshtml", @artist);
+        }
+
+        public SelectList GetAllGenres() //NO GENRE
+        {
+            //create query to find all committees
+            var query = from c in db.Genres
+                        orderby c.GenreName
+                        select c;
+            //execute query and store in list
+            List<Genre> allGenres = query.ToList();
+
+            //convert list to selectlist format for HTML
+            SelectList allGenresList = new SelectList(allGenres, "GenreID", "GenreName");
+
+            return allGenresList;
+        }
+
+        public SelectList GetAllArtists() //NO ARTIST
+        {
+            //create query to find all artists
+            var query = from a in db.Artists
+                        orderby a.ArtistName
+                        select a;
+            //execute query and store in list
+            List<Artist> allArtists = query.ToList();
+
+            //convert list to selectlist format for HTML
+            SelectList allArtistsList = new SelectList(allArtists, "ArtistID", "ArtistName");
+
+            return allArtistsList;
         }
     }
 }

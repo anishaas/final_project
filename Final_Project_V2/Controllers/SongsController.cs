@@ -64,7 +64,7 @@ namespace Final_Project_V2.Controllers
             return View(song);
         }
 
-        public SelectList GetAllGenres() //NO COMMITTEE SELECTED
+        public SelectList GetAllGenres() //NO GENRE
         {
             //create query to find all committees
             var query = from c in db.Genres

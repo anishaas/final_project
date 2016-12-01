@@ -2016,6 +2016,14 @@
     <Compile Include="Migrations\201611300614258_ADded DiscountType property to Discount model class.Designer.cs">
       <DependentUpon>201611300614258_ADded DiscountType property to Discount model class.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611301901224_Changed the SongArtist property back.cs" />
+    <Compile Include="Migrations\201611301901224_Changed the SongArtist property back.Designer.cs">
+      <DependentUpon>201611301901224_Changed the SongArtist property back.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612010207573_Updated artist model class.cs" />
+    <Compile Include="Migrations\201612010207573_Updated artist model class.Designer.cs">
+      <DependentUpon>201612010207573_Updated artist model class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -2105,6 +2113,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611300614258_ADded DiscountType property to Discount model class.resx">
       <DependentUpon>201611300614258_ADded DiscountType property to Discount model class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611301901224_Changed the SongArtist property back.resx">
+      <DependentUpon>201611301901224_Changed the SongArtist property back.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612010207573_Updated artist model class.resx">
+      <DependentUpon>201612010207573_Updated artist model class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
