@@ -194,6 +194,42 @@ namespace Final_Project_V2.Controllers
             return View(allSongs);
         }
 
+        // GET: Admins/EditEmployee/5
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditEmployee(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AppUser @employee = db.Users.Find(id);
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        // POST: Admins/EditEmployee/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditEmployee([Bind(Include = "Id,Phone,DisabledEmployee,Password")] AppUser @employee)
+        //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
+        {
+            if (ModelState.IsValid)
+            {
+                //Find associated customer
+                AppUser employeeToChange = db.Users.Find(@employee.Id);
+
+                employeeToChange.Email = @employee.Email;
+                employeeToChange.Phone = @employee.Phone;
+                employeeToChange.Password = @employee.Password;
+                employeeToChange.DisabledEmployee = @employee.DisabledEmployee;
+                
+                db.Entry(employeeToChange).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageEmployees", "Admins");
+            }
+            return View("~/Views/Employees/EditCustomer.cshtml", @employee);
+        }
+
         // GET: Admins/EditSong/5
         [Authorize(Roles = "Admin")]
         public ActionResult EditSong(int? id)

@@ -67,7 +67,7 @@ namespace Final_Project_V2.Controllers
         }
 
         //GET: Employees/ManageCustomers
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employee, Admin")]
         public ActionResult ManageCustomers()
         {
 
@@ -81,7 +81,7 @@ namespace Final_Project_V2.Controllers
         }
 
         // GET: Employees/EditCustomer/5
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employee, Admin")]
         public ActionResult EditCustomer(string id)
         {
             if (id == null)
@@ -92,11 +92,11 @@ namespace Final_Project_V2.Controllers
             return View("~/Views/Employees/EditCustomer.cshtml", @customer);
         }
 
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles = "Employee, Admin")]
         // POST: Employees/EditCustomer/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditCustomer([Bind(Include = "Id,Phone,ActiveCustomer,Password")] AppUser @customer)
+        public ActionResult EditCustomer([Bind(Include = "Id,Phone,DisabledCustomer,Password")] AppUser @customer)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)

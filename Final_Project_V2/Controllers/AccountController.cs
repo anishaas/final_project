@@ -76,7 +76,7 @@ namespace Final_Project_V2.Controllers
             return View();
         }
 
-        //
+        // 
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -87,6 +87,17 @@ namespace Final_Project_V2.Controllers
             {
                 return View(model);
             }
+
+            //find user to check if account is disabled
+
+            /*CHECK THIS CODE
+            AppUser user = db.Users.FirstOrDefault(x => x.Email == model.Email);          
+            if (user.DisabledCustomer == true || user.DisabledEmployee == true)
+            {
+                //user should not be able to login
+                return View("Error", new string[] { "Sorry, your account has been disabled" });
+            }
+            */
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true

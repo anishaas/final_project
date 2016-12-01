@@ -1,7 +1,13 @@
 ﻿@model IEnumerable<Final_Project_V2.Models.AppUser>
 
+@{
+    ViewBag.Title = "ManageEmployees";
+}
+
+<h2>ManageEmployees</h2>
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Emplotee", "Account/RegisterEmployee")
 </p>
 <table class="table">
     <tr>
@@ -10,6 +16,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MI)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Password)
@@ -42,13 +51,23 @@
             @Html.DisplayNameFor(model => model.EmpType)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DisabledEmployee)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
+        
+        @*<th>
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DisabledCustomer)
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecurityStamp)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th></th>
     </tr>
@@ -60,6 +79,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MI)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Password)
@@ -92,17 +114,17 @@
             @Html.DisplayFor(modelItem => item.EmpType)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.DisabledEmployee)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DisabledCustomer)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditCustomer", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "EditEmployee", new { id=item.Id }) |
+            @Html.ActionLink("Details", "EmployeeDetails", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

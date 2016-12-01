@@ -33,11 +33,11 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ActiveCustomer, htmlAttributes: new { @class = "control-label col-md-2" }) Disable Customer? 
+        @Html.LabelFor(model => model.DisabledCustomer, htmlAttributes: new { @class = "control-label col-md-2" }) Disable Customer? 
         <div class="col-md-10">
             <div class="checkbox">
-                @Html.EditorFor(model => model.ActiveCustomer)
-                @Html.ValidationMessageFor(model => model.ActiveCustomer, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DisabledCustomer)
+                @Html.ValidationMessageFor(model => model.DisabledCustomer, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
