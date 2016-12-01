@@ -23,12 +23,12 @@
             <section>
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="text-primary">Shopping Cart </h1>
+                        <h1 class="text-primary">Checkout Confirmation </h1>
                     </div><!--end .col -->
                     <div class="col-lg-8">
                         <article class="margin-bottom-xxl">
                             <p class="lead">
-                                View your shopping cart below
+                                View your order below
                             </p>
                         </article>
                     </div><!--end .col -->
@@ -81,36 +81,21 @@
                         </article>
                     </div><!--end .col -->
                 </div><!--end .row -->
-                <button id="checkoutBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Check Out</button>
-                <br/><br/><br/>
-                <div  class="row" >
-                    <div id="creditCardRow" style="visibility:hidden" class="col-lg-offset-1 col-md-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <form>
-                                    Select a card option below:<br />
-                                    <input id="ccOption1" type="radio" name="gg" value="cc1" checked><span id="creditCard1"></span> <br>
-                                    <input id="ccOption2" type="radio" name="gg" value="cc2"><span id="creditCard2"></span> <br>
-                                    <input id="ccOption3" type="radio" name="gg" value="cc3"> Use a new card (Please provide details below if you want to use a new card)
-                                </form>
-                                <form class="form-horizontal" role="form">
-                                        <br/>
-                                    New card number: <input id="newCardNum" type="text" placeholder="Enter your card number here" size="30"/>
-                                </form>
-                                <form class="form-horizontal" role="form">
-                                    <input id="gifteeCheck" type="checkbox" name="gift" value="gift"> Is this a gift? If so, please provide giftee's email below
-                                </form>
-                                <form class="form-horizontal" role="form">
-                                    <input id="gifteeEmail" type="text" name="gift" value="" placeholder="Provide email here"> 
-                                </form>
-                            </div>  
-                                       
-                        </div>    
-
-                        <button id="paymentPageBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Proceed to Payment Confirmation Page</button>
-
-                        </div><!--end .col -->               
-                    </div><!--end .form-group -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <article class="margin-bottom-xxl">
+                            <h3>Recipient:</h3> <span id="recipientEmail"></span>
+                        </article>
+                    </div><!--end .col -->
+                </div><!--end .row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <article class="margin-bottom-xxl">
+                            <h3>Credit Card Used:</h3> <span id="ccUsed"></span>
+                        </article>
+                    </div><!--end .col -->
+                </div><!--end .row -->
+                <button id="confirmBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Confirm Order</button>
 </section>
         </div><!--end #content-->
         <!-- END CONTENT -->
@@ -123,101 +108,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
         function deleteSong(elm) {
-            var songID = $(elm).attr("data-song-id");
-
-            $.post('/transactionsajax/deleteSong', { songID: songID })
-            .done(function (data) {
-                if(data == "success"){
-                    $(elm).parent().remove();
-                }
-
-            });
+            alert("Can't delete song on check out");
         }
 
         function deleteAlbum(elm) {
-            var albumID = $(elm).attr("data-song-id");
-
-            $.post('/transactionsajax/deleteAlbum', { albumID: albumID })
-            .done(function (data) {
-                if (data == "success") {
-                    $(elm).parent().remove();
-                }
-
-            });
+            alert("Can't delete album on check out");
         }
 
         $(document).ready(function () {
 
             var userID = "@ViewBag.userID";
-            var userEmail = "@ViewBag.userEmail";
-            //Set up credit card numbers
-            var cc1 = "@ViewBag.CCNumber1";
-            var cc1Short = cc1.substr(cc1.length - 4);
-            var ccType1 = "@ViewBag.CCType1";
 
-            var cc2 = "@ViewBag.CCNumber2";
-            var cc2Short = cc2.substr(cc2.length - 4);
-            var ccType2 = "@ViewBag.CCType2";
+            var url = window.location.pathname;
 
-            $('#creditCard1').html("-" + cc1Short);
-            $('#creditCard2').html("-" + cc2Short);
-
-            $('#paymentPageBtn').on("click", function () {
-                
-
-                if ($('#ccOption3').attr("checked")) {
-                    var newCardNum = $('#newCardNum').val();
-                    if(newCardNum.trim() == ''){
-                        alert("Please enter a new card number that's 16 digits");
-                        return;
-                    }else if(newCardNum.length != 16){
-                        alert('Make sure the new card is 16 digits');
-                        return;
-                    }
-                    
-                }
-
-                if ($('#gifteeCheck').attr("checked")) {
-                    var gifteeEmail = $('#gifteeEmail').val();
-                    
-                    if(gifteeEmail.trim() == '' ){
-                        alert('Please provide a giftee email');
-                    } else {
-                        $.post('/transactionsAjax/checkIfUserExists', { userID: userID, emailAddress: gifteeEmail })
-                        .done(function (data) {
-                            if(data == 'true'){
-                                 
-                                if ($('#ccOption1').attr("checked")) {
-                                    window.location.href = "/transactions/getCheckOutPage" + "?" + $('#creditCard1').html() + "?" + gifteeEmail + "?gift" ;
-                                } else if ($('#ccOption2').attr("checked")) {
-                                    window.location.href = "/transactions/getCheckOutPage" + "?" + $('#creditCard2').html() + "?" + gifteeEmail + "?gift";
-                                } else if ($('#ccOption3').attr("checked")) {
-                                    window.location.href = "/transactions/getCheckOutPage" + "?-" + newCardNumShort + "?" + gifteeEmail + "?gift";
-                                }
-
-                                
-                            }else{
-                                alert('giftee email does not exist');
-                                return;
-                                }
-                        });
-                    }
-                }
-                var newCardNum = $('#newCardNum').val()
-                var newCardNumShort = newCardNum.substr(newCardNum.length - 4);
-
-                if($('#ccOption1').attr("checked")){
-                    window.location.href = "/transactions/getCheckOutPage" + "?" + $('#creditCard1').html() + "?" + userEmail;
-                }else if($('#ccOption2').attr("checked")){
-                    window.location.href = "/transactions/getCheckOutPage" + "?" + $('#creditCard2').html() + "?" + userEmail;
-                }else if ($('#ccOption3').attr("checked")){
-                    window.location.href = "/transactions/getCheckOutPage" + "?-" + newCardNumShort + "?" + userEmail;
-                }
-                
-
-                
-                
-            });
+            alert(url);
 
             //Get user song cart data
             var shoppingCartSongsInsert = '';

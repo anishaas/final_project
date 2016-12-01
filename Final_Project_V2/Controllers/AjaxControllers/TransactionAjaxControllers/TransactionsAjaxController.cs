@@ -24,7 +24,7 @@ namespace Final_Project_V2.Controllers.MainControllers
         {
             var userID = Request.Form["userID"];
             var emailAddress = Request.Form["emailAddress"];
-            if (db.Users.Any(u => u.EmailAddress == emailAddress))
+            if (db.Users.Any(u => u.Email == emailAddress))
             {
                 return "true";
             }else
