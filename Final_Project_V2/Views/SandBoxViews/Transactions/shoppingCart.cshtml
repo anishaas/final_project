@@ -244,7 +244,7 @@
                                                         <div class="tile-icon">\
                                                             <i class="fa fa-music"></i>\
                                                         </div>\
-                                                         <div class="tile-text"><b>Title:</b> <span> SONGTITLE </span> <b>Artist:</b> <span>SONGARTIST</span> <b>Rating: </b><span>SONGRATING</span> <b>Price: </b><span class="songPrice">SONGPRICE</span></div>\
+                                                         <div class="tile-text"><b>Title:</b> <span class="songTitle"> SONGTITLE </span> <b>Artist:</b> <span class="songArtist">SONGARTIST</span> <b>Rating: </b><span>SONGRATING</span> <b>Price: </b><span class="songPrice">SONGPRICE</span></div>\
                                                     </a>\
                                                     <a onclick="deleteSong(this)" class="deleteSongBtn" data-song-id="SONGID" class="btn btn-flat ink-reaction">\
                                                         <i class="fa fa-trash"></i>\
@@ -293,7 +293,7 @@
                                                         <div class="tile-icon">\
                                                             <i class="fa fa-music"></i>\
                                                         </div>\
-                                                         <div class="tile-text"><b>Title:</b> <span> ALBUMTITLE </span> <b>Artist:</b> <span>ALBUMARTIST</span> <b>Rating: </b><span>ALBUMRATING</span> <b>Price: </b><span class="albumPrice">ALBUMPRICE</span></div>\
+                                                         <div class="tile-text"><b>Title:</b> <span class="albumTitle"> ALBUMTITLE </span> <b>Artist:</b> <span class="albumArtist" >ALBUMARTIST</span> <b>Rating: </b><span>ALBUMRATING</span> <b>Price: </b><span class="albumPrice">ALBUMPRICE</span></div>\
                                                     </a>\
                                                     <a onclick="deleteAlbum(this)" class="deleteAlbumBtn" data-song-id="ALBUMID" class="btn btn-flat ink-reaction">\
                                                         <i class="fa fa-trash"></i>\
@@ -338,7 +338,8 @@
                 var songListLength = $('#songListingContainer > li').length;
                 var albumListLength = $('#albumListContainer > li').length;
 
-                if ((songListLength + albumListLength) == 2) {
+                if ((songListLength + albumListLength) == 0) {
+                    
                     alert("Please add songs or albums to the shopping cart before proceeding to check out.");
                     return;
                 }
@@ -353,6 +354,7 @@
                   $('.songPrice').each(function () {
                       var priceString = $(this).html();
                       var priceFloat = parseFloat(priceString);
+       
                       songTotal += priceFloat;
                   });
 

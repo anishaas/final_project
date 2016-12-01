@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "PA Consulting";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--@Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHeader.cshtml"))-->
+    <link type="text/css" rel="stylesheet" href="../../MaterialDesignAssets/css/theme-default/libs/select2/select2.css?1424887856" />
+    <link type="text/css" rel="stylesheet" href="../../MaterialDesignAssets/css/theme-default/libs/multi-select/multi-select.css?1424887857" />
+</head>
+<body class="menubar-hoverable header-fixed menubar-pin ">
+    <!-- BEGIN BASE-->
+    <div id="base">
+        <!-- END OFFCANVAS LEFT -->
+        <!-- BEGIN CONTENT-->
+        <br /><br />
+        <div id="content">
+        <h2>Order History</h2>
+            <section id="orderHistoryContainer">
+                <div style="display:none;">
+                <div id="orderRow" class="row" >
+                    <div class="col-lg-offset-1 col-md-8">
+                        <div class="card card-underline">
+                            <div class="card-head">
+                                <header>ORDERNUM</header>
+                            </div><!--end .card-head -->
+                            <div class="card-body">
+                                Song Purchases
+                                   <ul class="songPurchaseList">
+                                       <li>test</li>
+                                   </ul>
+                                Album Purchases
+                                <ul class="albumPurchaseList">
+                                    <li>test</li>
+                                </ul>
+                                <ul>
+                                    <li>SubTotal: SUBTOTAL </li>
+                                    <li>Total: TOTAL</li>
+                                    <li>Recipient Email: REMAIL</li>
+                                    <li>Gift?: GIFTSTATUS</li>
+                                </ul>
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                      </div><!--end .col -->
+                </div><!--end .row -->
+                </div>
+            </section>
+        </div><!--end #content-->
+        <!-- END CONTENT -->
+        <div id="htmlComponentsContainer" style="display:none;">
+            @Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHTMLComponents.cshtml"))
+        </div>
+    </div><!--end #base-->
+    <!-- END BASE -->
+    <!-- BEGIN JAVASCRIPT -->
+    <!-- END JAVASCRIPT -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $.post('/transactionsAjax/getOrderHistory')
+            .done(function (data) {
+                var orderHistoryObject = JSON.parse(data);
+
+                $.each(orderHistoryObject, function (i, item) {
+                    var orderRowHTML = '<div id="orderRow" class="row" >\
+                    <div class="col-lg-offset-1 col-md-8">\
+                        <div class="card card-underline">\
+                            <div class="card-head">\
+                                <header>ORDERNUM</header>\
+                            </div><!--end .card-head -->\
+                            <div class="card-body">\
+                                Song Purchases\
+                                   <ul class="songPurchaseList">\
+                                   </ul>\
+                                Album Purchases\
+                                <ul class="albumPurchaseList">\
+                                </ul>\
+                                    SubTotal: SUBTOTAL <br/>\
+                                    Total: TOTAL <br/>\
+                                    Recipient Email: REMAIL <br/>\
+                                    Gift?: GIFTSTATUS <br/>\
+                            </div><!--end .card-body -->\
+                        </div><!--end .card -->\
+                      </div><!--end .col -->\
+                </div><!--end .row -->';
+                    
+                    //alert(item.UserActivityInputArg3[0].subTotal);
+
+                    //orderRowHTML = orderRowHTML.replace(/SONGID/g, songDetailsObject[0].SongID);
+                    orderRowHTML = orderRowHTML.replace("ORDERNUM","Order: " + item.UserActivityInputArg1);
+
+                    var orderDetailsObject = JSON.parse(item.UserActivityInputArg3);
+                    
+                    orderRowHTML = orderRowHTML.replace("SUBTOTAL", orderDetailsObject.subTotal);
+                    orderRowHTML = orderRowHTML.replace("TOTAL", orderDetailsObject.total);
+                    orderRowHTML = orderRowHTML.replace("REMAIL", orderDetailsObject.recipient);
+                    if (orderDetailsObject.gift == '') {
+                        orderRowHTML = orderRowHTML.replace("GIFTSTATUS", 'no');
+                    } else {
+                        orderRowHTML = orderRowHTML.replace("GIFTSTATUS", 'yes');
+                    }
+                    
+                    $('#orderHistoryContainer').append(orderRowHTML);
+                    $.each(orderDetailsObject.songItems, function(i, item){
+                        $('.songPurchaseList').last().append('<li>' + 'Song Name: ' + item.songTitle + '| Song Price: ' + item.songPrice + '</li>');
+                    });
+                    $.each(orderDetailsObject.albumItems, function (i, item) {
+                        $('.albumPurchaseList').last().append('<li>' + 'Album Name: ' + item.albumTitle + '| Album Price: ' + item.albumPrice + '</li>');
+                    });
+                    
+                });
+
+              });
+
+            return;
+
+            $('#artistName').html(orderHistoryObject[0].UserActivityInputType);
+
+            var genreString = '';
+
+            //alert(songDetailsObject[0].SongGenres[0].GenreName);
+            artistDetailsObject[0].artistGenres.forEach(function (arrayItem) {
+
+                genreString = genreString + arrayItem.GenreName + ", ";
+
+            });
+
+            $('#genreSpan').html(" " + genreString);
+
+            //
+
+            var albumString = '';
+
+            artistDetailsObject[0].artistAlbums.forEach(function (arrayItem) {
+
+                albumString = albumString + "<a href='/details/getAlbumDetailsPage/" + arrayItem.AlbumID + "'>" + arrayItem.AlbumName + "</a>" + ", ";
+
+            });
+
+            $('#albumSpan').html(" " + albumString);
+
+            //
+
+            var songString = ''
+
+            artistDetailsObject[0].artistSongs.forEach(function (arrayItem) {
+
+                songString = songString + "<a href='/sandbox/getSongDetailsPage/" + arrayItem.SongID + "'>" + arrayItem.SongTitle + "</a>" + ", ";
+
+            });
+
+            $('#songSpan').html(" " + songString);
+
+
+        });
+    </script>
+</body>
+</html>
+
