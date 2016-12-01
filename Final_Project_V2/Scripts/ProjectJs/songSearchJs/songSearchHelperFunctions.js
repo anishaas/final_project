@@ -67,8 +67,13 @@ var songSearchHelperFunctions = {};
 
             searchResultInsert += songRatingUpdate;
             */
+            var artistString = '';
 
-            dataTable.row.add(["<a href='/sandbox/getSongDetailsPage/" + item.SongID + "'>" + item.SongTitle +  "</a>" , item.ArtistName, item.SongPrice, "N/A"]).draw();
+            $.each(item.SongArtists, function (index, item) {
+                artistString += item.ArtistName + ', ';
+            });
+
+            dataTable.row.add(["<a href='/sandbox/getSongDetailsPage/" + item.SongID + "'>" + item.SongTitle + "</a>", artistString, item.SongPrice, "N/A"]).draw();
         });
     }
 
