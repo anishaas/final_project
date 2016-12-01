@@ -322,9 +322,148 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Room Goes Dark (Demo)", SongPrice = 1.39M }
                 new Song { SongTitle = "Go Outside and Dance", SongPrice = 0.89M }
                 new Song { SongTitle = "Me and Jack (Demo)", SongPrice = 1.29M }
+                
+
+                //Rihanna
+                new Song { SongTitle = "S&M", SongPrice = 1.19M },
+                new Song { SongTitle = "What's My Name", SongPrice = 1.29M },
+                new Song { SongTitle = "Cheers", SongPrice = 1.29M },
+                new Song { SongTitle = "Fading", SongPrice = 0.99M },
+                new Song { SongTitle = "Only Girl (In the World)", SongPrice = 1.29M },
+                new Song { SongTitle = "California King Bed", SongPrice = 0.99M },
+                new Song { SongTitle = "Man Down", SongPrice = 1.29M },
+                new Song { SongTitle = "Raining Men", SongPrice = 1.29M },
+                new Song { SongTitle = "Complicated", SongPrice = 0.89M },
+                new Song { SongTitle = "Skin", SongPrice = 1.29M },
+                new Song { SongTitle = "Love The Way You Lie", SongPrice = 1.29M },
+                
+
+                //Sam Hunt
+                new Song { SongTitle = "Take Your Time", SongPrice = 1.19M },
+                new Song { SongTitle = "Leave the Night On", SongPrice = 1.19M },
+                new Song { SongTitle = "House Party", SongPrice = 0.99M },
+                new Song { SongTitle = "Break Up in a Small Town", SongPrice = 0.99M },
+                new Song { SongTitle = "Single for the Summer", SongPrice = 0.89M },
+                new Song { SongTitle = "Ex to See", SongPrice = 0.99M },
+                new Song { SongTitle = "Make You Miss Me", SongPrice = 0.89M },
+                new Song { SongTitle = "Cop Car", SongPrice = 0.99M },
+                new Song { SongTitle = "Raised on It", SongPrice = 0.99M },
+                new Song { SongTitle = "Speakers", SongPrice = 0.99M },
+
+                //Ariana Grande
+                new Song { SongTitle = "Intro", SongPrice = 0.89M },
+                new Song { SongTitle = "Problem (feat. Iggy Azalea)", SongPrice = 1.29M },
+                new Song { SongTitle = "One Last Time", SongPrice = 1.29M },
+                new Song { SongTitle = "Why Try", SongPrice = 0.99M },
+                new Song { SongTitle = "Break Free (feat. Big Zedd)", SongPrice = 1.29M },
+                new Song { SongTitle = "Best Mistake (feat. Big Sean)", SongPrice = 0.99M },
+                new Song { SongTitle = "Be My Babt (feat. Cashmere Cat)", SongPrice = 0.99M },
+                new Song { SongTitle = "Break Your Heart Right Back (feat.)", SongPrice = 0.99M },
+                new Song { SongTitle = "Love Me Harder (feat. The Weeknd)", SongPrice = 1.29M },
+                new Song { SongTitle = "Just A Little Bit of Your Heart", SongPrice = 0.99M },
+                new Song { SongTitle = "Hands On Me (feat.A$AP Ferg)", SongPrice = 0.99M },
+                new Song { SongTitle = "My Everything", SongPrice = 0.99M },
+                new Song { SongTitle = "Bang Bang (feat. Jessie J and Nicki Minaj)", SongPrice = 1.29M },
+                new Song { SongTitle = "Only 1", SongPrice = 0.89M },
+                new Song { SongTitle = "You Don't Own Me", SongPrice = 0.99M },
+
+                //David Guetta & Usher
+                new Song { SongTitle = "Where Them Girls At", SongPrice = 0.99M },
+                new Song { SongTitle = "Little Bad Girl", SongPrice = 1.29M },
+                new Song { SongTitle = "Turn Me On", SongPrice = 0.99M },
+                new Song { SongTitle = "Sweat", SongPrice = 1.29M },
+                new Song { SongTitle = "Without You", SongPrice = 1.29M },
+                new Song { SongTitle = "Nothing Really Matters", SongPrice = 0.89M },
+                new Song { SongTitle = "I Can Only Imagine", SongPrice = 1.29M },
+                new Song { SongTitle = "Crank It Up", SongPrice = 1.29M },
+                new Song { SongTitle = "Lunar", SongPrice = 0.99M },
+                new Song { SongTitle = "Night of Your Life", SongPrice = 1.29M },
+                new Song { SongTitle = "Repeat", SongPrice = 0.89M },
+                new Song { SongTitle = "Titanium,", SongPrice = 1.29M },
+                new Song { SongTitle = "I'm A Machine", SongPrice = 1.49M },
+
+                //Lady Antebellum
+                new Song { SongTitle = "We Owned the Night", SongPrice = 1.29M },
+                new Song { SongTitle = "Just a Kiss", SongPrice = 0.89M },
+                new Song { SongTitle = "Dancin' Away With My Heart", SongPrice = 1.29M },
+                new Song { SongTitle = "Friday Night", SongPrice = 1.29M },
+                new Song { SongTitle = "When You Were Mine", SongPrice = 1.29M },
+                new Song { SongTitle = "Cold As Stone", SongPrice = 1.19M },
+                new Song { SongTitle = "Singing Me Home", SongPrice = 1.29M },
+                new Song { SongTitle = "Wanted You More", SongPrice = 1.29M },
+                new Song { SongTitle = "As Your Turn Away", SongPrice = 0.99M },
+                new Song { SongTitle = "Love I've Found In You", SongPrice = 1.29M },
+                new Song { SongTitle = "Somewhere Love Remains", SongPrice = 0.99M },
+                new Song { SongTitle = "Heart of the World", SongPrice = 1.29M },
+
+                //Nicki Minaj
+                new Song { SongTitle = "Save Me", SongPrice = 1.29M },
+                new Song { SongTitle = "Moment 4 Life", SongPrice = 1.29M },
+                new Song { SongTitle = "Check It Out", SongPrice = 1.29M },
+                new Song { SongTitle = "Blazin'", SongPrice = 1.19M },
+                new Song { SongTitle = "Here I Am", SongPrice = 1.29M },
+                new Song { SongTitle = "Dear Old Nicki", SongPrice = 1.29M },
+                new Song { SongTitle = "Your Love", SongPrice = 0.99M },
+                new Song { SongTitle = "Last Chance", SongPrice = 1.29M },
+                new Song { SongTitle = "Super Bass", SongPrice = 0.99M },
+                new Song { SongTitle = "Blow Ya Mind", SongPrice = 1.29M },
+                new Song { SongTitle = "Muny", SongPrice = 1.29M },
+                new Song { SongTitle = "Girls Fall Like Dominoes", SongPrice = 0.89M },
+
+                //Blake Shelton
+                new Song { SongTitle = "Honey Bee", SongPrice = 0.99M },
+                new Song { SongTitle = "Ready to Roll", SongPrice = 1.29M },
+                new Song { SongTitle = "God Gave Me You", SongPrice = 0.89M },
+                new Song { SongTitle = "Get Some", SongPrice = 1.29M },
+                new Song { SongTitle = "Drink On It", SongPrice = 1.49M },
+                new Song { SongTitle = "Good Ole Boys", SongPrice = 1.29M },
+                new Song { SongTitle = "I'm Sorry", SongPrice = 1.29M },
+                new Song { SongTitle = "Sunny In Seattle", SongPrice = 0.99M },
+                new Song { SongTitle = "Over", SongPrice = 1.29M },
+                new Song { SongTitle = "Hey", SongPrice = 1.29M },
+                new Song { SongTitle = "Red River Blue", SongPrice = 1.39M },
+                new Song { SongTitle = "Chili", SongPrice = 0.89M },
+                new Song { SongTitle = "Addicted", SongPrice = 1.29M },
+
+                //The Byars Family
+                new Song { SongTitle = "Ruby", SongPrice = 1.49M },
+                new Song { SongTitle = "Old School", SongPrice = 1.29M },
+                new Song { SongTitle = "Dancing In The Rain", SongPrice = 1.29M },
+                new Song { SongTitle = "He's My Brother", SongPrice = 1.29M },
+                new Song { SongTitle = "Lady Of Darkness", SongPrice = 0.89M },
+                new Song { SongTitle = "Red Haired Beauty", SongPrice = 1.29M },
+                new Song { SongTitle = "Once In A Life", SongPrice = 1.29M },
+                new Song { SongTitle = "Life At The Doublewide", SongPrice = 1.29M },
+                new Song { SongTitle = "Isabelle", SongPrice = 1.19M },
+                new Song { SongTitle = "The Waltz", SongPrice = 1.29M },
+                new Song { SongTitle = "Me And Eddy B", SongPrice = 1.29M },
+
+                //LMFAO
+                new Song { SongTitle = "Rock the Beat 2", SongPrice = 1.29M },
+                new Song { SongTitle = "Sorry for Party Rocking", SongPrice = 1.49M },
+                new Song { SongTitle = "Party Rock Anthem", SongPrice = 1.29M },
+                new Song { SongTitle = "Sexy And I Know It", SongPrice = 1.29M },
+                new Song { SongTitle = "Champagne Showers", SongPrice = 0.99M },
+                new Song { SongTitle = "One Day", SongPrice = 1.29M },
+                new Song { SongTitle = "Take It to the Hole", SongPrice = 1.29M },
+                new Song { SongTitle = "We Came Here to Party", SongPrice = 1.39M },
+                new Song { SongTitle = "Reminds Me of You", SongPrice = 0.89M },
+                new Song { SongTitle = "Best Night", SongPrice = 1.29M },
+                new Song { SongTitle = "All Night Long", SongPrice = 1.49M },
+                new Song { SongTitle = "With You", SongPrice = 1.29M },
+                new Song { SongTitle = "Hot Dog", SongPrice = 1.29M },
+
+                //Luke Bryan
+                //The Band Perry
+                //Bobby McFerrin
+                //Bryant Oden
+                //Foster the People
+                //Kanye Jay-Z
+                //Selena Gomez
+                //Sam Hunt?
+                //Individual songs
                 */
 
-                //***Peter, start here with Rihanna's song data. Thank you!!"
             };
 
             //Find record based on a property and add/update
