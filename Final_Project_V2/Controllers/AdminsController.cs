@@ -31,6 +31,24 @@ namespace Final_Project_V2.Controllers
             return View("~/Views/Songs/Details.cshtml", @song);
         }
 
+        // GET: Admins/AlbumDetails
+        public ActionResult AlbumDetails(int id)
+        {
+            //find respective album
+            Album @album = db.Albums.Find(id);
+            //render album details page
+            return View("~/Views/Albums/Details.cshtml", @album);
+        }
+
+        // GET: Admins/ArtistDetails
+        public ActionResult ArtistDetails(int id)
+        {
+            //find respective artist
+            Artist @artist = db.Artists.Find(id);
+            //render artist details page
+            return View("~/Views/Artists/Details.cshtml", @artist);
+        }
+
         // GET: Admins/CreateSong
         public ActionResult CreateSong()
         {
@@ -95,17 +113,28 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/CreateAlbum
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured")] Album @album)
+        public ActionResult CreateAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured")] Album @album, int[] SelectedGenres)
         {
+            //Validation
+            //Check that the album's songs exist in the database
+
             if (ModelState.IsValid)
             {
-                db.Albums.Add(album);
+                //add genres
+                if (SelectedGenres != null)
+                {
+                    foreach (int Id in SelectedGenres)
+                    {
+                        Genre genreToAdd = db.Genres.Find(Id);
+                        @album.AlbumGenres.Add(genreToAdd);
+                    }
+                }
+                db.Albums.Add(@album);
                 db.SaveChanges();
                 return RedirectToAction("ManageAlbums");
             }
 
-
-            return View(album);
+            return View();
         }
 
         // GET: Admins/CreateArtist
