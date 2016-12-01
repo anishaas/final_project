@@ -42,8 +42,15 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/CreateSong
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured")] Song @song, int[] SelectedGenres, int[] SelectedArtists)
+        public ActionResult CreateSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist")] Song @song, int[] SelectedGenres)
         {
+            var query = from s in db.Songs
+                        select s;
+            query.Where(s => s.SongTitle == @song.SongTitle);
+            List<Song> potentialDuplicateSongs = query.ToList();
+
+            //foreach (songArtist )
+
             if (ModelState.IsValid)
             {
                 //add genres
@@ -56,14 +63,14 @@ namespace Final_Project_V2.Controllers
                     }
                 }
                 //add artists
-                if (SelectedArtists != null)
-                {
-                    foreach (int Id in SelectedArtists)
-                    {
-                        Artist artistToAdd = db.Artists.Find(Id);
-                        @song.SongArtists.Add(artistToAdd);
-                    }
-                }
+                //if (SelectedArtists != null)
+                //{
+                //    foreach (int Id in SelectedArtists)
+                //    {
+                //        Artist artistToAdd = db.Artists.Find(Id);
+                //        @song.SongArtists.Add(artistToAdd);
+                //    }
+                //}
                 //save song to database
                 db.Songs.Add(@song);
                 db.SaveChanges();
@@ -144,7 +151,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditSong/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtists")] Song @song)
+        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist")] Song @song)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)
@@ -154,7 +161,7 @@ namespace Final_Project_V2.Controllers
 
                 songToChange.SongTitle = @song.SongTitle;
                 songToChange.SongPrice = @song.SongPrice;
-                songToChange.SongArtists = @song.SongArtists;
+                songToChange.SongArtist = @song.SongArtist;
                 songToChange.Featured = @song.Featured;
 
                 db.Entry(songToChange).State = EntityState.Modified;

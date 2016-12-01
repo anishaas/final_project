@@ -596,7 +596,7 @@ namespace Final_Project_V2.Migrations
             //find specified artist
             Artist artist = db.Artists.SingleOrDefault(a => a.ArtistName == artistName);
             //add artist to song
-            song.SongArtists.Add(artist) ;
+            song.SongArtist = artist;
         }
 
         //add artist to the album
