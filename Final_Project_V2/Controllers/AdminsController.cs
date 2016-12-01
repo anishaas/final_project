@@ -102,6 +102,7 @@ namespace Final_Project_V2.Controllers
         // GET: Admins/CreateAlbum
         public ActionResult CreateAlbum()
         {
+            ViewBag.AllGenres = GetAllGenres();
             return View();
         }
 
@@ -135,17 +136,27 @@ namespace Final_Project_V2.Controllers
         // GET: Admins/CreateArtist
         public ActionResult CreateArtist()
         {
+            ViewBag.AllGenres = GetAllGenres();
             return View();
         }
 
         // POST: Admins/CreateArtist
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateArtist([Bind(Include = "ArtistID,ArtistName,Featured")] Artist @artist)
+        public ActionResult CreateArtist([Bind(Include = "ArtistID,ArtistName,Featured")] Artist @artist, int[] SelectedGenres)
         {
             if (ModelState.IsValid)
             {
-                db.Artists.Add(artist);
+                //add genres
+                if (SelectedGenres != null)
+                {
+                    foreach (int Id in SelectedGenres)
+                    {
+                        Genre genreToAdd = db.Genres.Find(Id);
+                        @artist.ArtistGenres.Add(genreToAdd);
+                    }
+                }
+                db.Artists.Add(@artist);
                 db.SaveChanges();
                 return RedirectToAction("ManageArtists");
             }
