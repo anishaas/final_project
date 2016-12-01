@@ -246,7 +246,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditSong/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist,SongDiscount")] Song @song)
+        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist,SongDiscount,SongDiscountEnabled")] Song @song)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)
@@ -258,6 +258,12 @@ namespace Final_Project_V2.Controllers
                 songToChange.SongPrice = @song.SongPrice;
                 songToChange.SongArtist = @song.SongArtist;
                 songToChange.Featured = @song.Featured;
+                songToChange.SongDiscount = @song.SongDiscount;
+                songToChange.SongDiscountEnabled = @song.SongDiscountEnabled;
+                if (@song.SongDiscountEnabled == true)
+                {
+                    songToChange.SongDiscountedPrice = @song.SongPrice - @song.SongDiscount;
+                }
 
                 db.Entry(songToChange).State = EntityState.Modified;
                 db.SaveChanges();
@@ -293,7 +299,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditAlbum/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist,AlbumDiscount")] Album @album)
+        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist,AlbumDiscount,AlbumDiscountEnabled")] Album @album)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)
@@ -303,6 +309,13 @@ namespace Final_Project_V2.Controllers
 
                 albumToChange.AlbumName = @album.AlbumName;
                 albumToChange.AlbumPrice = @album.AlbumPrice;
+                //albumToChange.AlbumGenres = @album.SelectedGenres; 
+                albumToChange.AlbumDiscount = @album.AlbumDiscount;
+                albumToChange.AlbumDiscountEnabled = @album.AlbumDiscountEnabled;
+                if (@album.AlbumDiscountEnabled == true)
+                {
+                    albumToChange.AlbumDiscountedPrice = @album.AlbumPrice - @album.AlbumDiscount;
+                }
 
 
                 db.Entry(albumToChange).State = EntityState.Modified;
