@@ -132,6 +132,14 @@
             var albumSongsArray = [];
             var songsArray = [];
 
+            //FINISH THE CHECKOUT FUNCTIONALITY
+            $('#confirmBtn').on('click', function () {
+
+                alert();
+            });
+
+
+
             $.post("/transactionsAjax/getUserShoppingCartSongs", { userID: userID })
             .done(function (data) {
 
