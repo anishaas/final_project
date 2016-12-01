@@ -33,7 +33,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/CreateSong
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,Featured")] Song @song, Int32[] SelectedGenres, Int32[] SelectedArtists)
+        public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,Featured")] Song @song, int[] SelectedGenres, int[] SelectedArtists)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace Final_Project_V2.Controllers
                 return RedirectToAction("ManageSongs");
             }
 
-            return View(@song);
+            return View("~/Views/SandBoxViews/WelcomePage/customerWelcomePage.cshtml");
         }
 
 
