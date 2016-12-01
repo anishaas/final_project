@@ -2044,6 +2044,10 @@
     <Compile Include="Migrations\201612010812056_Added discount props to item models.Designer.cs">
       <DependentUpon>201612010812056_Added discount props to item models.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612010911289_Property changes.cs" />
+    <Compile Include="Migrations\201612010911289_Property changes.Designer.cs">
+      <DependentUpon>201612010911289_Property changes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -2159,6 +2163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612010812056_Added discount props to item models.resx">
       <DependentUpon>201612010812056_Added discount props to item models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612010911289_Property changes.resx">
+      <DependentUpon>201612010911289_Property changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
