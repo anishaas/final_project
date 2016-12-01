@@ -23,6 +23,7 @@ namespace Final_Project_V2.Models
         public bool Featured { get; set; }
         public decimal AlbumDiscount { get; set; }
         public bool AlbumDiscountEnabled { get; set; }
+        public decimal AlbumDiscountedPrice { get; set; }
 
         //navigational
         public List<Genre> AlbumGenres { get; set; }

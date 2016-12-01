@@ -22,6 +22,7 @@ namespace Final_Project_V2.Models
         public decimal SongPrice { get; set; }
         public decimal SongDiscount { get; set; }
         public bool SongDiscountEnabled { get; set; }
+        public decimal SongDiscountedPrice { get; set; }
         // public DateTime SongTimestamp { get; set; }
         public bool Featured { get; set; }
 

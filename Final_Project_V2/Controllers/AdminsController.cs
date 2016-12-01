@@ -258,6 +258,12 @@ namespace Final_Project_V2.Controllers
                 songToChange.SongPrice = @song.SongPrice;
                 songToChange.SongArtist = @song.SongArtist;
                 songToChange.Featured = @song.Featured;
+                songToChange.SongDiscount = @song.SongDiscount;
+                songToChange.SongDiscountEnabled = @song.SongDiscountEnabled;
+                if (@song.SongDiscountEnabled == true)
+                {
+                    songToChange.SongDiscountedPrice = @song.SongPrice - @song.SongDiscount;
+                }
 
                 db.Entry(songToChange).State = EntityState.Modified;
                 db.SaveChanges();
@@ -303,6 +309,13 @@ namespace Final_Project_V2.Controllers
 
                 albumToChange.AlbumName = @album.AlbumName;
                 albumToChange.AlbumPrice = @album.AlbumPrice;
+                //albumToChange.AlbumGenres = @album.SelectedGenres; 
+                albumToChange.AlbumDiscount = @album.AlbumDiscount;
+                albumToChange.AlbumDiscountEnabled = @album.AlbumDiscountEnabled;
+                if (@album.AlbumDiscountEnabled == true)
+                {
+                    albumToChange.AlbumDiscountedPrice = @album.AlbumPrice - @album.AlbumDiscount;
+                }
 
 
                 db.Entry(albumToChange).State = EntityState.Modified;
