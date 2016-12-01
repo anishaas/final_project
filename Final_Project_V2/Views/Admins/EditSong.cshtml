@@ -35,6 +35,16 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.SongDiscountEnabled, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.SongDiscountEnabled)
+                    @Html.ValidationMessageFor(model => model.SongDiscountEnabled, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Featured, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
