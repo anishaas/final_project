@@ -28,6 +28,19 @@
             @Html.DisplayFor(model => model.Featured)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.SongGenres)
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.SongGenres)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.GenreName)</td>
+                </tr>
+            }
+        </dd>
+
     </dl>
 </div>
 <p>

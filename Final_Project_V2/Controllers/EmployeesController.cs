@@ -107,7 +107,7 @@ namespace Final_Project_V2.Controllers
                 customerToChange.Email = @customer.Email;
                 customerToChange.Phone = @customer.Phone;
                 customerToChange.Password = @customer.Password;
-                customerToChange.ActiveCustomer = @customer.ActiveCustomer;
+                customerToChange.DisabledCustomer = @customer.DisabledCustomer;
 
                 /*
                 //update customer properties based on edits

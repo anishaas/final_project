@@ -35,7 +35,8 @@ namespace Final_Project_V2.Models
         public string CCType2 { get; set; }
         public string SSN { get; set; }
         public string EmpType { get; set; }
-        public bool ActiveCustomer { get; set; }
+        public bool DisabledCustomer { get; set; }
+        public bool DisabledEmployee { get; set; }
         //Navigational Properties
         //public virtual List<Event> Events { get; set; }
 
