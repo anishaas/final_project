@@ -82,8 +82,31 @@
                     </div><!--end .col -->
                 </div><!--end .row -->
                 <button id="checkoutBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Check Out</button>
+                <div class="row">
+                    <div class="col-lg-offset-1 col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Radio buttons</label>
+                                        <div class="col-sm-9">
+                                            <div class="radio radio-styled">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" value="option1" checked>
+                                                    <span>Credit Card 1 </span>
+                                                </label>
+                                            </div>
+                                            <div class="radio radio-styled">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" value="option1">
+                                                    <span>Credit Card 2</span>
+                                                </label>
+                                            </div>
+                                            </div>
+                                        </div><!--end .col -->
+                                    </div><!--end .form-group -->
 
-        </section>
+</section>
         </div><!--end #content-->
         <!-- END CONTENT -->
         <div id="htmlComponentsContainer" style="display:none;">
@@ -220,6 +243,7 @@
 
                 if ($('#total').html() == 'Updating...Please give a few seconds') {
                     alert('Please wait for totals to update');
+                    return;
                 }
 
                 var duplicateSongs = [];
@@ -234,6 +258,13 @@
 
                 if(duplicateCheck == false){
                     alert('The following are duplicate songs in your shopping cart, please remove them before proceeding to checkout: ' + duplicateSongs);
+                    return;
+                }
+                var songListLength = $('#songListingContainer').size();
+                var albumListLength = $('#albumListContainer').size();
+
+                if((songListLength + albumListLength) == 2){
+                    alert("Please add songs or albums to the shopping cart before proceeding to check out.");
                 }
             });
 
