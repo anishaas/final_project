@@ -13,6 +13,7 @@ namespace Final_Project_V2.Models
         {
             this.SongGenres = new List<Genre>();
             this.SongAlbums = new List<Album>();
+            this.SongArtists = new List<Artist>();
         }
 
         //scalar
