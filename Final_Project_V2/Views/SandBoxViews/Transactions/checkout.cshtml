@@ -118,10 +118,13 @@
         $(document).ready(function () {
 
             var userID = "@ViewBag.userID";
+            var urlData = location.search.substring(1);
+  
+            var urlDataArray = urlData.split("?");
+            var arrayLength = urlDataArray.length;
 
-            var url = window.location.pathname;
-
-            alert(url);
+            $('#recipientEmail').html(urlDataArray[1]);
+            $('#ccUsed').html(urlDataArray[0]);
 
             //Get user song cart data
             var shoppingCartSongsInsert = '';

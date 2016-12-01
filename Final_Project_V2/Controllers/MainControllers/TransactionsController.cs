@@ -36,7 +36,6 @@ namespace Final_Project_V2.Controllers.MainControllers
 
             if (User.Identity.IsAuthenticated)
             {
-
                 var userStore = new UserStore<AppUser>(new AppDbContext());
                 var manager = new UserManager<AppUser>(userStore);
                 var currentUser = manager.FindById(User.Identity.GetUserId());
