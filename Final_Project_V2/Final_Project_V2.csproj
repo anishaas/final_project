@@ -2095,6 +2095,8 @@
     <Content Include="Views\Admins\CreateArtist.cshtml" />
     <Content Include="Views\Songs\Details.cshtml" />
     <Content Include="Views\Artists\Details.cshtml" />
+    <Content Include="Views\Admins\EditEmployee.cshtml" />
+    <Content Include="Views\Admins\ManageEmployees.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
