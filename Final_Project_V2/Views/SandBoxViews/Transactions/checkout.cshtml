@@ -154,13 +154,14 @@
                     var songTitle = $(this).find('.songTitle').html();
                     var songArtist = $(this).find('.songArtist').html();
                     var songPrice = $(this).find('.songPrice').html();
+                    var genreString = $(this).find('').html();
+                    var albumString = '';
 
                     var songDetailsObject = JSON.parse(data);
 
                     songObject.songTitle = songTitle;
                     songObject.songArtist = songArtist;
                     songObject.songPrice = songPrice;
-
                     songObject.songGenres = genreString;
                     songObject.songAlbum = albumString;
 
@@ -243,7 +244,7 @@
                                                     </a>\
                                                     <a onclick="deleteSong(this)" class="deleteSongBtn" data-song-id="SONGID" class="btn btn-flat ink-reaction">\
                                                         <i class="fa fa-trash"></i>\
-                                                    </a> <div style="display:none"class="genreStringSpan">GENRESTRING</div><div style="display:none" class="albumStringSpan">ALBUMSTRING</div>\
+                                                    </a> <div style="display: none"class="genreStringSpan">GENRESTRING</div><div style="display:none" class="albumStringSpan">ALBUMSTRING</div>\
                                                 </li>'
                         ;
 
