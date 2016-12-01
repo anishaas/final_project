@@ -108,33 +108,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
         function deleteSong(elm) {
-            var songID = $(elm).attr("data-song-id");
-
-            $.post('/transactionsajax/deleteSong', { songID: songID })
-            .done(function (data) {
-                if(data == "success"){
-                    $(elm).parent().remove();
-                }
-
-            });
+            alert("Can't delete song on check out");
         }
 
         function deleteAlbum(elm) {
-            var albumID = $(elm).attr("data-song-id");
-
-            $.post('/transactionsajax/deleteAlbum', { albumID: albumID })
-            .done(function (data) {
-                if (data == "success") {
-                    $(elm).parent().remove();
-                }
-
-            });
+            alert("Can't delete album on check out");
         }
 
         $(document).ready(function () {
 
             var userID = "@ViewBag.userID";
 
+            var url = window.location.pathname;
+
+            alert(url);
 
             //Get user song cart data
             var shoppingCartSongsInsert = '';

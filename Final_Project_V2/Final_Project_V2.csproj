@@ -2095,12 +2095,10 @@
     <Content Include="Views\Admins\CreateArtist.cshtml" />
     <Content Include="Views\Songs\Details.cshtml" />
     <Content Include="Views\Artists\Details.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\SandBoxViews\Transactions\checkout.cshtml" />
-=======
-    <Content Include="Views\Admins\EditEmployee.cshtml" />
-    <Content Include="Views\Admins\ManageEmployees.cshtml" />
->>>>>>> 559b335bdfd960b9e7afc8daad3ca1d81e066f50
+  <Content Include="Views\Admins\EditEmployee.cshtml" />
+  <Content Include="Views\Admins\ManageEmployees.cshtml" />
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
