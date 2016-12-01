@@ -60,6 +60,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/CreateSong
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public ActionResult CreateSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist")] Song @song, int[] SelectedGenres)
         {
             var query = from s in db.Songs
@@ -74,8 +75,10 @@ namespace Final_Project_V2.Controllers
                 //add genres
                 if (SelectedGenres != null)
                 {
+                    
                     foreach (int Id in SelectedGenres)
                     {
+
                         Genre genreToAdd = db.Genres.Find(Id);
                         @song.SongGenres.Add(genreToAdd);
                     }
@@ -95,7 +98,9 @@ namespace Final_Project_V2.Controllers
                 return RedirectToAction("ManageSongs");
             }
 
+
             return View();
+
         }
 
 

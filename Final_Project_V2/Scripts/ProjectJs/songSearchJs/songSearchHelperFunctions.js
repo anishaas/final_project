@@ -20,7 +20,7 @@ var songSearchHelperFunctions = {};
     };
 
     context.displaySearchResults = function (data) {      
-       
+
         var searchResultsJSONObject = jQuery.parseJSON(data);
 
         //var searchResultInsert = '';
@@ -33,7 +33,7 @@ var songSearchHelperFunctions = {};
             "order": [],
             "columns": [
             { "title": "Song Title", "targets": 0 },
-            { "title": "Song Artist", "targets": 0 },
+            { "title": "Song Artists", "targets": 0 },
             { "title": "Song Price", "targets": 0 },
             { "title": "Song Rating", "targets": 0 }
             ],
@@ -58,6 +58,7 @@ var songSearchHelperFunctions = {};
         });
 
         $.each(searchResultsJSONObject, function (index, item) {
+ 
             /*
             var tableDataComponentHTML = htmlComponents.tableDataComponent;
             var songNameUpdate = tableDataComponentHTML.replace("SONGTITLE", item.SongTitle);
@@ -67,8 +68,14 @@ var songSearchHelperFunctions = {};
 
             searchResultInsert += songRatingUpdate;
             */
+            /*
+            var artistString = '';
 
-            dataTable.row.add(["<a href='/sandbox/getSongDetailsPage/" + item.SongID + "'>" + item.SongTitle +  "</a>" , item.ArtistName, item.SongPrice, "N/A"]).draw();
+            $.each(item.SongArtists, function (index, item) {
+                artistString += item.ArtistName + ', ';
+            });
+            */
+            dataTable.row.add(["<a href='/sandbox/getSongDetailsPage/" + item.SongID + "'>" + item.SongTitle + "</a>", item.ArtistName, item.SongPrice, "N/A"]).draw();
         });
     }
 

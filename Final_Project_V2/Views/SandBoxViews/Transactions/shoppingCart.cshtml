@@ -82,30 +82,35 @@
                     </div><!--end .col -->
                 </div><!--end .row -->
                 <button id="checkoutBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Check Out</button>
-                <div class="row">
+                <br/><br/><br/>
+                <div id="creditCardRow" class="row">
                     <div class="col-lg-offset-1 col-md-8">
                         <div class="card">
                             <div class="card-body">
+                                <form>
+                                    Select a card option below:<br />
+                                    <input id="ccOption1" type="radio" name="gg" value="cc1"><span id="creditCard1"></span> <br>
+                                    <input id="ccOption2" type="radio" name="gg" value="cc2"><span id="creditCard2"></span> <br>
+                                    <input id="ccOption3" type="radio" name="gg" value="cc3"> User a new card (Please provide details below if you want to use a new card)
+                                </form>
                                 <form class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Radio buttons</label>
-                                        <div class="col-sm-9">
-                                            <div class="radio radio-styled">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" value="option1" checked>
-                                                    <span>Credit Card 1 </span>
-                                                </label>
-                                            </div>
-                                            <div class="radio radio-styled">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" value="option1">
-                                                    <span>Credit Card 2</span>
-                                                </label>
-                                            </div>
-                                            </div>
-                                        </div><!--end .col -->
-                                    </div><!--end .form-group -->
+                                        <br/>
+                                    New card number: <input id="newCardNum" type="text" placeholder="Enter your card number here"/>
+                                </form>
+                                <form class="form-horizontal" role="form">
+                                    <input type="checkbox" name="gift" value="gift"> Is this a gift? If so, please provide giftee's email below
+                                </form>
+                                <form class="form-horizontal" role="form">
+                                    <input id="gifteeEmail" type="text" name="gift" value="" placeholder="Provide email here"> 
+                                </form>
+                            </div>  
+                                       
+                        </div>    
 
+                        <button id="paymentPageBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Proceed to Payment Confirmation Page</button>
+
+                        </div><!--end .col -->               
+                    </div><!--end .form-group -->
 </section>
         </div><!--end #content-->
         <!-- END CONTENT -->
@@ -143,8 +148,26 @@
 
         $(document).ready(function () {
 
+
+            //Set up credit card numbers
+            var cc1 = "@ViewBag.CCNumber1";
+            var cc1Short = cc1.substr(cc1.length - 4);
+            var ccType1 = "@ViewBag.CCType1";
+
+            var cc2 = "@ViewBag.CCNumber2";
+            var cc2Short = cc2.substr(cc2.length - 4);
+            var ccType2 = "@ViewBag.CCType2";
+
+            $('#creditCard1').html("-" + cc1Short);
+            $('#creditCard2').html("-" + cc2Short);
+
+
             var userID = "@ViewBag.userID";
-            
+
+            $('#paymentPageBtn').on("click", function () {
+                alert();
+            });
+
             //Get user song cart data
             var shoppingCartSongsInsert = '';
 
@@ -157,10 +180,10 @@
                 var songListingDataObject = JSON.parse(data);
 
                 $.each(songListingDataObject, function (index, item) {
-                    
+
                     $.post("/transactionsAjax/getSongDetails", {songID : item.UserActivityInputArg1})
                     .done(function (data) {
-      
+
                         var songDetailsObject = JSON.parse(data);
                         songsArray.push(songDetailsObject[0].SongTitle);
                         //var songCartHTML = $('#shoppingCartSongItem')[0].outerHTML;
@@ -177,32 +200,32 @@
                                                     </a>\
                                                 </li>'
                         ;
-               
+
                         songCartHTML = songCartHTML.replace(/SONGID/g, songDetailsObject[0].SongID);
                         songCartHTML = songCartHTML.replace("SONGTITLE", songDetailsObject[0].SongTitle);
                         songCartHTML = songCartHTML.replace("SONGARTIST", songDetailsObject[0].ArtistName);
                         songCartHTML = songCartHTML.replace("SONGPRICE", songDetailsObject[0].SongPrice);
                         songCartHTML = songCartHTML.replace("SONGRATING", "fml");
-         
+
                         $('#songListingContainer').append(songCartHTML);
                     });
                 });
             });
-            
+
 
             //Get user album cart data
             var shoppingCartAlbumsInsert = '';
 
             $.post("/transactionsAjax/getUserShoppingCartAlbums", { userID: userID })
             .done(function (data) {
-          
+
                 var albumListingDataObject = JSON.parse(data);
 
                 $.each(albumListingDataObject, function (index, item) {
 
                     $.post("/transactionsAjax/getAlbumDetails", { albumID: item.UserActivityInputArg1 })
                     .done(function (data) {
-                        
+
                         var albumDetailsObject = JSON.parse(data);
                         albumDetailsObject[0].albumSongs.forEach(function (arrayItem) {
 
@@ -210,7 +233,7 @@
 
                         });
 
-                        
+
 
                         //var songCartHTML = $('#shoppingCartSongItem')[0].outerHTML;
 
@@ -276,14 +299,14 @@
                       var priceFloat = parseFloat(priceString);
                       songTotal += priceFloat;
                   });
-                  
+
                   var albumTotal = 0;
                   $('.albumPrice').each(function () {
                       var priceString = $(this).html();
                       var priceFloat = parseFloat(priceString);
                       albumTotal += priceFloat;
                   });
-                  
+
                   var subtotal = songTotal + albumTotal;
 
                   $('#subtotal').html("$" + subtotal);
@@ -292,7 +315,7 @@
                   var totalFixed = total.toFixed(2);
                   $('#total').html("$" + totalFixed);
 
-                 
+
                   //alert(albumSongsArray);
                   //alert(songsArray);
               }, 5000);
