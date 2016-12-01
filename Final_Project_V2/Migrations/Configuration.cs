@@ -454,7 +454,33 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Hot Dog", SongPrice = 1.29M },
 
                 //Luke Bryan
+                new Song { SongTitle = "Country Girl (Shake It for Me)", SongPrice = 1.29M },
+                new Song { SongTitle = "Kiss Tomorrow Goodbye", SongPrice = 1.49M },
+                new Song { SongTitle = "Drunk On You", SongPrice = 1.29M },
+                new Song { SongTitle = "Too Damn Young", SongPrice = 1.29M },
+                new Song { SongTitle = "I Don't Want This Night to End", SongPrice = 1.29M },
+                new Song { SongTitle = "You Don't Know Jack", SongPrice = 0.89M },
+                new Song { SongTitle = "Harvest Time", SongPrice = 1.29M },
+                new Song { SongTitle = "I Know You're Gonna Be There", SongPrice = 1.29M },
+                new Song { SongTitle = "Muckalee Creek Water", SongPrice = 0.29M },
+                new Song { SongTitle = "Tailgate Blues", SongPrice = 1.19M },
+                new Song { SongTitle = "Been There, Done That", SongPrice = 1.29M },
+                new Song { SongTitle = "Faded Away", SongPrice = 1.29M },
+                new Song { SongTitle = "I Knew You That Way", SongPrice = 0.99M },
+
                 //The Band Perry
+                new Song { SongTitle = "If I Die Young", SongPrice = 1.29M },
+                new Song { SongTitle = "All Your Life", SongPrice = 0.99M },
+                new Song { SongTitle = "You Lie", SongPrice = 1.29M },
+                new Song { SongTitle = "Hip to My Heart", SongPrice = 1.29M },
+                new Song { SongTitle = "Walk Me Down the Middle", SongPrice = 0.89M },
+                new Song { SongTitle = "Independence", SongPrice = 1.29M },
+                new Song { SongTitle = "Lasso", SongPrice = 1.29M },
+                new Song { SongTitle = "Postcard from Paris", SongPrice = 0.99M },
+                new Song { SongTitle = "Quittin' You", SongPrice = 1.29M },
+                new Song { SongTitle = "Miss You Being Gone", SongPrice = 0.89M },
+                new Song { SongTitle = "Double Heart", SongPrice = 1.29M },
+
                 //Bobby McFerrin
                 //Bryant Oden
                 //Foster the People
