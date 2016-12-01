@@ -1,7 +1,17 @@
 ﻿@model IEnumerable<Final_Project_V2.Models.Song>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+    @Html.ActionLink("Add New Song", "CreateSong")
+<p>
+</p>
+<p>
 </p>
 <table class="table">
     <tr>
@@ -29,7 +39,7 @@
             @Html.DisplayFor(modelItem => item.Featured)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SongID }) |
+            @Html.ActionLink("Edit", "EditSong", new { id=item.SongID }) |
             @Html.ActionLink("Details", "Details", new { id=item.SongID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.SongID })
         </td>

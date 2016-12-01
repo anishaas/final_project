@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Final_Project_V2.Models.Album>
+
+<p>
+    @Html.ActionLink("Add New Song", "CreateAlbum")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AlbumName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlbumPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Featured)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlbumName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlbumPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Featured)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditAlbum", new { id=item.AlbumID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AlbumID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumID })
+        </td>
+    </tr>
+}
+
+</table>

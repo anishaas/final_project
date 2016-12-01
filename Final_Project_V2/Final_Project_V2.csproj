@@ -2012,6 +2012,10 @@
     <Compile Include="Migrations\201611300511335_Added ActiveCustomer boolean to AppUser model class.Designer.cs">
       <DependentUpon>201611300511335_Added ActiveCustomer boolean to AppUser model class.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611300614258_ADded DiscountType property to Discount model class.cs" />
+    <Compile Include="Migrations\201611300614258_ADded DiscountType property to Discount model class.Designer.cs">
+      <DependentUpon>201611300614258_ADded DiscountType property to Discount model class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -2061,6 +2065,14 @@
     <Content Include="Views\Employees\ManageCustomers.cshtml" />
     <Content Include="Views\Songs\Index.cshtml" />
     <Content Include="Views\Admins\ManageSongs.cshtml" />
+    <Content Include="Views\Admins\EditSong.cshtml" />
+    <Content Include="Views\Admins\ManageAlbums.cshtml" />
+    <Content Include="Views\Admins\EditAlbum.cshtml" />
+    <Content Include="Views\Admins\EditArtist.cshtml" />
+    <Content Include="Views\Admins\ManageArtists.cshtml" />
+    <Content Include="Views\Admins\CreateSong.cshtml" />
+    <Content Include="Views\Admins\CreateAlbum.cshtml" />
+    <Content Include="Views\Admins\CreateArtist.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2090,6 +2102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611300511335_Added ActiveCustomer boolean to AppUser model class.resx">
       <DependentUpon>201611300511335_Added ActiveCustomer boolean to AppUser model class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611300614258_ADded DiscountType property to Discount model class.resx">
+      <DependentUpon>201611300614258_ADded DiscountType property to Discount model class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

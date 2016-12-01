@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Final_Project_V2.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Final_Project_V2.Controllers
 {
@@ -17,7 +22,73 @@ namespace Final_Project_V2.Controllers
             return View();
         }
 
-        //GET: Employees/ManageSongs
+        // GET: Admins/CreateSong
+        public ActionResult CreateSong()
+        {
+            return View();
+        }
+
+        // POST: Admins/CreateSong
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,Featured")] Song @song)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Songs.Add(song);
+                db.SaveChanges();
+                return RedirectToAction("ManageSongs");
+            }
+
+
+            return View(song);
+        }
+
+
+        // GET: Admins/CreateAlbum
+        public ActionResult CreateAlbum()
+        {
+            return View();
+        }
+
+        // POST: Admins/CreateAlbum
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured")] Album @album)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Albums.Add(album);
+                db.SaveChanges();
+                return RedirectToAction("ManageAlbums");
+            }
+
+
+            return View(album);
+        }
+
+        // GET: Admins/CreateArtist
+        public ActionResult CreateArtist()
+        {
+            return View();
+        }
+
+        // POST: Admins/CreateArtist
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateArtist([Bind(Include = "ArtistID,ArtistName,Featured")] Artist @artist)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Artists.Add(artist);
+                db.SaveChanges();
+                return RedirectToAction("ManageArtists");
+            }
+
+            return View(artist);
+        }
+
+        //GET: Admins/ManageSongs
         [Authorize(Roles = "Admin")]
         public ActionResult ManageSongs()
         {
@@ -26,6 +97,133 @@ namespace Final_Project_V2.Controllers
                         select s;
             List<Song> allSongs = query.ToList();
             return View(allSongs);
+        }
+
+        // GET: Admins/EditSong/5
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditSong(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Song @song = db.Songs.Find(id);
+            return View("~/Views/Admins/EditSong.cshtml", @song);
+        }
+
+        [Authorize(Roles = "Admin")]
+        // POST: Admins/EditSong/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist")] Song @song)
+        //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
+        {
+            if (ModelState.IsValid)
+            {
+                //Find associated customer
+                Song songToChange = db.Songs.Find(@song.SongID);
+
+                songToChange.SongTitle = @song.SongTitle;
+                songToChange.SongPrice = @song.SongPrice;
+                songToChange.SongArtist = @song.SongArtist;
+                songToChange.Featured = @song.Featured;
+
+                db.Entry(songToChange).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageSongs", "Admins");
+            }
+            return View("~/Views/Admins/EditSong.cshtml", @song);
+        }
+
+        //GET: Admins/ManageAlbums
+        [Authorize(Roles = "Admin")]
+        public ActionResult ManageAlbums()
+        {
+
+            var query = from a in db.Albums
+                        select a;
+            List<Album> allAlbums = query.ToList();
+            return View(allAlbums);
+        }
+
+        // GET: Admins/EditAlbum/5
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditAlbum(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Album @album = db.Albums.Find(id);
+            return View("~/Views/Admins/EditAlbum.cshtml", @album);
+        }
+
+        [Authorize(Roles = "Admin")]
+        // POST: Admins/EditAlbum/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist")] Album @album)
+        //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
+        {
+            if (ModelState.IsValid)
+            {
+                //Find associated customer
+                Album albumToChange = db.Albums.Find(@album.AlbumID);
+
+                albumToChange.AlbumName = @album.AlbumName;
+                albumToChange.AlbumPrice = @album.AlbumPrice;
+
+
+                db.Entry(albumToChange).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageSongs", "Admins");
+            }
+            return View("~/Views/Admins/EditAlbum.cshtml", @album);
+        }
+
+        //GET: Admins/ManageArtists
+        [Authorize(Roles = "Admin")]
+        public ActionResult ManageArtists()
+        {
+
+            var query = from a in db.Artists
+                        select a;
+            List<Artist> allArtists = query.ToList();
+            return View(allArtists);
+        }
+
+        // GET: Admins/EditArtist/5
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditArtist(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Artist @artist = db.Artists.Find(id);
+            return View("~/Views/Admins/EditArtist.cshtml", @artist);
+        }
+
+        [Authorize(Roles = "Admin")]
+        // POST: Admins/EditArtist/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditArtist([Bind(Include = "ArtistID,ArtistName,Featured")] Artist @artist)
+        {
+            if (ModelState.IsValid)
+            {
+                //Find associated artist
+                Artist artistToChange = db.Artists.Find(@artist.ArtistID);
+
+                artistToChange.ArtistName = @artist.ArtistName;
+                artistToChange.Featured = @artist.Featured;
+
+
+                db.Entry(artistToChange).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageArtists", "Admins");
+            }
+            return View("~/Views/Admins/EditArtist.cshtml", @artist);
         }
     }
 }
