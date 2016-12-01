@@ -33,15 +33,18 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/CreateSong
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SongID,SongTitle,SongPrice,Featured")] Song @song, Int32[] SelectedGenres, Int32[] SelectedArtists)
+        public ActionResult CreateSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured")] Song @song, Int32[] SelectedGenres, Int32[] SelectedArtists)
         {
+ 
             if (ModelState.IsValid)
             {
                 //add genres
                 if (SelectedGenres != null)
                 {
+                    
                     foreach (int Id in SelectedGenres)
                     {
+
                         Genre genreToAdd = db.Genres.Find(Id);
                         @song.SongGenres.Add(genreToAdd);
                     }
@@ -61,7 +64,7 @@ namespace Final_Project_V2.Controllers
                 return RedirectToAction("ManageSongs");
             }
 
-            return View(@song);
+            return View();
         }
 
 
