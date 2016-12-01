@@ -26,7 +26,8 @@ namespace Final_Project_V2.Controllers
         public ActionResult SongDetails(int id)
         {
             //find respective song
-            Song @song = db.Songs.Find(id);
+            List<Song> FoundSongs = db.Songs.Include(s => s.SongGenres).ToList();
+            Song @song = FoundSongs.FirstOrDefault(x => x.SongID == id);
             //render song details page
             return View("~/Views/Songs/Details.cshtml", @song);
         }

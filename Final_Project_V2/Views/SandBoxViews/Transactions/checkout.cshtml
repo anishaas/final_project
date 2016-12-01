@@ -147,20 +147,43 @@
 
                
 
-                $('.songItem').each(function(){
+                $('.songItem').each(function () {
+                    var songID = $(this).find('.deleteSongBtn').attr('data-song-id');
+
                     $.post('/transactionsAjax/getSongDetails', {songID:songID})
                     .done(function (data) {
                         var songObject = {};
                         var songTitle = $(this).find('.songTitle').html();
                         var songArtist = $(this).find('.songArtist').html();
                         var songPrice = $(this).find('.songPrice').html();
-                        var songID = $(this).find('.deleteSongBtn').attr('data-song-id');
+                        
+                        var songDetailsObject = JSON.parse(data);
 
                         songObject.songTitle = songTitle;
                         songObject.songArtist = songArtist;
                         songObject.songPrice = songPrice;
-                        songObject.songGenres = '';
-                        songObject.songAlbum = '';
+
+                        var genreString = '';
+
+                        //alert(songDetailsObject[0].SongGenres[0].GenreName);
+                        songDetailsObject[0].SongGenres.forEach(function (arrayItem) {
+
+                            genreString = genreString + arrayItem.GenreName + ", ";
+
+                        });
+
+                        
+                        var albumString = '';
+
+                        //alert(songDetailsObject[0].SongGenres[0].GenreName);
+                        songDetailsObject[0].SongAlbums.forEach(function (arrayItem) {
+
+                            albumString = albumString + arrayItem.AlbumName + ", ";
+
+                        });
+
+                        songObject.songGenres = genreString;
+                        songObject.songAlbum = albumString;
 
                         orderJSONObject.songItems.push(songObject);
                     });
