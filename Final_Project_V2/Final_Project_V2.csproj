@@ -2024,6 +2024,10 @@
     <Compile Include="Migrations\201612010207573_Updated artist model class.Designer.cs">
       <DependentUpon>201612010207573_Updated artist model class.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612010338023_Added SongArtist constructor to song model class.cs" />
+    <Compile Include="Migrations\201612010338023_Added SongArtist constructor to song model class.Designer.cs">
+      <DependentUpon>201612010338023_Added SongArtist constructor to song model class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -2119,6 +2123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612010207573_Updated artist model class.resx">
       <DependentUpon>201612010207573_Updated artist model class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612010338023_Added SongArtist constructor to song model class.resx">
+      <DependentUpon>201612010338023_Added SongArtist constructor to song model class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
