@@ -24,7 +24,7 @@ namespace Final_Project_V2.Controllers
 
 
         // GET: Songs/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {

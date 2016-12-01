@@ -22,6 +22,15 @@ namespace Final_Project_V2.Controllers
             return View();
         }
 
+        // GET: Admins/SongDetails
+        public ActionResult SongDetails(int id)
+        {
+            //find respective song
+            Song @song = db.Songs.Find(id);
+            //render song details page
+            return View("~/Views/Songs/Details.cshtml", @song);
+        }
+
         // GET: Admins/CreateSong
         public ActionResult CreateSong()
         {
