@@ -1,0 +1,36 @@
+﻿@model Final_Project_V2.Models.Song
+
+<div>
+    <h4>Song</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SongTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SongTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SongPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SongPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Featured)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Featured)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditSong", new { id = Model.SongID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

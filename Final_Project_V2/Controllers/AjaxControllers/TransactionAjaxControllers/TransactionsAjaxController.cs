@@ -124,7 +124,7 @@ namespace Final_Project_V2.Controllers.MainControllers
                                        SongID = song.SongID,
                                        SongTitle = song.SongTitle,
                                        SongPrice = song.SongPrice,
-                                       ArtistName = song.SongArtists,
+                                       ArtistName = song.SongArtist,
                                        Featured = song.Featured,
                                        SongGenres = song.SongGenres,
                                        SongAlbums = song.SongAlbums

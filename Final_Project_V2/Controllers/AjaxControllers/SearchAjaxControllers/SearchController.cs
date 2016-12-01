@@ -937,7 +937,7 @@ namespace FinalProject.Controllers.MainControllers
                               SongID = song.SongID,
                               SongTitle = song.SongTitle,
                               SongPrice = song.SongPrice,
-                              ArtistNames = song.SongArtists,
+                              ArtistName = song.SongArtist.ArtistName,
                               Featured = song.Featured, 
                               SongGenres = song.SongGenres,
                               SongAlbums = song.SongAlbums
@@ -950,11 +950,9 @@ namespace FinalProject.Controllers.MainControllers
             }
 
             if (artistName != null && artistName != "")
-            {/*
-                songsQuery = songsQuery
-                .Where(sq => sq.ArtistNames
-                .Any(sa => sa.ArtistName.Contains(artistName)));
-                */
+            {
+                songsQuery = songsQuery.Where(s => s.ArtistName.Contains(artistName));
+
             }
 
             if (albumName != null && albumName != "")

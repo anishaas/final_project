@@ -58,7 +58,7 @@ var songSearchHelperFunctions = {};
         });
 
         $.each(searchResultsJSONObject, function (index, item) {
-            alert('test');
+ 
             /*
             var tableDataComponentHTML = htmlComponents.tableDataComponent;
             var songNameUpdate = tableDataComponentHTML.replace("SONGTITLE", item.SongTitle);
@@ -75,7 +75,9 @@ var songSearchHelperFunctions = {};
                 artistString += item.ArtistName + ', ';
             });
             */
-            dataTable.row.add(["<a href='/sandbox/getSongDetailsPage/" + item.SongID + "'>" + item.SongTitle + "</a>", 'artistString', item.SongPrice, "N/A"]).draw();
+            alert('test');
+            alert(item.ArtistName);
+            dataTable.row.add(["<a href='/sandbox/getSongDetailsPage/" + item.SongID + "'>" + item.SongTitle + "</a>", item.ArtistName, item.SongPrice, "N/A"]).draw();
         });
     }
 
