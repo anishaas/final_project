@@ -27,7 +27,6 @@ namespace Final_Project_V2.Models
         [InverseProperty("ArtistSongs")]
         public List<Artist> SongArtists { get; set; }
         //public Artist SongArtist { get; set; }
-        //Can a song belong to multiple genres? so a list instead of single genre? 
         [InverseProperty("GenreSongs")]
         public List<Genre> SongGenres { get; set; }
         [InverseProperty("AlbumSongs")]

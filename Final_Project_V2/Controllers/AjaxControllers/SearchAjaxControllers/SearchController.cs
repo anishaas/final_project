@@ -921,7 +921,7 @@ namespace FinalProject.Controllers.MainControllers
 
         public string SearchResults()
         {
-            //db.Configuration.ProxyCreationEnabled = false;
+            db.Configuration.ProxyCreationEnabled = false;
             //string songTitle, string songArtist, string songAlbum, string selectedGenre
             var songTitle = Request.Form["songTitle"];
             var artistName = Request.Form["songArtist"];
@@ -937,11 +937,12 @@ namespace FinalProject.Controllers.MainControllers
                               SongID = song.SongID,
                               SongTitle = song.SongTitle,
                               SongPrice = song.SongPrice,
-                              ArtistName = song.SongArtists,
+                              ArtistNames = song.SongArtists,
                               Featured = song.Featured, 
                               SongGenres = song.SongGenres,
                               SongAlbums = song.SongAlbums
                           };
+
 
             if (songTitle != null && songTitle != "") //check for matching title 
             {
@@ -949,8 +950,11 @@ namespace FinalProject.Controllers.MainControllers
             }
 
             if (artistName != null && artistName != "")
-            {
-                //songsQuery = songsQuery.Where(s => s.ArtistName.Contains(artistName));
+            {/*
+                songsQuery = songsQuery
+                .Where(sq => sq.ArtistNames
+                .Any(sa => sa.ArtistName.Contains(artistName)));
+                */
             }
 
             if (albumName != null && albumName != "")
