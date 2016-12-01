@@ -246,7 +246,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditSong/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist")] Song @song)
+        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist,SongDiscount")] Song @song)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)
@@ -293,7 +293,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditAlbum/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist")] Album @album)
+        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist,AlbumDiscount")] Album @album)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)

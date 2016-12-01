@@ -2036,6 +2036,10 @@
     <Compile Include="Migrations\201612010631501_Updated user model.Designer.cs">
       <DependentUpon>201612010631501_Updated user model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612010805155_Added discount properties.cs" />
+    <Compile Include="Migrations\201612010805155_Added discount properties.Designer.cs">
+      <DependentUpon>201612010805155_Added discount properties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -2144,6 +2148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612010631501_Updated user model.resx">
       <DependentUpon>201612010631501_Updated user model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612010805155_Added discount properties.resx">
+      <DependentUpon>201612010805155_Added discount properties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

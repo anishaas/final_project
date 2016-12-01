@@ -21,6 +21,7 @@ namespace Final_Project_V2.Models
         public string AlbumName { get; set; }
        // public DateTime AlbumTimestamp { get; set; }
         public bool Featured { get; set; }
+        public decimal SongDiscount { get; set; }
 
         //navigational
         public List<Genre> AlbumGenres { get; set; }
