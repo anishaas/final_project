@@ -1,4 +1,6 @@
 ﻿using Final_Project_V2.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,111 @@ namespace Final_Project_V2.Controllers.MainControllers
             return View();
         }
 
+        public string getOrderHistory()
+        {
+            var userIDz = "";
+            if (User.Identity.IsAuthenticated)
+            {
+                userIDz = User.Identity.GetUserId();
+
+            }
+
+            var userOrderHistoryQuery = from input in db.UserActivityInputs
+                                        select input;
+
+            userOrderHistoryQuery = userOrderHistoryQuery.Where(input => input.UserActivityInputArg2 == userIDz && input.UserActivityInputType == 9);
+
+            if (userOrderHistoryQuery == null)
+            {
+                return "No history found";
+            }
+
+            var userOrderHistoryList = userOrderHistoryQuery.ToList();
+
+            return JsonConvert.SerializeObject(userOrderHistoryList);
+        }
+        public string logOrder()
+        {
+            var orderJSON = Request.Form["orderJSON"];
+            var recipientEmail = Request.Form["recipientEmail"];
+            var userIDz = "";
+            if (User.Identity.IsAuthenticated)
+            {
+                userIDz = User.Identity.GetUserId();
+
+            }
+            var orderLogs = db.UserActivityInputs.Where(u => u.UserActivityInputType == 9 && u.UserActivityInputArg2 == userIDz);
+            var orderLogsList = orderLogs.ToList();
+
+            List<int> orderNums = new List<int>();
+
+            foreach (var item in orderLogsList)
+            {
+                int intOrderNum = Int32.Parse(item.UserActivityInputArg1);
+
+                orderNums.Add(intOrderNum);
+            }
+
+
+
+            var maxOrderNum = 0;
+            var newOrderNum = 0;
+            if (orderNums.Count() == 0)
+            {
+                 newOrderNum = maxOrderNum + 1;
+            }
+            else
+            {
+                 maxOrderNum = orderNums.Max();
+                 newOrderNum = maxOrderNum + 1;
+            }
+
+
+            // Create a new Order object.
+            UserActivityInput userInput = new UserActivityInput
+            {
+                UserActivityInputType = 9,
+                UserActivityInputArg1 = newOrderNum.ToString(),
+                UserActivityInputArg2 = User.Identity.GetUserId(),
+                UserActivityInputArg3 = orderJSON
+            };
+
+            db.UserActivityInputs.Add(userInput);
+
+            // Submit the change to the database.
+            try
+            {
+                
+                var userID = "";
+                //Write code to delete shopping cart afterwards
+                if (User.Identity.IsAuthenticated)
+                {
+                    userID = User.Identity.GetUserId();
+                }
+
+                //Delete songs from shopping cart since they've now been purchased
+                db.UserActivityInputs.RemoveRange(
+                    db.UserActivityInputs.Where(u => u.UserActivityInputType == 1 && u.UserActivityInputArg2 == userID)
+                    );
+
+                //Delete albums from shopping cart since they've now been purchased
+                db.UserActivityInputs.RemoveRange(
+                        db.UserActivityInputs.Where(u => u.UserActivityInputType == 2 && u.UserActivityInputArg2 == userID)
+                        );
+
+
+                db.SaveChanges();
+                return "success";
+            }
+            catch (Exception e)
+            {
+
+                return e.ToString();
+
+            }
+
+            
+        }
         public string checkIfUserExists()
         {
             var userID = Request.Form["userID"];
@@ -163,6 +270,7 @@ namespace Final_Project_V2.Controllers.MainControllers
 
             //Delete it from memory
             db.UserActivityInputs.Remove(cartSongToDelete);
+
             //Save to database
             try
             {

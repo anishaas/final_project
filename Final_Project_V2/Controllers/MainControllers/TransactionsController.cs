@@ -21,7 +21,11 @@ namespace Final_Project_V2.Controllers.MainControllers
         {
             return View();
         }
-
+        
+        public ActionResult getOrderHistory()
+        {
+            return View("~/Views/SandBoxViews/Transactions/orderHistory.cshtml");
+        }
         public ActionResult getCheckOutPage()
         {
             //PROVIDING USER DATA TO THE VIEWBAG

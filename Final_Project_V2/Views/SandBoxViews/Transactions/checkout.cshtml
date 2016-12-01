@@ -135,8 +135,67 @@
             //FINISH THE CHECKOUT FUNCTIONALITY
             $('#confirmBtn').on('click', function () {
 
-                alert();
-            });
+                alert("Thank you for ordering with PA Consulting");
+
+                var orderJSONObject = {}
+                orderJSONObject.songItems = [];
+                orderJSONObject.albumItems = [];
+                orderJSONObject.subTotal = '';
+                orderJSONObject.total = '';
+                orderJSONObject.recipient = '';
+                orderJSONObject.gift = ''; 
+
+               
+
+                $('.songItem').each(function(){
+                    $.post('/transactionsAjax/getSongDetails', {songID:songID})
+                    .done(function (data) {
+                        var songObject = {};
+                        var songTitle = $(this).find('.songTitle').html();
+                        var songArtist = $(this).find('.songArtist').html();
+                        var songPrice = $(this).find('.songPrice').html();
+                        var songID = $(this).find('.deleteSongBtn').attr('data-song-id');
+
+                        songObject.songTitle = songTitle;
+                        songObject.songArtist = songArtist;
+                        songObject.songPrice = songPrice;
+                        songObject.songGenres = '';
+                        songObject.songAlbum = '';
+
+                        orderJSONObject.songItems.push(songObject);
+                    });
+     
+                });
+
+                $('.albumItem').each(function(){
+                    var albumObject = {};
+                    var albumTitle = $(this).find('.albumTitle').html();
+                    var albumArtist = $(this).find('.albumArtist').html();
+                    var albumPrice = $(this).find('.albumPrice').html();
+                    
+                    albumObject.albumTitle = albumTitle;
+                    albumObject.albumArtist = albumArtist;
+                    albumObject.albumPrice = albumPrice;
+
+                    orderJSONObject.albumItems.push(albumObject);
+                });
+                orderJSONObject.subTotal = $('#subtotal').html();
+                orderJSONObject.total = $('#total').html();
+                orderJSONObject.recipient = $('#recipientEmail').html();
+
+                if(arrayLength == 3){
+                    orderJSONObject.gift = 'true';
+                }
+                orderString = JSON.stringify(orderJSONObject);
+
+                $.post('/transactionsAjax/logOrder', { orderJSON: orderString, recipientEmail: urlDataArray[1] })
+                .done(function (data) {
+
+                    alert(data);
+                    $('#content').html("<a href='/SandBox/getCustomerSongSearchPage'><h3>Return to search/home page</h3></a>");
+
+                });
+               });
 
 
 
@@ -155,11 +214,11 @@
                         //var songCartHTML = $('#shoppingCartSongItem')[0].outerHTML;
 
                         var songCartHTML = '<li id="shoppingCartSongItem" class="tile"> \
-                                                    <a href="/sandbox/getsongdetailspage/SONGID" class="tile-content ink-reaction">\
+                                                    <a href="/sandbox/getsongdetailspage/SONGID" class="tile-content ink-reaction songItem">\
                                                         <div class="tile-icon">\
                                                             <i class="fa fa-music"></i>\
                                                         </div>\
-                                                         <div class="tile-text"><b>Title:</b> <span> SONGTITLE </span> <b>Artist:</b> <span>SONGARTIST</span> <b>Rating: </b><span>SONGRATING</span> <b>Price: </b><span class="songPrice">SONGPRICE</span></div>\
+                                                         <div class="tile-text"><b>Title:</b> <span class="songTitle"> SONGTITLE </span> <b>Artist:</b> <span class="songArtist">SONGARTIST</span> <b>Rating: </b><span>SONGRATING</span> <b>Price: </b><span class="songPrice">SONGPRICE</span></div>\
                                                     </a>\
                                                     <a onclick="deleteSong(this)" class="deleteSongBtn" data-song-id="SONGID" class="btn btn-flat ink-reaction">\
                                                         <i class="fa fa-trash"></i>\
@@ -204,11 +263,11 @@
                         //var songCartHTML = $('#shoppingCartSongItem')[0].outerHTML;
 
                         var albumCartHTML = '<li id="shoppingCartSongItem" class="tile"> \
-                                                    <a href="/Details/getAlbumDetailsPage/ALBUMID" class="tile-content ink-reaction">\
+                                                    <a href="/Details/getAlbumDetailsPage/ALBUMID" class="tile-content ink-reaction albumItem">\
                                                         <div class="tile-icon">\
                                                             <i class="fa fa-music"></i>\
                                                         </div>\
-                                                         <div class="tile-text"><b>Title:</b> <span> ALBUMTITLE </span> <b>Artist:</b> <span>ALBUMARTIST</span> <b>Rating: </b><span>ALBUMRATING</span> <b>Price: </b><span class="albumPrice">ALBUMPRICE</span></div>\
+                                                         <div class="tile-text"><b>Title:</b> <span class="albumTitle"> ALBUMTITLE </span> <b>Artist:</b> <span class="albumArtist">ALBUMARTIST</span> <b>Rating: </b><span>ALBUMRATING</span> <b>Price: </b><span class="albumPrice">ALBUMPRICE</span></div>\
                                                     </a>\
                                                     <a onclick="deleteAlbum(this)" class="deleteAlbumBtn" data-song-id="ALBUMID" class="btn btn-flat ink-reaction">\
                                                         <i class="fa fa-trash"></i>\

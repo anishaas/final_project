@@ -85,9 +85,9 @@
                     $.post("/TransactionsAjax/addAlbumToCart", { albumID: albumID, userID: userID })
                     .done(function (data) {
                         if (data == 'exists') {
-                            alert('This song already exists in your cart');
+                            alert('This already exists in your cart');
                         } else if (data == 'success') {
-                            alert('Song successfully added to your cart');
+                            alert('Successfully added to your cart');
                         } else {
                             alert('Failed to add song, internal server error');
                         }
