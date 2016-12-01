@@ -480,6 +480,7 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Quittin' You", SongPrice = 1.29M },
                 new Song { SongTitle = "Miss You Being Gone", SongPrice = 0.89M },
                 new Song { SongTitle = "Double Heart", SongPrice = 1.29M },
+                TEST TEST TEST 
 
                 //Bobby McFerrin
                 //Bryant Oden
