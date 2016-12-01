@@ -164,6 +164,20 @@ namespace Final_Project_V2.Controllers
             return View(artist);
         }
 
+        //GET: Admins/ManageEmployees
+        [Authorize(Roles = "Admin")]
+        public ActionResult ManageEmployees()
+        {
+
+            var query = from c in db.Users
+                        select c;
+            List<AppUser> allEmployees = query.ToList();
+
+            String EmployeeGUID = db.AppRoles.FirstOrDefault(r => r.Name == "Employee").Id;
+            allEmployees = db.Users.Where(x => x.Roles.Any(s => s.RoleId == EmployeeGUID)).ToList();
+            return View(allEmployees);
+        }
+
         //GET: Admins/ManageSongs
         [Authorize(Roles = "Admin")]
         public ActionResult ManageSongs()
