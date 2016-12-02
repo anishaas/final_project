@@ -444,6 +444,8 @@
     <Content Include="MaterialDesignAssets\less\shared\themes\theme-5.less" />
     <Content Include="MaterialDesignAssets\less\shared\themes\theme-default.less" />
     <Content Include="MaterialDesignAssets\less\shared\variables.less" />
+    <None Include="Properties\PublishProfiles\nosleepclub - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\nosleepclub - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="MaterialDesignAssets\css\fonts\fontawesome-webfont.svg" />
     <Content Include="MaterialDesignAssets\css\fonts\glyphicons-halflings-regular.svg" />
