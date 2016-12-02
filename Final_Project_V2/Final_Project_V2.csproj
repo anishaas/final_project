@@ -2116,6 +2116,9 @@
     <Content Include="Views\Admins\ManageEmployees.cshtml" />
     <Content Include="Views\SandBoxViews\Transactions\orderHistory.cshtml" />
     <Content Include="Views\SandBoxViews\Transactions\myMusic.cshtml" />
+    <Content Include="Views\Albums\Create.cshtml" />
+    <Content Include="Views\Albums\Details.cshtml" />
+    <Content Include="Views\Albums\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

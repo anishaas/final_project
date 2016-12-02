@@ -1,0 +1,48 @@
+﻿@model Final_Project_V2.Models.Album
+
+<div>
+    <h4>Song</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Featured)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Featured)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumGenres)
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.AlbumGenres)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.AlbumName)</td>
+                </tr>
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditAlbum", new { id = Model.AlbumID }) |
+    @Html.ActionLink("Back to List", "ManageAlbums")
+</p>

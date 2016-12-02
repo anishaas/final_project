@@ -486,8 +486,25 @@ namespace Final_Project_V2.Controllers
             return allGenresList;
         }
 
+        public MultiSelectList GetAllGenres(Album @album)
+        {
+            //find the list of genres
+            var query = from g in db.Genres
+                        orderby g.GenreName
+                        select g;
 
+            List<Genre> allGenres = query.ToList();
+            List<Int32> SelectedGenres = new List<Int32>();
 
+            //Loop through list of genres add GenreId
+            foreach (Genre g in @album.AlbumGenres)
+            {
+                SelectedGenres.Add(g.GenreID);
+            }
 
+            //convert to multiselect
+            MultiSelectList allGenresList = new MultiSelectList(allGenres, "GenreID", "GenreName", SelectedGenres);
+            return allGenresList;
+        }
     }
 }
