@@ -16,6 +16,19 @@ namespace Final_Project_V2.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
+        // GET: Reviews
+        //check this method for multiple roles
+        [Authorize(Roles = "Employee, Admin")]
+        public ActionResult ManageSongReviews()
+        {
+            var query = from r in db.UserActivityInputs
+                        select r;
+
+            List < UserActivityInput > allUserActivity = query.ToList();
+            List <UserActivityInput> customerReviews = db.UserActivityInputs.Where(x => x.UserActivityInputType == 3).ToList();
+            return View(customerReviews);
+        }
+
         // GET: Employees
         [Authorize(Roles = "Employee")]
         public ActionResult Index()

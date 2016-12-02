@@ -2130,6 +2130,7 @@
     <Content Include="Views\Albums\Details.cshtml" />
     <Content Include="Views\Albums\Index.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\ManageSongReviews.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
