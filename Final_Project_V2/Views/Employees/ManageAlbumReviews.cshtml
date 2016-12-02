@@ -23,13 +23,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UserActivityInputTxt1)
             </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.UserActivityInputClassificationID)
-            </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.UserActivityInputID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.UserActivityInputID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.UserActivityInputID })
             </td>
         </tr>
+    }
