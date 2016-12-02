@@ -55,6 +55,37 @@ namespace Final_Project_V2.Controllers
             return View(artistReviews);
         }
 
+        [Authorize(Roles = "Employee, Admin")]
+        // GET: Admins/EditSongReview/5
+        public ActionResult EditSongReview(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //find passed in review
+            UserActivityInput @songReview = db.UserActivityInputs.Find(id);
+            return View("~/Views/Employees/EditSongReview.cshtml", @songReview);
+        }
+        [Authorize(Roles = "Employee, Admin")]
+        // POST: Admins/EditSongReview/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditSongReview([Bind(Include = "UserActivityInputID,UserActivityInputTxt1")] UserActivityInput @songReview)
+        {
+            if (ModelState.IsValid)
+            {
+                //Find associated review
+                UserActivityInput songReviewToChange = db.UserActivityInputs.Find(@songReview.UserActivityInputID);
+                songReviewToChange.UserActivityInputTxt1 = @songReview.UserActivityInputTxt1;
+
+                db.Entry(songReviewToChange).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageSongReviews", "Employees");
+            }
+            return View("~/Views/Employees/EditSongReview.cshtml", @songReview);
+        }
+
         // GET: Employees
         [Authorize(Roles = "Employee")]
         public ActionResult Index()
