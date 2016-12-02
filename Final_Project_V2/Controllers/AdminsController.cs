@@ -239,6 +239,8 @@ namespace Final_Project_V2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.AllGenres = GetAllGenres();
+            ViewBag.AllArtists = GetAllArtists();
             Song @song = db.Songs.Find(id);
             return View("~/Views/Admins/EditSong.cshtml", @song);
         }
@@ -247,19 +249,31 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditSong/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist,SongDiscount,SongDiscountEnabled")] Song @song)
+        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist,SongDiscount,SongDiscountEnabled")] Song @song, int[] SelectedGenres)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)
             {
                 //Find associated customer
                 Song songToChange = db.Songs.Find(@song.SongID);
-
                 songToChange.SongTitle = @song.SongTitle;
                 songToChange.SongPrice = @song.SongPrice;
                 songToChange.SongArtist = @song.SongArtist;
                 songToChange.Featured = @song.Featured;
                 songToChange.SongDiscount = @song.SongDiscount;
+
+                //add genres to model
+                //first, remove any genres
+                songToChange.SongGenres.Clear();
+
+                if (SelectedGenres != null)
+                {
+                    foreach (int Id in SelectedGenres)
+                    {
+                        Genre genreToAdd = db.Genres.Find(Id);
+                        songToChange.SongGenres.Add(genreToAdd);
+                    }
+                }
                 songToChange.SongDiscountEnabled = @song.SongDiscountEnabled;
                 if (@song.SongDiscountEnabled == true)
                 {
