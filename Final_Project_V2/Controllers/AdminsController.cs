@@ -264,6 +264,7 @@ namespace Final_Project_V2.Controllers
             }
             ViewBag.AllGenres = GetAllGenres(@song);
             ViewBag.AllAlbums = GetAllAlbums(@song);
+            ViewBag.AllArtists = GetAllArtists(@song);
             return View("~/Views/Admins/EditSong.cshtml", @song);
         }
 
@@ -472,6 +473,20 @@ namespace Final_Project_V2.Controllers
             SelectList allArtistsList = new SelectList(allArtists, "ArtistID", "ArtistName");
 
             return allArtistsList;
+        }
+
+        public SelectList GetAllArtists(Artist @artist) //ARTIST CHOSEN ALREADY
+        {
+            //populate list of artists
+            var query = from a in db.Artists
+                        orderby a.ArtistName
+                        select a;
+            //create list and execute query 
+            List<Artist> allArtists = query.ToList();
+
+            //convert to select list
+            SelectList list = new SelectList(allArtists, "ArtistID", "ArtistName");
+            return list;
         }
 
         public SelectList GetAllArtists(Album @album) //ARTIST CHOSEN ALREADY
