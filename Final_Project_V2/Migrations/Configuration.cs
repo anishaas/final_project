@@ -121,6 +121,8 @@ namespace Final_Project_V2.Migrations
             //add artists to database
             artists.ForEach(a => db.Artists.AddOrUpdate(b => b.ArtistName, a));
             db.SaveChanges();
+
+            /*
             //update the artists genres
             AddOrUpdateArtistGenre(db, "LMFAO", "Pop");
             AddOrUpdateArtistGenre(db, "ADELE", "Pop");
@@ -197,10 +199,12 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateArtistGenre(db, "Peter, Paul & Mary", "Singer/Songwriter");
             AddOrUpdateArtistGenre(db, "Bobby McFerrin", "Reggae");
             AddOrUpdateArtistGenre(db, "Calvin Harris", "Pop");
+            */
             db.SaveChanges();
 
             var songs = new List<Song>
             {
+
                 //ADELE
                 new Song { SongTitle = "Rolling In The Deep", SongPrice = 1.29M },
                 new Song { SongTitle = "Rumour Has It", SongPrice = 0.89M },
@@ -214,8 +218,7 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Lovesong", SongPrice = 1.29M },
                 new Song { SongTitle = "Someone Like You", SongPrice = 0.99M },
                 new Song { SongTitle = "I Found A Boy", SongPrice = 1.29M },
-                /*
-                //Lady GaGa
+
                 new Song { SongTitle = "Marry the Night", SongPrice = 1.29M },
                 new Song { SongTitle = "Born This Way", SongPrice = 1.29M },
                 new Song { SongTitle = "Government Hooker", SongPrice = 0.99M },
@@ -228,11 +231,11 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Highway Unicorn (Road to Love)", SongPrice = 1.29M },
                 new Song { SongTitle = "Heavy Metal Lover", SongPrice = 1.29M },
                 new Song { SongTitle = "Electric Chapel", SongPrice = 0.89M },
+                new Song { SongTitle = "Bloody Mary", SongPrice = 0.89M },
                 new Song { SongTitle = "The Queen", SongPrice = 1.29M },
                 new Song { SongTitle = "You And I", SongPrice = 1.29M },
                 new Song { SongTitle = "The Edge of Glory", SongPrice = 1.29M },
-
-                //Florence
+                                
                 new Song { SongTitle = "Only If For A Night", SongPrice = 0.99M },
                 new Song { SongTitle = "Shake It Out", SongPrice = 1.29M },
                 new Song { SongTitle = "What the Water Gave Me", SongPrice = 0.99M },
@@ -248,8 +251,7 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Remain Nameless", SongPrice = 0.99M },
                 new Song { SongTitle = "Strangeness and Charm", SongPrice = 0.99M },
                 new Song { SongTitle = "Bedroom Hymns", SongPrice = 0.99M },
-
-                //James Bay
+                
                 new Song { SongTitle = "Craving", SongPrice = 1.29M },
                 new Song { SongTitle = "Hold Back the River", SongPrice = 1.29M },
                 new Song { SongTitle = "Let it Go", SongPrice = 1.29M },
@@ -263,9 +265,10 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Need the Sun to Break", SongPrice = 1.29M },
                 new Song { SongTitle = "Incomplete", SongPrice = 1.29M },
 
+                
                 //Julian Smith
                 new Song { SongTitle = "Eat Randy", SongPrice = 1.29M },
-
+                
                 //Maroon 5
                 new Song { SongTitle = "Misery", SongPrice = 0.99M },
                 new Song { SongTitle = "Give a Little More", SongPrice = 1.29M },
@@ -280,12 +283,11 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Runaway", SongPrice = 0.89M },
                 new Song { SongTitle = "Out of Goodbyes", SongPrice = 1.29M },
                 new Song { SongTitle = "Moves Like Jagger", SongPrice = 1.29M },
-                new Song { SongTitle = "The Air That I Breathe", SongPrice = 1.29M },
                 new Song { SongTitle = "Last Change", SongPrice = 1.29M },
                 new Song { SongTitle = "No Curtain Call", SongPrice = 1.19M },
                 new Song { SongTitle = "If I Ain't Got You", SongPrice = 1.29M },
                 new Song { SongTitle = "The Air That I Breathe", SongPrice = 1.29M },
-
+                
                 //Drake
                 new Song { SongTitle = "Legend", SongPrice = 0.99M },
                 new Song { SongTitle = "Energy", SongPrice = 1.19M },
@@ -304,26 +306,25 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Jungle'", SongPrice = 0.99M },
                 new Song { SongTitle = "6PM In New York", SongPrice = 0.99M },
                 new Song { SongTitle = "Even If It Breaks Your Heart", SongPrice = 1.29M },
-                
+                               
                 //Eli Young
-                new Song { SongTitle = "Even If It Breaks Your Heart", SongPrice = 1.29M }
-                new Song { SongTitle = "Crazy Girl", SongPrice = 0.89M }
-                new Song { SongTitle = "On My Way", SongPrice = 1.29M }
-                new Song { SongTitle = "Skeletons", SongPrice = 0.99M }
-                new Song { SongTitle = "I Love Your", SongPrice = 1.29M }
-                new Song { SongTitle = "The Fight", SongPrice = 1.29M }
-                new Song { SongTitle = "My Old Man's Son", SongPrice = 1.29M }
-                new Song { SongTitle = "Recover", SongPrice = 1.49M }
-                new Song { SongTitle = "The Falling", SongPrice = 1.29M }
-                new Song { SongTitle = "War On a Desperate Man", SongPrice = 1.29M }
-                new Song { SongTitle = "Say Goodnight", SongPrice = 0.99M }
-                new Song { SongTitle = "How Quickly You Forget", SongPrice = 1.29M }
-                new Song { SongTitle = "Life At Best", SongPrice = 1.29M }
-                new Song { SongTitle = "Room Goes Dark (Demo)", SongPrice = 1.39M }
-                new Song { SongTitle = "Go Outside and Dance", SongPrice = 0.89M }
-                new Song { SongTitle = "Me and Jack (Demo)", SongPrice = 1.29M }
+                new Song { SongTitle = "Even If It Breaks Your Heart", SongPrice = 1.29M },
+                new Song { SongTitle = "Crazy Girl", SongPrice = 0.89M },
+                new Song { SongTitle = "On My Way", SongPrice = 1.29M },
+                new Song { SongTitle = "Skeletons", SongPrice = 0.99M },
+                new Song { SongTitle = "I Love Your", SongPrice = 1.29M },
+                new Song { SongTitle = "The Fight", SongPrice = 1.29M },
+                new Song { SongTitle = "My Old Man's Son", SongPrice = 1.29M },
+                new Song { SongTitle = "Recover", SongPrice = 1.49M },
+                new Song { SongTitle = "The Falling", SongPrice = 1.29M },
+                new Song { SongTitle = "War On a Desperate Man", SongPrice = 1.29M },
+                new Song { SongTitle = "Say Goodnight", SongPrice = 0.99M },
+                new Song { SongTitle = "How Quickly You Forget", SongPrice = 1.29M },
+                new Song { SongTitle = "Life At Best", SongPrice = 1.29M },
+                new Song { SongTitle = "Room Goes Dark (Demo)", SongPrice = 1.39M },
+                new Song { SongTitle = "Go Outside and Dance", SongPrice = 0.89M },
+                new Song { SongTitle = "Me and Jack (Demo)", SongPrice = 1.29M },
                 
-
                 //Rihanna
                 new Song { SongTitle = "S&M", SongPrice = 1.19M },
                 new Song { SongTitle = "What's My Name", SongPrice = 1.29M },
@@ -335,9 +336,8 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Raining Men", SongPrice = 1.29M },
                 new Song { SongTitle = "Complicated", SongPrice = 0.89M },
                 new Song { SongTitle = "Skin", SongPrice = 1.29M },
-                new Song { SongTitle = "Love The Way You Lie", SongPrice = 1.29M },
+                new Song { SongTitle = "Love The Way You Lie", SongPrice = 1.29M }, 
                 
-
                 //Sam Hunt
                 new Song { SongTitle = "Take Your Time", SongPrice = 1.19M },
                 new Song { SongTitle = "Leave the Night On", SongPrice = 1.19M },
@@ -349,7 +349,7 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Cop Car", SongPrice = 0.99M },
                 new Song { SongTitle = "Raised on It", SongPrice = 0.99M },
                 new Song { SongTitle = "Speakers", SongPrice = 0.99M },
-
+                
                 //Ariana Grande
                 new Song { SongTitle = "Intro", SongPrice = 0.89M },
                 new Song { SongTitle = "Problem (feat. Iggy Azalea)", SongPrice = 1.29M },
@@ -357,7 +357,7 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Why Try", SongPrice = 0.99M },
                 new Song { SongTitle = "Break Free (feat. Big Zedd)", SongPrice = 1.29M },
                 new Song { SongTitle = "Best Mistake (feat. Big Sean)", SongPrice = 0.99M },
-                new Song { SongTitle = "Be My Babt (feat. Cashmere Cat)", SongPrice = 0.99M },
+                new Song { SongTitle = "Be My Baby (feat. Cashmere Cat)", SongPrice = 0.99M },
                 new Song { SongTitle = "Break Your Heart Right Back (feat.)", SongPrice = 0.99M },
                 new Song { SongTitle = "Love Me Harder (feat. The Weeknd)", SongPrice = 1.29M },
                 new Song { SongTitle = "Just A Little Bit of Your Heart", SongPrice = 0.99M },
@@ -437,7 +437,7 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Isabelle", SongPrice = 1.19M },
                 new Song { SongTitle = "The Waltz", SongPrice = 1.29M },
                 new Song { SongTitle = "Me And Eddy B", SongPrice = 1.29M },
-
+                
                 //LMFAO
                 new Song { SongTitle = "Rock the Beat 2", SongPrice = 1.29M },
                 new Song { SongTitle = "Sorry for Party Rocking", SongPrice = 1.49M },
@@ -480,17 +480,28 @@ namespace Final_Project_V2.Migrations
                 new Song { SongTitle = "Quittin' You", SongPrice = 1.29M },
                 new Song { SongTitle = "Miss You Being Gone", SongPrice = 0.89M },
                 new Song { SongTitle = "Double Heart", SongPrice = 1.29M },
-                TEST TEST TEST 
-
+                
                 //Bobby McFerrin
+                new Song { SongTitle ="Don’t Worry, Be Happy", SongPrice = 1.29M},
+                new Song { SongTitle ="Thinkin About Your Body", SongPrice = 1.29M},
+                new Song { SongTitle ="Spain", SongPrice = 1.29M},
+                new Song { SongTitle ="Freedom is a Voice", SongPrice = 1.29M},
+                new Song { SongTitle ="Friends", SongPrice = 1.29M},
+                new Song { SongTitle ="Drive My Car", SongPrice = 1.29M},
+                new Song { SongTitle ="Another Night in Tunsia", SongPrice = 1.29M},
+                new Song { SongTitle ="Blue Bossa", SongPrice = 1.29M},
+                new Song { SongTitle ="Turtle Shoes", SongPrice = 1.29M},
+                new Song { SongTitle ="Good Lovin'", SongPrice = 1.29M},
+                new Song { SongTitle ="From Me To You", SongPrice = 1.29M},
+                new Song { SongTitle ="Bang!Zoom", SongPrice = 1.29M},
+
                 //Bryant Oden
+                new Song { SongTitle ="The Duck Song", SongPrice = 1.29M}
                 //Foster the People
                 //Kanye Jay-Z
                 //Selena Gomez
                 //Sam Hunt?
                 //Individual songs
-                */
-
             };
 
             //Find record based on a property and add/update
@@ -511,7 +522,6 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateSongGenre(db, "Lovesong", "Pop");
             AddOrUpdateSongGenre(db, "Someone Like You", "Pop");
             AddOrUpdateSongGenre(db, "I Found A Boy", "Pop");
-            /*
              //Lady GaGa
             AddOrUpdateSongGenre(db, "Marry the Night", "Pop");
             AddOrUpdateSongGenre(db, "Born This Way", "Pop");
@@ -531,40 +541,40 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateSongGenre(db, "The Edge of Glory", "Pop");
 
             //Florence
-            AddOrUpdateSongGenre(db, "Only If For A Night", "Alternative");
-            AddOrUpdateSongGenre(db, "Shake It Out", "Alternative");
-            AddOrUpdateSongGenre(db, "What the Water Gave Me", "Alternative");
-            AddOrUpdateSongGenre(db, "Never Let Me Go", "Alternative");
-            AddOrUpdateSongGenre(db, "Breaking Down", "Alternative");
-            AddOrUpdateSongGenre(db, "Lover to Lover", "Alternative");
-            AddOrUpdateSongGenre(db, "No Light, No Light", "Alternative");
-            AddOrUpdateSongGenre(db, "Seven Devils", "Alternative");
-            AddOrUpdateSongGenre(db, "Heartlines", "Alternative");
-            AddOrUpdateSongGenre(db, "Spectrum", "Alternative");
-            AddOrUpdateSongGenre(db, "All of This and Heaven Too", "Alternative");
-            AddOrUpdateSongGenre(db, "Leave My Body", "Alternative");
-            AddOrUpdateSongGenre(db, "Remain Nameless", "Alternative");
-            AddOrUpdateSongGenre(db, "Strangeness and Charm", "Alternative");
-            AddOrUpdateSongGenre(db, "Bedroom Hymns", "Alternative");
+            //AddOrUpdateSongGenre(db, "Only If For A Night", "Alternative");
+            //AddOrUpdateSongGenre(db, "Shake It Out", "Alternative");
+            //AddOrUpdateSongGenre(db, "What the Water Gave Me", "Alternative");
+            //AddOrUpdateSongGenre(db, "Never Let Me Go", "Alternative");
+            //AddOrUpdateSongGenre(db, "Breaking Down", "Alternative");
+            //AddOrUpdateSongGenre(db, "Lover to Lover", "Alternative");
+            //AddOrUpdateSongGenre(db, "No Light, No Light", "Alternative");
+            //AddOrUpdateSongGenre(db, "Seven Devils", "Alternative");
+            //AddOrUpdateSongGenre(db, "Heartlines", "Alternative");
+            //AddOrUpdateSongGenre(db, "Spectrum", "Alternative");
+            //AddOrUpdateSongGenre(db, "All of This and Heaven Too", "Alternative");
+            //AddOrUpdateSongGenre(db, "Leave My Body", "Alternative");
+            //AddOrUpdateSongGenre(db, "Remain Nameless", "Alternative");
+            //AddOrUpdateSongGenre(db, "Strangeness and Charm", "Alternative");
+            //AddOrUpdateSongGenre(db, "Bedroom Hymns", "Alternative");
 
-            //James Bay
-            AddOrUpdateSongGenre(db, "Craving", "Alternative");
-            AddOrUpdateSongGenre(db, "Hold Back the River", "Alternative");
-            AddOrUpdateSongGenre(db, "Let it Go", "Alternative");
-            AddOrUpdateSongGenre(db, "If You Ever Want to Be in Love", "Alternative");
-            AddOrUpdateSongGenre(db, "Best Fake Smile", "Alternative");
-            AddOrUpdateSongGenre(db, "When We Were on Fire", "Alternative");
-            AddOrUpdateSongGenre(db, "Move Together", "Alternative");
-            AddOrUpdateSongGenre(db, "Scars", "Alternative");
-            AddOrUpdateSongGenre(db, "Collide", "Alternative");
-            AddOrUpdateSongGenre(db, "Get Out While You Can", "Alternative");
-            AddOrUpdateSongGenre(db, "Need the Sun to Break", "Alternative");
-            AddOrUpdateSongGenre(db, "Incomplete", "Alternative");
+            ////James Bay
+            //AddOrUpdateSongGenre(db, "Craving", "Alternative");
+            //AddOrUpdateSongGenre(db, "Hold Back the River", "Alternative");
+            //AddOrUpdateSongGenre(db, "Let it Go", "Alternative");
+            //AddOrUpdateSongGenre(db, "If You Ever Want to Be in Love", "Alternative");
+            //AddOrUpdateSongGenre(db, "Best Fake Smile", "Alternative");
+            //AddOrUpdateSongGenre(db, "When We Were on Fire", "Alternative");
+            //AddOrUpdateSongGenre(db, "Move Together", "Alternative");
+            //AddOrUpdateSongGenre(db, "Scars", "Alternative");
+            //AddOrUpdateSongGenre(db, "Collide", "Alternative");
+            //AddOrUpdateSongGenre(db, "Get Out While You Can", "Alternative");
+            //AddOrUpdateSongGenre(db, "Need the Sun to Break", "Alternative");
+            //AddOrUpdateSongGenre(db, "Incomplete", "Alternative");
 
-            //Julian Smith
-            AddOrUpdateSongGenre(db, "Eat Randy", "Comedy");
-            */
+            ////Julian Smith
+            //AddOrUpdateSongGenre(db, "Eat Randy", "Comedy");
 
+            /*
             //add artist to song
             AddOrUpdateSongArtist(db, "Rolling In The Deep", "ADELE");
             AddOrUpdateSongArtist(db, "Rumour Has It", "ADELE");
@@ -639,38 +649,38 @@ namespace Final_Project_V2.Migrations
             var albums = new List<Album>
             {
                new Album { AlbumName = "21", AlbumPrice = 10.99M},
-               //new Album { AlbumName = "Loud",  AlbumPrice = 9.99M},
-               //new Album { AlbumName = "If You're Reading This It's Too Late", AlbumGenres = new List<Genre>(), AlbumPrice = 12.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Torches", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Hands All Over", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Hands All Over (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Nothing But the Beat", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Born This Way", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Red River Blue (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 11.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Pink Friday (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Watch The Throne (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 14.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Tailgates & Tanlines", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "The Band Perry", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "When the Sun Goes Down", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Own the Night", AlbumGenres = new List<Genre>(), AlbumPrice = 10.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Life At Best (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 11.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Songs From the Heart", AlbumGenres = new List<Genre>(), AlbumPrice = 13.37M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Chaos and the Calm", AlbumGenres = new List<Genre>(), AlbumPrice = 10.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "My Everything (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 12.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Ceremonials (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 10.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Sorry for Party Rocking (Deluxe Version)", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Montevallo", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "X2C", AlbumGenres = new List<Genre>(), AlbumPrice = 3.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "The Best of Bobby McFerrin", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "Eat Randy - Single", AlbumGenres = new List<Genre>(), AlbumPrice = 1.29M, AlbumSongs = new List<Song>() },
-            //    new Album { AlbumName = "The Duck song (The Duck and the Lemonade Stand)", AlbumGenres = new List<Genre>(), AlbumPrice = 1.29M, AlbumSongs = new List<Song>() },
+               new Album { AlbumName = "Loud",  AlbumPrice = 9.99M},
+               new Album { AlbumName = "If You're Reading This It's Too Late", AlbumPrice = 12.99M},
+               new Album { AlbumName = "Torches", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M},
+               new Album { AlbumName = "Hands All Over", AlbumPrice = 9.99M, },
+               new Album { AlbumName = "Hands All Over (Deluxe Version)",  AlbumPrice = 14.99M },
+               new Album { AlbumName = "Nothing But the Beat", AlbumPrice = 9.99M },
+               new Album { AlbumName = "Born This Way", AlbumPrice = 14.99M},
+               new Album { AlbumName = "Red River Blue (Deluxe Version)", AlbumPrice = 11.99M},
+               new Album { AlbumName = "Pink Friday (Deluxe Version)",AlbumPrice = 14.99M},
+               new Album { AlbumName = "Watch The Throne (Deluxe Version)", AlbumPrice = 14.99M},
+               new Album { AlbumName = "Tailgates & Tanlines", AlbumPrice = 9.99M },
+               new Album { AlbumName = "The Band Perry", AlbumPrice = 9.99M },
+               new Album { AlbumName = "When the Sun Goes Down", AlbumPrice = 9.99M },
+               new Album { AlbumName = "Own the Night", AlbumPrice = 10.99M},
+               new Album { AlbumName = "Life At Best (Deluxe Version)", AlbumPrice = 11.99M },
+               new Album { AlbumName = "Songs From the Heart", AlbumPrice = 13.37M},
+               new Album { AlbumName = "Chaos and the Calm", AlbumPrice = 10.99M },
+               new Album { AlbumName = "My Everything (Deluxe Version)", AlbumPrice = 12.99M },
+               new Album { AlbumName = "Ceremonials (Deluxe Version)", AlbumPrice = 10.99M },
+               new Album { AlbumName = "Sorry for Party Rocking (Deluxe Version)", AlbumPrice = 9.99M },
+               new Album { AlbumName = "Montevallo", AlbumPrice = 9.99M},
+               new Album { AlbumName = "X2C", AlbumPrice = 3.99M },
+               new Album { AlbumName = "The Best of Bobby McFerrin", AlbumPrice = 9.99M },
+               new Album { AlbumName = "Eat Randy - Single", AlbumPrice = 1.29M },
+               new Album { AlbumName = "The Duck song (The Duck and the Lemonade Stand)", AlbumPrice = 1.29M },
              };
 
             ////add to database
             albums.ForEach(a => db.Albums.AddOrUpdate(y => y.AlbumName, a));
             db.SaveChanges();
 
-            AddOrUpdateAlbumGenre(db, "21", "Pop");
+            //AddOrUpdateAlbumGenre(db, "21", "Pop");
             //AddOrUpdateAlbumGenre(db, "Loud", "Pop");
             //AddOrUpdateAlbumGenre(db, "If You're Reading This It's Too Late", "Hip Hop/Rap");
 
@@ -705,7 +715,7 @@ namespace Final_Project_V2.Migrations
             //AddOrUpdateArtistAlbum(db, "ADELE", "21");
             //AddOrUpdateArtistAlbum(db, "Rihanna", "Loud");
 
-            AddOrUpdateAlbumArtist(db, "21", "ADELE");
+            //AddOrUpdateAlbumArtist(db, "21", "ADELE");
 
             /*
             AddOrUpdateAlbumArtist(db, "Sorry for Party Rocking (Deluxe Version)", "LMFAO");
@@ -737,18 +747,18 @@ namespace Final_Project_V2.Migrations
             db.SaveChanges();
 
             //add album to song
-            AddOrUpdateSongAlbum(db, "Rolling In the Deep", "21");
-            AddOrUpdateSongAlbum(db, "Rumour Has It", "21");
-            AddOrUpdateSongAlbum(db, "Turning Tables", "21");
-            AddOrUpdateSongAlbum(db, "Don't You Remember", "21");
-            AddOrUpdateSongAlbum(db, "Set Fire to the Rain", "21");
-            AddOrUpdateSongAlbum(db, "He Won't Go", "21");
-            AddOrUpdateSongAlbum(db, "Take It All", "21");
-            AddOrUpdateSongAlbum(db, "I'll Be Waiting", "21");
-            AddOrUpdateSongAlbum(db, "One and Only", "21");
-            AddOrUpdateSongAlbum(db, "Lovesong", "21");
-            AddOrUpdateSongAlbum(db, "Someone Like You", "21");
-            AddOrUpdateSongAlbum(db, "I Found a Boy", "21");
+            //AddOrUpdateSongAlbum(db, "Rolling In the Deep", "21");
+            //AddOrUpdateSongAlbum(db, "Rumour Has It", "21");
+            //AddOrUpdateSongAlbum(db, "Turning Tables", "21");
+            //AddOrUpdateSongAlbum(db, "Don't You Remember", "21");
+            //AddOrUpdateSongAlbum(db, "Set Fire to the Rain", "21");
+            //AddOrUpdateSongAlbum(db, "He Won't Go", "21");
+            //AddOrUpdateSongAlbum(db, "Take It All", "21");
+            //AddOrUpdateSongAlbum(db, "I'll Be Waiting", "21");
+            //AddOrUpdateSongAlbum(db, "One and Only", "21");
+            //AddOrUpdateSongAlbum(db, "Lovesong", "21");
+            //AddOrUpdateSongAlbum(db, "Someone Like You", "21");
+            //AddOrUpdateSongAlbum(db, "I Found a Boy", "21");
             //    AddOrUpdateSongAlbum(db, "Energy", "If You're Reading This It's Too Late");
             //    AddOrUpdateSongAlbum(db, "S&M", "Loud");
         }
