@@ -272,12 +272,20 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditSong/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongArtist,SongDiscount,SongDiscountEnabled")] Song @song, int[] SelectedGenres, int[] SelectedAlbums)
+        public ActionResult EditSong([Bind(Include = "SongID,SongTitle,SongPrice,Featured,SongDiscount,SongDiscountEnabled")] Song @song, int[] SelectedGenres, int[] SelectedAlbums, Int32 SelectedArtist)
         {
             if (ModelState.IsValid)
             {
                 //Find song to change
                 Song songToChange = db.Songs.Find(@song.SongID);
+
+                if (songToChange.SongArtist.ArtistID != null && songToChange.SongArtist.ArtistID != SelectedArtist)
+                {
+                    Artist ArtistToAdd = db.Artists.Find(SelectedArtist);
+
+                    //update the committee
+                    songToChange.SongArtist = ArtistToAdd;
+                }
 
                 songToChange.SongTitle = @song.SongTitle;
                 songToChange.SongPrice = @song.SongPrice;
