@@ -116,6 +116,10 @@ namespace Final_Project_V2.Migrations
                 new Artist { ArtistName = "Peter, Paul & Mary"},
                 new Artist { ArtistName = "Bobby McFerrin"},
                 new Artist { ArtistName = "Calvin Harris"},
+                //composite artists
+                new Artist { ArtistName = "Kanye West & JAY Z"},
+                new Artist { ArtistName = "Jay-Z & Linkin Park"},
+                new Artist {ArtistName = "Snoop Dogg & Wiz Khalifa" }
             };
 
             //add artists to database
@@ -878,7 +882,7 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateAlbumArtist(db, "Nothing But the Beat", "David Guetta & Usher");
             AddOrUpdateAlbumArtist(db, "Born This Way", "Lady GaGa");
             AddOrUpdateAlbumArtist(db, "Loud", "Rihanna");
-            AddOrUpdateAlbumArtist(db, "Red River Blue (Deluxe Version)", "Blake Shleton");
+            AddOrUpdateAlbumArtist(db, "Red River Blue (Deluxe Version)", "Blake Shelton");
             AddOrUpdateAlbumArtist(db, "Pink Friday (Deluxe Version)", "Nicki Minaj");
             AddOrUpdateAlbumArtist(db, "Watch The Throne (Deluxe Version)", "Kanye West & JAY Z");
             AddOrUpdateAlbumArtist(db, "Tailgates & Tanlines", "Luke Bryan");
