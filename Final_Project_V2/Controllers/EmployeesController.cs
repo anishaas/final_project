@@ -16,7 +16,7 @@ namespace Final_Project_V2.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
-        // GET: Reviews
+        // GET: SongReviews
         //check this method for multiple roles
         [Authorize(Roles = "Employee, Admin")]
         public ActionResult ManageSongReviews()
@@ -27,6 +27,32 @@ namespace Final_Project_V2.Controllers
             List < UserActivityInput > allUserActivity = query.ToList();
             List <UserActivityInput> customerReviews = db.UserActivityInputs.Where(x => x.UserActivityInputType == 3).ToList();
             return View(customerReviews);
+        }
+
+        // GET: AlbumReviews
+        //check this method for multiple roles
+        [Authorize(Roles = "Employee, Admin")]
+        public ActionResult ManageAlbumReviews()
+        {
+            var query = from r in db.UserActivityInputs
+                        select r;
+
+            List<UserActivityInput> allUserActivity = query.ToList();
+            List<UserActivityInput> albumReviews = db.UserActivityInputs.Where(x => x.UserActivityInputType == 5).ToList();
+            return View(albumReviews);
+        }
+
+        // GET: ArtistReviews
+        //check this method for multiple roles
+        [Authorize(Roles = "Employee, Admin")]
+        public ActionResult ManageArtistReviews()
+        {
+            var query = from r in db.UserActivityInputs
+                        select r;
+
+            List<UserActivityInput> allUserActivity = query.ToList();
+            List<UserActivityInput> artistReviews = db.UserActivityInputs.Where(x => x.UserActivityInputType == 7).ToList();
+            return View(artistReviews);
         }
 
         // GET: Employees
