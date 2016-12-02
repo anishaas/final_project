@@ -37,11 +37,11 @@ namespace Final_Project_V2.Controllers.MainControllers
                 return "user not authenticated";
             }
 
-            var songID = Request.Form["songID"];
+            var albumID = Request.Form["albumID"];
 
 
             UserActivityInput b = (from x in db.UserActivityInputs
-                                   where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 4
+                                   where x.UserActivityInputArg1 == albumID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 6
                                    select x).First();
             var numRating = b.UserActivityInputTxt1;
 
@@ -61,10 +61,10 @@ namespace Final_Project_V2.Controllers.MainControllers
             {
                 return "user not authenticated";
             }
-            var songID = Request.Form["songID"];
+            var albumID = Request.Form["albumID"];
 
             UserActivityInput b = (from x in db.UserActivityInputs
-                                   where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 3
+                                   where x.UserActivityInputArg1 == albumID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 5
                                    select x).First();
             var textreview = b.UserActivityInputTxt1;
 

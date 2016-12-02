@@ -141,12 +141,12 @@
                     $('#reviewRow').css('display', 'block');
 
                     //Get the current reviews
-                    $.post('/transactionsAjax/getSongReview', { songID: songDetailsObject[0].SongID })
+                    $.post('/transactionsAjax/getAlbumReview', { albumID: albumDetailsObject[0].albumId })
                     .done(function (data) {
                         $('#textReview').val(data);
                     });
 
-                    $.post('/transactionsAjax/getSongNumRating', { songID: songDetailsObject[0].SongID })
+                    $.post('/transactionsAjax/getAlbumNumRating', { albumID: albumDetailsObject[0].albumId })
                     .done(function (data) {
                         $('#numRating').val(data);
                         $('#numRating').attr('data-pre-id', 'true');
