@@ -38,7 +38,7 @@ namespace Final_Project_V2.Controllers
         public ActionResult AlbumDetails(int id)
         {
             //find respective album
-            List<Album> FoundAlbums = db.Albums.Include(a => a.AlbumGenres).ToList();
+            List<Album> FoundAlbums = db.Albums.Include(a => a.AlbumGenres).Include(a => a.AlbumArtist).ToList();
             Album @album = FoundAlbums.FirstOrDefault(x => x.AlbumID == id);
             //render album details page
             return View("~/Views/Albums/Details.cshtml", @album);
@@ -113,19 +113,23 @@ namespace Final_Project_V2.Controllers
         public ActionResult CreateAlbum()
         {
             ViewBag.AllGenres = GetAllGenres();
+            ViewBag.AllArtists = GetAllArtists();
             return View();
         }
 
         // POST: Admins/CreateAlbum
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured")] Album @album, int[] SelectedGenres)
+        public ActionResult CreateAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured")] Album @album, int[] SelectedGenres, Int32 ArtistID)
         {
             //Validation
             //Check that the album's songs exist in the database
 
             if (ModelState.IsValid)
             {
+                //find selected artist
+                Artist artistToAdd = db.Artists.Find(ArtistID);
+                @album.AlbumArtist = artistToAdd;
                 //add genres
                 if (SelectedGenres != null)
                 {
@@ -135,6 +139,7 @@ namespace Final_Project_V2.Controllers
                         @album.AlbumGenres.Add(genreToAdd);
                     }
                 }
+
                 db.Albums.Add(@album);
                 db.SaveChanges();
                 return RedirectToAction("ManageAlbums");
@@ -324,6 +329,7 @@ namespace Final_Project_V2.Controllers
             }
             Album @album = db.Albums.Find(id);
             ViewBag.AllGenres = GetAllGenres(@album);
+            ViewBag.AllArtists = GetAllArtists(@album);
             return View("~/Views/Admins/EditAlbum.cshtml", @album);
         }
 
@@ -331,13 +337,28 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditAlbum/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist,AlbumDiscount,AlbumDiscountEnabled")] Album @album, int[] SelectedGenres)
+        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist,AlbumDiscount,AlbumDiscountEnabled")] Album @album, int[] SelectedGenres, Int32 ArtistID)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)
             {
-                //Find associated customer
+                //Find associated album
                 Album albumToChange = db.Albums.Find(@album.AlbumID);
+
+                //change artist if necessary
+                //if (albumToChange.AlbumArtist.ArtistID == null)
+                //{
+                //    Artist SelectedArtist = db.Artists.Find(ArtistID);
+                //    albumToChange.AlbumArtist = SelectedArtist;
+                //}
+                if (albumToChange.AlbumArtist.ArtistID != ArtistID)
+                {
+                    //find artist if necessary
+                    Artist SelectedArtist = db.Artists.Find(ArtistID);
+
+                    //update the album
+                    albumToChange.AlbumArtist = SelectedArtist;
+                }
 
                 //clear navigational props
                 albumToChange.AlbumGenres.Clear();
@@ -442,6 +463,20 @@ namespace Final_Project_V2.Controllers
             SelectList allArtistsList = new SelectList(allArtists, "ArtistID", "ArtistName");
 
             return allArtistsList;
+        }
+
+        public SelectList GetAllArtists(Album @album) //ARTIST CHOSEN ALREADY
+        {
+            //populate list of artists
+            var query = from a in db.Artists
+                        orderby a.ArtistName
+                        select a;
+            //create list and execute query 
+            List<Artist> allArtists = query.ToList();
+
+            //convert to select list
+            SelectList list = new SelectList(allArtists, "ArtistID", "ArtistName");
+            return list;
         }
 
         public MultiSelectList GetAllAlbums() //NO ALBUMS

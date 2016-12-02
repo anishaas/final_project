@@ -654,81 +654,81 @@ namespace Final_Project_V2.Migrations
             //AddOrUpdateSongGenre(db, "Eat Randy", "Comedy");
 
             //Maroon 5 
-            AddOrUpdateSongGenre(db, "Misery", "Pop");
-            AddOrUpdateSongGenre(db, "Give a Little More", "Pop");
-            AddOrUpdateSongGenre(db, "Stutter", "Pop");
-            AddOrUpdateSongGenre(db, "Don't Know Nothing", "Pop");
-            AddOrUpdateSongGenre(db, "Never Gonna Leave This Bed", "Pop");
-            AddOrUpdateSongGenre(db, "I Can't Lie", "Pop");
-            AddOrUpdateSongGenre(db, "Hands All Over", "Pop");
-            AddOrUpdateSongGenre(db, "How", "Pop");
-            AddOrUpdateSongGenre(db, "Get Back In My Life", "Pop");
-            AddOrUpdateSongGenre(db, "Just a Feeling", "Pop");
-            AddOrUpdateSongGenre(db, "Runaway", "Pop");
-            AddOrUpdateSongGenre(db, "Out of Goodbyes", "Pop");
-            AddOrUpdateSongGenre(db, "Moves Like Jagger", "Pop");
-            AddOrUpdateSongGenre(db, "The Air That I Breathe", "Pop");
-            AddOrUpdateSongGenre(db, "Last Change", "Pop");
-            AddOrUpdateSongGenre(db, "No Curtain Call", "Pop");
-            AddOrUpdateSongGenre(db, "If I Ain't Got You", "Pop");
+            //AddOrUpdateSongGenre(db, "Misery", "Pop");
+            //AddOrUpdateSongGenre(db, "Give a Little More", "Pop");
+            //AddOrUpdateSongGenre(db, "Stutter", "Pop");
+            //AddOrUpdateSongGenre(db, "Don't Know Nothing", "Pop");
+            //AddOrUpdateSongGenre(db, "Never Gonna Leave This Bed", "Pop");
+            //AddOrUpdateSongGenre(db, "I Can't Lie", "Pop");
+            //AddOrUpdateSongGenre(db, "Hands All Over", "Pop");
+            //AddOrUpdateSongGenre(db, "How", "Pop");
+            //AddOrUpdateSongGenre(db, "Get Back In My Life", "Pop");
+            //AddOrUpdateSongGenre(db, "Just a Feeling", "Pop");
+            //AddOrUpdateSongGenre(db, "Runaway", "Pop");
+            //AddOrUpdateSongGenre(db, "Out of Goodbyes", "Pop");
+            //AddOrUpdateSongGenre(db, "Moves Like Jagger", "Pop");
+            //AddOrUpdateSongGenre(db, "The Air That I Breathe", "Pop");
+            //AddOrUpdateSongGenre(db, "Last Change", "Pop");
+            //AddOrUpdateSongGenre(db, "No Curtain Call", "Pop");
+            //AddOrUpdateSongGenre(db, "If I Ain't Got You", "Pop");
 
-            //Rihanna
-            AddOrUpdateSongGenre(db, "S&M", "Pop");
-            AddOrUpdateSongGenre(db, "What's My Name?", "Pop");
-            AddOrUpdateSongGenre(db, "Cheers", "Pop");
-            AddOrUpdateSongGenre(db, "Fading", "Pop");
-            AddOrUpdateSongGenre(db, "Only Girl (In the World)", "Pop");
-            AddOrUpdateSongGenre(db, "California King Bed", "Pop");
-            AddOrUpdateSongGenre(db, "Man Down", "Pop");
-            AddOrUpdateSongGenre(db, "Raining Men", "Pop");
-            AddOrUpdateSongGenre(db, "Complicated", "Pop");
-            AddOrUpdateSongGenre(db, "Skin", "Pop");
-            AddOrUpdateSongGenre(db, "Love The Way You Lie", "Pop");
+            ////Rihanna
+            //AddOrUpdateSongGenre(db, "S&M", "Pop");
+            //AddOrUpdateSongGenre(db, "What's My Name?", "Pop");
+            //AddOrUpdateSongGenre(db, "Cheers", "Pop");
+            //AddOrUpdateSongGenre(db, "Fading", "Pop");
+            //AddOrUpdateSongGenre(db, "Only Girl (In the World)", "Pop");
+            //AddOrUpdateSongGenre(db, "California King Bed", "Pop");
+            //AddOrUpdateSongGenre(db, "Man Down", "Pop");
+            //AddOrUpdateSongGenre(db, "Raining Men", "Pop");
+            //AddOrUpdateSongGenre(db, "Complicated", "Pop");
+            //AddOrUpdateSongGenre(db, "Skin", "Pop");
+            //AddOrUpdateSongGenre(db, "Love The Way You Lie", "Pop");
 
-            //Ariana Grande
-            AddOrUpdateSongGenre(db, "Intro", "Pop");
-            AddOrUpdateSongGenre(db, "Problem (feat. Iggy Azalea)", "Pop");
-            AddOrUpdateSongGenre(db, "One Last Time", "Pop");
-            AddOrUpdateSongGenre(db, "Break Free(feat.Zedd)", "Pop");
-            AddOrUpdateSongGenre(db, "Best Mistake (feat. Big Sean)", "Pop");
-            AddOrUpdateSongGenre(db, "Be My Baby (feat. Cashmere Cat)", "Pop");
-            AddOrUpdateSongGenre(db, "Break Your Heart Right Back (feat.Childish Gambino)", "Pop");
-            AddOrUpdateSongGenre(db, "Love Me Harder (feat. The Weeknd)", "Pop");
-            AddOrUpdateSongGenre(db, "Just a Little Bit of Your Heart", "Pop");
-            AddOrUpdateSongGenre(db, "Hands On Me (feat.A$AP Ferg)", "Pop");
-            AddOrUpdateSongGenre(db, "Bang Bang (feat. Jessie J and Nicki Minaj)", "Pop");
-            AddOrUpdateSongGenre(db, "Only 1", "Pop");
-            AddOrUpdateSongGenre(db, "You Don't Know Me", "Pop");
+            ////Ariana Grande
+            //AddOrUpdateSongGenre(db, "Intro", "Pop");
+            //AddOrUpdateSongGenre(db, "Problem (feat. Iggy Azalea)", "Pop");
+            //AddOrUpdateSongGenre(db, "One Last Time", "Pop");
+            //AddOrUpdateSongGenre(db, "Break Free(feat.Zedd)", "Pop");
+            //AddOrUpdateSongGenre(db, "Best Mistake (feat. Big Sean)", "Pop");
+            //AddOrUpdateSongGenre(db, "Be My Baby (feat. Cashmere Cat)", "Pop");
+            //AddOrUpdateSongGenre(db, "Break Your Heart Right Back (feat.Childish Gambino)", "Pop");
+            //AddOrUpdateSongGenre(db, "Love Me Harder (feat. The Weeknd)", "Pop");
+            //AddOrUpdateSongGenre(db, "Just a Little Bit of Your Heart", "Pop");
+            //AddOrUpdateSongGenre(db, "Hands On Me (feat.A$AP Ferg)", "Pop");
+            //AddOrUpdateSongGenre(db, "Bang Bang (feat. Jessie J and Nicki Minaj)", "Pop");
+            //AddOrUpdateSongGenre(db, "Only 1", "Pop");
+            //AddOrUpdateSongGenre(db, "You Don't Know Me", "Pop");
 
-            //Blake Shelton
-            AddOrUpdateSongGenre(db, "Honey Bee", "Pop");
-            AddOrUpdateSongGenre(db, "Ready to Roll", "Pop");
-            AddOrUpdateSongGenre(db, "God Gave Me You", "Pop");
-            AddOrUpdateSongGenre(db, "Get Some", "Pop");
-            AddOrUpdateSongGenre(db, "Drink On It", "Pop");
-            AddOrUpdateSongGenre(db, "Good Ole Boys", "Pop");
-            AddOrUpdateSongGenre(db, "I'm Sorry", "Pop");
-            AddOrUpdateSongGenre(db, "Sunny In Seattle", "Pop");
-            AddOrUpdateSongGenre(db, "Over", "Pop");
-            AddOrUpdateSongGenre(db, "Hey", "Pop");
-            AddOrUpdateSongGenre(db, "Red River Blue", "Pop");
-            AddOrUpdateSongGenre(db, "Chili", "Pop");
-            AddOrUpdateSongGenre(db, "Addicted", "Pop");
+            ////Blake Shelton
+            //AddOrUpdateSongGenre(db, "Honey Bee", "Pop");
+            //AddOrUpdateSongGenre(db, "Ready to Roll", "Pop");
+            //AddOrUpdateSongGenre(db, "God Gave Me You", "Pop");
+            //AddOrUpdateSongGenre(db, "Get Some", "Pop");
+            //AddOrUpdateSongGenre(db, "Drink On It", "Pop");
+            //AddOrUpdateSongGenre(db, "Good Ole Boys", "Pop");
+            //AddOrUpdateSongGenre(db, "I'm Sorry", "Pop");
+            //AddOrUpdateSongGenre(db, "Sunny In Seattle", "Pop");
+            //AddOrUpdateSongGenre(db, "Over", "Pop");
+            //AddOrUpdateSongGenre(db, "Hey", "Pop");
+            //AddOrUpdateSongGenre(db, "Red River Blue", "Pop");
+            //AddOrUpdateSongGenre(db, "Chili", "Pop");
+            //AddOrUpdateSongGenre(db, "Addicted", "Pop");
 
-            //Blake Shelton second genre Country
-            AddOrUpdateSongGenre(db, "Honey Bee", "Country");
-            AddOrUpdateSongGenre(db, "Ready to Roll", "Country");
-            AddOrUpdateSongGenre(db, "God Gave Me You", "Country");
-            AddOrUpdateSongGenre(db, "Get Some", "Country");
-            AddOrUpdateSongGenre(db, "Drink On It", "Country");
-            AddOrUpdateSongGenre(db, "Good Ole Boys", "Country");
-            AddOrUpdateSongGenre(db, "I'm Sorry", "Country");
-            AddOrUpdateSongGenre(db, "Sunny In Seattle", "Country");
-            AddOrUpdateSongGenre(db, "Over", "Country");
-            AddOrUpdateSongGenre(db, "Hey", "Country");
-            AddOrUpdateSongGenre(db, "Red River Blue", "Country");
-            AddOrUpdateSongGenre(db, "Chili", "Country");
-            AddOrUpdateSongGenre(db, "Addicted", "Country");
+            ////Blake Shelton second genre Country
+            //AddOrUpdateSongGenre(db, "Honey Bee", "Country");
+            //AddOrUpdateSongGenre(db, "Ready to Roll", "Country");
+            //AddOrUpdateSongGenre(db, "God Gave Me You", "Country");
+            //AddOrUpdateSongGenre(db, "Get Some", "Country");
+            //AddOrUpdateSongGenre(db, "Drink On It", "Country");
+            //AddOrUpdateSongGenre(db, "Good Ole Boys", "Country");
+            //AddOrUpdateSongGenre(db, "I'm Sorry", "Country");
+            //AddOrUpdateSongGenre(db, "Sunny In Seattle", "Country");
+            //AddOrUpdateSongGenre(db, "Over", "Country");
+            //AddOrUpdateSongGenre(db, "Hey", "Country");
+            //AddOrUpdateSongGenre(db, "Red River Blue", "Country");
+            //AddOrUpdateSongGenre(db, "Chili", "Country");
+            //AddOrUpdateSongGenre(db, "Addicted", "Country");
 
             ////add artist to song
             //AddOrUpdateSongArtist(db, "Rolling In The Deep", "ADELE");
@@ -803,7 +803,7 @@ namespace Final_Project_V2.Migrations
             //create album list
             var albums = new List<Album>
             {
-               new Album { AlbumName = "21", AlbumPrice = 10.99M}
+               new Album { AlbumName = "21", AlbumPrice = 10.99M},
                //new Album { AlbumName = "Loud",  AlbumPrice = 9.99M},
                //new Album { AlbumName = "If You're Reading This It's Too Late", AlbumPrice = 12.99M},
                //new Album { AlbumName = "Torches", AlbumGenres = new List<Genre>(), AlbumPrice = 9.99M},
@@ -811,7 +811,7 @@ namespace Final_Project_V2.Migrations
                //new Album { AlbumName = "Hands All Over (Deluxe Version)",  AlbumPrice = 14.99M },
                //new Album { AlbumName = "Nothing But the Beat", AlbumPrice = 9.99M },
                //new Album { AlbumName = "Born This Way", AlbumPrice = 14.99M},
-               //new Album { AlbumName = "Red River Blue (Deluxe Version)", AlbumPrice = 11.99M},
+               new Album { AlbumName = "Red River Blue (Deluxe Version)", AlbumPrice = 11.99M},
                //new Album { AlbumName = "Pink Friday (Deluxe Version)",AlbumPrice = 14.99M},
                //new Album { AlbumName = "Watch The Throne (Deluxe Version)", AlbumPrice = 14.99M},
                //new Album { AlbumName = "Tailgates & Tanlines", AlbumPrice = 9.99M },
@@ -821,7 +821,7 @@ namespace Final_Project_V2.Migrations
                //new Album { AlbumName = "Life At Best (Deluxe Version)", AlbumPrice = 11.99M },
                //new Album { AlbumName = "Songs From the Heart", AlbumPrice = 13.37M},
                //new Album { AlbumName = "Chaos and the Calm", AlbumPrice = 10.99M },
-               //new Album { AlbumName = "My Everything (Deluxe Version)", AlbumPrice = 12.99M },
+               new Album { AlbumName = "My Everything (Deluxe Version)", AlbumPrice = 12.99M },
                //new Album { AlbumName = "Ceremonials (Deluxe Version)", AlbumPrice = 10.99M },
                //new Album { AlbumName = "Sorry for Party Rocking (Deluxe Version)", AlbumPrice = 9.99M },
                //new Album { AlbumName = "Montevallo", AlbumPrice = 9.99M},
@@ -835,7 +835,7 @@ namespace Final_Project_V2.Migrations
             albums.ForEach(a => db.Albums.AddOrUpdate(y => y.AlbumName, a));
             db.SaveChanges();
 
-            AddOrUpdateAlbumGenre(db, "21", "Pop");
+            //AddOrUpdateAlbumGenre(db, "21", "Pop");
             //AddOrUpdateAlbumGenre(db, "Loud", "Pop");
             //AddOrUpdateAlbumGenre(db, "If You're Reading This It's Too Late", "Hip Hop/Rap");
 
@@ -871,8 +871,6 @@ namespace Final_Project_V2.Migrations
             //AddOrUpdateArtistAlbum(db, "Rihanna", "Loud");
 
             AddOrUpdateAlbumArtist(db, "21", "ADELE");
-
-            /*
             AddOrUpdateAlbumArtist(db, "Sorry for Party Rocking (Deluxe Version)", "LMFAO");
             AddOrUpdateAlbumArtist(db, "Torches", "Foster The People");
             AddOrUpdateAlbumArtist(db, "Hands All Over", "Maroon 5");
@@ -890,7 +888,7 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateAlbumArtist(db, "Life At Best (Deluxe Version)", "Eli Young Band");
             AddOrUpdateAlbumArtist(db, "Songs From the Heart", "The Byars Family");
             AddOrUpdateAlbumArtist(db, "Chaos and the Calm", "James Bay");
-            AddOrUpdateAlbumArtist(db, "My Everything (Deluxe Version", "Ariana Grande");
+            AddOrUpdateAlbumArtist(db, "My Everything (Deluxe Version)", "Ariana Grande");
             AddOrUpdateAlbumArtist(db, "Ceremonials (Deluxe Version)", "Florence + The Machine");
             AddOrUpdateAlbumArtist(db, "If You're Reading This It's Too Late", "Drake");
             AddOrUpdateAlbumArtist(db, "Montevallo", "Sam Hunt");
@@ -898,22 +896,21 @@ namespace Final_Project_V2.Migrations
             AddOrUpdateAlbumArtist(db, "The Best of Bobby McFerrin", "Bobby McFerrin");
             AddOrUpdateAlbumArtist(db, "Eat Randy - Single", "Julian Smith");
             AddOrUpdateAlbumArtist(db, "The Duck Song (The Duck and the Lemonade Stand)", "Bryant Oden");
-            */
             db.SaveChanges();
 
             //add album to song
-            AddOrUpdateSongAlbum(db, "Rolling In the Deep", "21");
-            AddOrUpdateSongAlbum(db, "Rumour Has It", "21");
-            AddOrUpdateSongAlbum(db, "Turning Tables", "21");
-            AddOrUpdateSongAlbum(db, "Don't You Remember", "21");
-            AddOrUpdateSongAlbum(db, "Set Fire to the Rain", "21");
-            AddOrUpdateSongAlbum(db, "He Won't Go", "21");
-            AddOrUpdateSongAlbum(db, "Take It All", "21");
-            AddOrUpdateSongAlbum(db, "I'll Be Waiting", "21");
-            AddOrUpdateSongAlbum(db, "One and Only", "21");
-            AddOrUpdateSongAlbum(db, "Lovesong", "21");
-            AddOrUpdateSongAlbum(db, "Someone Like You", "21");
-            AddOrUpdateSongAlbum(db, "I Found a Boy", "21");
+            //AddOrUpdateSongAlbum(db, "Rolling In the Deep", "21");
+            //AddOrUpdateSongAlbum(db, "Rumour Has It", "21");
+            //AddOrUpdateSongAlbum(db, "Turning Tables", "21");
+            //AddOrUpdateSongAlbum(db, "Don't You Remember", "21");
+            //AddOrUpdateSongAlbum(db, "Set Fire to the Rain", "21");
+            //AddOrUpdateSongAlbum(db, "He Won't Go", "21");
+            //AddOrUpdateSongAlbum(db, "Take It All", "21");
+            //AddOrUpdateSongAlbum(db, "I'll Be Waiting", "21");
+            //AddOrUpdateSongAlbum(db, "One and Only", "21");
+            //AddOrUpdateSongAlbum(db, "Lovesong", "21");
+            //AddOrUpdateSongAlbum(db, "Someone Like You", "21");
+            //AddOrUpdateSongAlbum(db, "I Found a Boy", "21");
             //    AddOrUpdateSongAlbum(db, "Energy", "If You're Reading This It's Too Late");
             //    AddOrUpdateSongAlbum(db, "S&M", "Loud");
         }
