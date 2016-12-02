@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "PA Consulting";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--@Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHeader.cshtml"))-->
+    <link type="text/css" rel="stylesheet" href="../../MaterialDesignAssets/css/theme-default/libs/select2/select2.css?1424887856" />
+    <link type="text/css" rel="stylesheet" href="../../MaterialDesignAssets/css/theme-default/libs/multi-select/multi-select.css?1424887857" />
+</head>
+<body class="menubar-hoverable header-fixed menubar-pin ">
+    <!-- BEGIN BASE-->
+    <div id="base">
+        <!-- END OFFCANVAS LEFT -->
+        <!-- BEGIN CONTENT-->
+        <br /><br />
+        <div id="content">
+            <h2>Top Artist By songs, albums, and revenue</h2>
+
+            <!-- BEGIN DATATABLE 1 -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table id="datatable1" class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Artist</th>
+                                    <th>Songs Sold</th>
+                                    <th>Songs Revenue</th>
+                                    <th>Albums Sold</th>
+                                    <th>Albums Revenue</th>
+                                    <th>Total Revenue</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataContainer"></tbody>
+                        </table>
+                    </div><!--end .table-responsive -->
+                </div><!--end .col -->
+            </div><!--end .row -->
+
+        </div><!--end #content-->
+        <!-- END CONTENT -->
+        <div id="htmlComponentsContainer" style="display:none;">
+            @Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHTMLComponents.cshtml"))
+        </div>
+    </div><!--end #base-->
+    <!-- END BASE -->
+    <!-- BEGIN JAVASCRIPT -->
+    <!-- END JAVASCRIPT -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            //masterGenreObject will hold genre attributes which hold an array of objects.
+            //Those objects will hold artistName and Total Revenue counts.
+            var masterArtistList = [];
+
+            $.post('/transactionsAjax/getAllArtists')
+            .done(function (data) {
+
+                var artistListObject = JSON.parse(data);
+
+                $.each(artistListObject, function (i, item) {
+                    var artistObject = {};
+                    alert(item.ArtistName);
+                    artistObject.artistName = item.ArtistName;
+                    artistObject.numSongsSold = 0;
+                    artistObject.songRevenue = 0;
+                    artistObject.numAlbumsSold = 0;
+                    artistObject.albumRevenue = 0;
+                    artistObject.totalRevenue = 0;
+
+                    masterArtistList.push(artistObject);
+                });
+
+                $.post('/transactionsAjax/getOrderData')
+                                .done(function (data) {
+                                    //I need to create an array of objects that hold:
+                                    //SongName, NumSold, RevenueMade.
+                                    //I will first create an array of all the songs with empty object attributes
+                                    //From there, I will parse the order data to start populating the final array of objects.
+
+                                    var orderHistoryObject = JSON.parse(data);
+                                    $.each(orderHistoryObject, function (i, item) {
+
+                                        var orderDetailsObject = JSON.parse(item.UserActivityInputArg3);
+
+                                        $.each(orderDetailsObject.albumItems, function (i, item) {
+                                            var albumArtist = item.albumArtist.trim();
+                                            var priceFloat = parseFloat(item.albumPrice);
+
+                                            if (albumArtist != '') {
+                                                function search(nameKey, myArray) {
+                                                    for (var i = 0; i < myArray.length; i++) {
+                                                        if (myArray[i].artistName === nameKey) {
+                                                            return i;
+                                                        }
+                                                    }
+                                                }
+                                                
+                                                var indexToEdit = search(albumArtist, masterArtistList);
+
+                                                alert(indexToEdit);
+
+                                                masterArtistList[indexToEdit].numAlbumsSold = masterArtistList[indexToEdit].numAlbumsSold + 1;
+                                                masterArtistList[indexToEdit].albumRevenue = masterArtistList[indexToEdit].albumRevenue + priceFloat;
+
+                                            }
+                                           
+                                        });
+
+                                        $.each(orderDetailsObject.songItems, function (i, item) {
+                                            var songArtist = item.songArtist.trim();
+                                            var priceFloat = parseFloat(item.songPrice);
+
+                                            function search(nameKey, myArray) {
+                                                for (var i = 0; i < myArray.length; i++) {
+                                                    if (myArray[i].artistName === nameKey) {
+                                                        return i;
+                                                    }
+                                                }
+                                            }
+                                            var indexToEdit = search(songArtist, masterArtistList);
+
+                                            masterArtistList[indexToEdit].numSongsSold = masterArtistList[indexToEdit].numSongsSold + 1;
+                                            masterArtistList[indexToEdit].songRevenue = masterArtistList[indexToEdit].songRevenue + priceFloat;
+
+                                        });
+                                        $.each(masterArtistList, function (i, item) {
+                                            item.totalRevenue = item.songRevenue + item.albumRevenue;
+                                        });
+                                    });
+
+
+                                    $('#datatable1').dataTable().fnDestroy();
+                                    $('#datatable1').empty();
+
+                                    var dataTable = $('#datatable1').DataTable({
+                                        "dom": 'lCfrtip',
+                                        "order": [],
+                                        "columns": [
+                                        { "title": "Artist", "targets": 0 },
+                                        { "title": "Songs Sold", "targets": 0 },
+                                        { "title": "Songs Revenue", "targets": 0 },
+                                        { "title": "Albums Sold", "targets": 0 },
+                                        { "title": "Albums Revenue", "targets": 0 },
+                                        { "title": "Total Revenue", "targets": 0 }
+                                        ],
+                                        "colVis": {
+                                            "buttonText": "Columns",
+                                            "overlayFade": 0,
+                                            "align": "right"
+                                        },
+                                        "language": {
+                                            "lengthMenu": '_MENU_ entries per page',
+                                            "search": '<i class="fa fa-search"></i>',
+                                            "paginate": {
+                                                "previous": '<i class="fa fa-angle-left"></i>',
+                                                "next": '<i class="fa fa-angle-right"></i>'
+                                            }
+                                        }
+                                    });
+
+
+                                    $('#datatable1 tbody').on('click', 'tr', function () {
+                                        $(this).toggleClass('selected');
+                                    });
+
+                                    masterArtistList.forEach(function (currentValue, index) {
+                                        dataTable.row.add([currentValue.artistName, currentValue.numSongsSold, currentValue.songRevenue, currentValue.numAlbumsSold, currentValue.albumRevenue, currentValue.totalRevenue]).draw();
+                                    });
+
+                                });
+
+            });
+        });
+    </script>
+</body>
+</html>
+

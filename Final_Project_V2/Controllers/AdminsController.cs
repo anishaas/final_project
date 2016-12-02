@@ -189,14 +189,21 @@ namespace Final_Project_V2.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult ManageEmployees()
         {
-
             var query = from c in db.Users
                         select c;
             List<AppUser> allEmployees = query.ToList();
 
             String EmployeeGUID = db.AppRoles.FirstOrDefault(r => r.Name == "Employee").Id;
             allEmployees = db.Users.Where(x => x.Roles.Any(s => s.RoleId == EmployeeGUID)).ToList();
+
             return View(allEmployees);
+        }
+
+        //[Authorize(Roles = "Admin")]
+        public ActionResult promoteEmployees()
+        {
+
+            return View("~/Views/SandBoxViews/promoteEmployees.cshtml");
         }
 
         //GET: Admins/ManageSongs

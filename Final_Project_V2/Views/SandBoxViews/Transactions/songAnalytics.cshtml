@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "PA Consulting";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--@Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHeader.cshtml"))-->
+    <link type="text/css" rel="stylesheet" href="../../MaterialDesignAssets/css/theme-default/libs/select2/select2.css?1424887856" />
+    <link type="text/css" rel="stylesheet" href="../../MaterialDesignAssets/css/theme-default/libs/multi-select/multi-select.css?1424887857" />
+</head>
+<body class="menubar-hoverable header-fixed menubar-pin ">
+    <!-- BEGIN BASE-->
+    <div id="base">
+        <!-- END OFFCANVAS LEFT -->
+        <!-- BEGIN CONTENT-->
+        <br /><br />
+        <div id="content">
+        <h2>Song Analytics</h2>
+
+            <!-- BEGIN DATATABLE 1 -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table id="datatable1" class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Song Title</th>
+                                    <th>Number of purchases</th>
+                                    <th class="sort-numeric">Revenue Earned</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataContainer"></tbody>
+                        </table>
+                    </div><!--end .table-responsive -->
+                </div><!--end .col -->
+            </div><!--end .row -->
+
+        </div><!--end #content-->
+        <!-- END CONTENT -->
+        <div id="htmlComponentsContainer" style="display:none;">
+            @Html.Partial(@Url.Content("~/Views/SandBoxViews/userViewHTMLComponents.cshtml"))
+        </div>
+    </div><!--end #base-->
+    <!-- END BASE -->
+    <!-- BEGIN JAVASCRIPT -->
+    <!-- END JAVASCRIPT -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            var masterSongList = [];
+            $.post('/transactionsAjax/getAllSongs')
+            .done(function (data) {
+                //alert(data);
+                //return;
+
+                var songListObject = JSON.parse(data);
+
+                $.each(songListObject, function (i, item) {
+                    var songObject = {};
+                    songObject.songName = item.SongTitle;
+                    songObject.numSold = 0;
+                    songObject.revenue = 0;
+                    masterSongList.push(songObject);
+                });
+
+                $.post('/transactionsAjax/getOrderData')
+                .done(function (data) {
+                    //I need to create an array of objects that hold:
+                    //SongName, NumSold, RevenueMade.
+                    //I will first create an array of all the songs with empty object attributes
+                    //From there, I will parse the order data to start populating the final array of objects.
+
+                    var orderHistoryObject = JSON.parse(data);
+                    $.each(orderHistoryObject, function (i, item) {
+
+                        var orderDetailsObject = JSON.parse(item.UserActivityInputArg3);
+
+                        $.each(orderDetailsObject.songItems, function (i, item) {
+                            var songTitle = item.songTitle.trim();
+                            var priceFloat = parseFloat(item.songPrice);
+
+                            function search(nameKey, myArray) {
+                                for (var i = 0; i < myArray.length; i++) {
+                                    if (myArray[i].songName === nameKey) {
+                                        return i;
+                                    }
+                                }
+                            }
+                            var indexToEdit = search(songTitle, masterSongList);
+                            masterSongList[indexToEdit].numSold = masterSongList[indexToEdit].numSold + 1;
+                            masterSongList[indexToEdit].revenue = masterSongList[indexToEdit].revenue + priceFloat;
+
+                        });
+
+
+
+                    });
+
+
+                    $('#datatable1').dataTable().fnDestroy();
+                    $('#datatable1').empty();
+
+                    var dataTable = $('#datatable1').DataTable({
+                        "dom": 'lCfrtip',
+                        "order": [],
+                        "columns": [
+                        { "title": "Song Title", "targets": 0 },
+                        { "title": "Number of purchases", "targets": 0 },
+                        { "title": "Revenue Earned", "targets": 0 }
+                        ],
+                        "colVis": {
+                            "buttonText": "Columns",
+                            "overlayFade": 0,
+                            "align": "right"
+                        },
+                        "language": {
+                            "lengthMenu": '_MENU_ entries per page',
+                            "search": '<i class="fa fa-search"></i>',
+                            "paginate": {
+                                "previous": '<i class="fa fa-angle-left"></i>',
+                                "next": '<i class="fa fa-angle-right"></i>'
+                            }
+                        }
+                    });
+
+
+                    $('#datatable1 tbody').on('click', 'tr', function () {
+                        $(this).toggleClass('selected');
+                    });
+
+                    masterSongList.forEach(function (currentValue, index) {
+                        dataTable.row.add([currentValue.songName, currentValue.numSold, currentValue.revenue]).draw();
+                    });
+
+                });
+
+            });
+        });
+    </script>
+</body>
+</html>
+
