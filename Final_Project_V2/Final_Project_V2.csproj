@@ -126,10 +126,6 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -448,10 +444,6 @@
     <Content Include="MaterialDesignAssets\less\shared\themes\theme-5.less" />
     <Content Include="MaterialDesignAssets\less\shared\themes\theme-default.less" />
     <Content Include="MaterialDesignAssets\less\shared\variables.less" />
-    <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="MaterialDesignAssets\css\fonts\fontawesome-webfont.svg" />
     <Content Include="MaterialDesignAssets\css\fonts\glyphicons-halflings-regular.svg" />
@@ -1935,11 +1927,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\ProjectJs\AlbumJs\albumSearch.js" />
     <Content Include="Scripts\ProjectJs\AlbumJs\albumSearchComponents.js" />
     <Content Include="Scripts\ProjectJs\AlbumJs\albumSearchHelperFunctions.js" />
@@ -1998,7 +1985,6 @@
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\SandBoxControllers\SandBoxController.cs" />
     <Compile Include="Controllers\SongsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2125,17 +2111,6 @@
     <Content Include="Views\Admins\EditEmployee.cshtml" />
     <Content Include="Views\Admins\ManageEmployees.cshtml" />
     <Content Include="Views\SandBoxViews\Transactions\orderHistory.cshtml" />
-    <Content Include="Views\SandBoxViews\Transactions\myMusic.cshtml" />
-    <Content Include="Views\Albums\Create.cshtml" />
-    <Content Include="Views\Albums\Details.cshtml" />
-    <Content Include="Views\Albums\Index.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\ManageSongReviews.cshtml" />
-    <Content Include="Views\Employees\ManageAlbumReviews.cshtml" />
-    <Content Include="Views\Employees\ManageArtistReviews.cshtml" />
-    <Content Include="Views\Employees\EditSongReview.cshtml" />
-    <Content Include="Views\Employees\EditAlbumReview.cshtml" />
-    <Content Include="Views\Employees\EditArtistReview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2146,7 +2121,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AjaxControllers\CustomerSearchAjaxControllers\" />
-    <Folder Include="Views\Users\" />
+    <Folder Include="Views\SandBoxViews\Analytics\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611251914146_Initial.resx">
