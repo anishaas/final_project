@@ -140,68 +140,79 @@
                     return;
                 }
 
+                $.post('/transactionsAjax/checkAccountStatus')
+                    .done(function (data) {
+                        if(data == 'invalid'){
+                            alert('Your account is disabled.');
+                            return;
+                        } else {
+                            alert("Thank you for ordering with PA Consulting");
 
-                alert("Thank you for ordering with PA Consulting");
+                            var orderJSONObject = {}
 
-                var orderJSONObject = {}
+                            orderJSONObject.songItems = [];
+                            orderJSONObject.albumItems = [];
+                            orderJSONObject.subTotal = '';
+                            orderJSONObject.total = '';
+                            orderJSONObject.recipient = '';
+                            orderJSONObject.gift = '';
 
-                orderJSONObject.songItems = [];
-                orderJSONObject.albumItems = [];
-                orderJSONObject.subTotal = '';
-                orderJSONObject.total = '';
-                orderJSONObject.recipient = '';
-                orderJSONObject.gift = ''; 
 
-               
+                            var songNameArray = [];
+                            $('.shoppingCartSongItem').each(function () {
+                                var songID = $(this).find('.deleteSongBtn').attr('data-song-id');
 
-                $('.shoppingCartSongItem').each(function () {
-                    var songID = $(this).find('.deleteSongBtn').attr('data-song-id');
+                                var songObject = {};
+                                var songTitle = $(this).find('.songTitle').html();
+                                songNameArray.push(songTitle);
+                                var songArtist = $(this).find('.songArtist').html();
+                                var songPrice = $(this).find('.songPrice').html();
+                                var genreString = $(this).find('.genreStringSpan').html();
+                                var albumString = $(this).find('.albumStringSpan').html();
 
-                    var songObject = {};
-                    var songTitle = $(this).find('.songTitle').html();
-                    var songArtist = $(this).find('.songArtist').html();
-                    var songPrice = $(this).find('.songPrice').html();
-                    var genreString = $(this).find('.genreStringSpan').html();
-                    var albumString = $(this).find('.albumStringSpan').html();
+                                songObject.songTitle = songTitle;
+                                songObject.songArtist = songArtist;
+                                songObject.songPrice = songPrice;
+                                songObject.songGenres = genreString;
+                                songObject.songAlbum = albumString;
 
-                    songObject.songTitle = songTitle;
-                    songObject.songArtist = songArtist;
-                    songObject.songPrice = songPrice;
-                    songObject.songGenres = genreString;
-                    songObject.songAlbum = albumString;
+                                orderJSONObject.songItems.push(songObject);
+                            });
+                            var albumNameArray = [];
+                            $('.albumItem').each(function () {
+                                var albumObject = {};
+                                var albumTitle = $(this).find('.albumTitle').html();
+                                albumNameArray.push(albumTitle);
+                                var albumArtist = $(this).find('.albumArtist').html();
+                                var albumPrice = $(this).find('.albumPrice').html();
+                                var albumGenres = $(this).find('.theGenreString').html();
+                                albumObject.albumTitle = albumTitle;
+                                albumObject.albumArtist = albumArtist;
+                                albumObject.albumPrice = albumPrice;
+                                albumObject.albumGenres = albumGenres;
 
-                    orderJSONObject.songItems.push(songObject);
-                });
+                                orderJSONObject.albumItems.push(albumObject);
+                            });
 
-                $('.albumItem').each(function(){
-                    var albumObject = {};
-                    var albumTitle = $(this).find('.albumTitle').html();
-                    var albumArtist = $(this).find('.albumArtist').html();
-                    var albumPrice = $(this).find('.albumPrice').html();
-                    
-                    albumObject.albumTitle = albumTitle;
-                    albumObject.albumArtist = albumArtist;
-                    albumObject.albumPrice = albumPrice;
+                            orderJSONObject.subTotal = $('#subtotal').html();
+                            orderJSONObject.total = $('#total').html();
+                            orderJSONObject.recipient = $('#recipientEmail').html();
 
-                    orderJSONObject.albumItems.push(albumObject);
-                });
+                            if (arrayLength == 3) {
+                                orderJSONObject.gift = 'true';
+                            } else {
+                                orderJSONObject.gift = 'false';
+                            }
+                            orderString = JSON.stringify(orderJSONObject);
 
-                orderJSONObject.subTotal = $('#subtotal').html();
-                orderJSONObject.total = $('#total').html();
-                orderJSONObject.recipient = $('#recipientEmail').html();
+                            $.post('/transactionsAjax/logOrder', { albumList: albumNameArray.toString(), songList: songNameArray.toString(), orderJSON: orderString, recipientEmail: urlDataArray[1], gift: orderJSONObject.gift })
+                            .done(function (data) {
+                                alert(data);
+                                $('#content').html("<a href='/SandBox/getCustomerSongSearchPage'><h3>Return to search/home page</h3></a>");
+                            });
+                        }
+                    });
 
-                if(arrayLength == 3){
-                    orderJSONObject.gift = 'true';
-                }
-                orderString = JSON.stringify(orderJSONObject);
-
-                $.post('/transactionsAjax/logOrder', { orderJSON: orderString, recipientEmail: urlDataArray[1] })
-                .done(function (data) {
-
-                    alert(data);
-                    $('#content').html("<a href='/SandBox/getCustomerSongSearchPage'><h3>Return to search/home page</h3></a>");
-
-                });
                });
 
 
@@ -249,7 +260,7 @@
                                                     </a>\
                                                     <a style="display:none;" onclick="deleteSong(this)" class="deleteSongBtn" data-song-id="SONGID" class="btn btn-flat ink-reaction">\
                                                         <i class="fa fa-trash"></i>\
-                                                    </a> <div style="display: none"class="genreStringSpan">GENRESTRING</div><div style="display:none" class="albumStringSpan">ALBUMSTRING</div>\
+                                                    </a> <div style="display:none" class="genreStringSpan">GENRESTRING</div><div style="display:none" class="albumStringSpan">ALBUMSTRING</div>\
                                                      </div>       \
                                                 </li>'
                         ;
@@ -297,6 +308,7 @@
                                                         <div class="tile-icon">\
                                                             <i class="fa fa-music"></i>\
                                                         </div>\
+                                                        <div style="display:none;" class="theGenreString">GENRESTRING</div>\
                                                          <div class="tile-text"><b>Title:</b> <span class="albumTitle"> ALBUMTITLE </span> <b>Artist:</b> <span class="albumArtist">ALBUMARTIST</span> <b>Rating: </b><span>ALBUMRATING</span> <b>Price: </b><span class="albumPrice">ALBUMPRICE</span></div>\
                                                     </a>\
                                                     <a onclick="deleteAlbum(this)" class="deleteAlbumBtn" data-song-id="ALBUMID" class="btn btn-flat ink-reaction">\
@@ -305,10 +317,21 @@
                                                 </li>'
                         ;
 
+                        var genreString = '';
+
+                        //alert(songDetailsObject[0].SongGenres[0].GenreName);
+                        albumDetailsObject[0].albumGenres.forEach(function (arrayItem) {
+
+                            genreString = genreString + arrayItem.GenreName + ", ";
+
+                        });
+
                         albumCartHTML = albumCartHTML.replace(/ALBUMID/g, albumDetailsObject[0].albumID);
                         albumCartHTML = albumCartHTML.replace("ALBUMTITLE", albumDetailsObject[0].albumName);
                         albumCartHTML = albumCartHTML.replace("ALBUMARTIST", albumDetailsObject[0].albumArtist);
                         albumCartHTML = albumCartHTML.replace("ALBUMPRICE", albumDetailsObject[0].albumPrice);
+                        albumCartHTML = albumCartHTML.replace("GENRESTRING", genreString);
+
                         albumCartHTML = albumCartHTML.replace("ALBUMRATING", "fml");
 
                         $('#albumListContainer').append(albumCartHTML);

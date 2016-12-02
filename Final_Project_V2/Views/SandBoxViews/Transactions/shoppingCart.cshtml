@@ -127,7 +127,7 @@
 
             $.post('/transactionsajax/deleteSong', { songID: songID })
             .done(function (data) {
-                if(data == "success"){
+                if (data == "success") {
                     $(elm).parent().remove();
                 }
 
@@ -149,7 +149,8 @@
         $(document).ready(function () {
 
             var userID = "@ViewBag.userID";
-            var userEmail = "@ViewBag.userEmail";
+            var userEmail = "@ViewBag.username";
+            alert(userEmail);
             //Set up credit card numbers
             var cc1 = "@ViewBag.CCNumber1";
             var cc1Short = cc1.substr(cc1.length - 4);
@@ -163,60 +164,60 @@
             $('#creditCard2').html("-" + cc2Short);
 
             $('#paymentPageBtn').on("click", function () {
-                
+
 
                 if ($('#ccOption3').attr("checked")) {
                     var newCardNum = $('#newCardNum').val();
-                    if(newCardNum.trim() == ''){
+                    if (newCardNum.trim() == '') {
                         alert("Please enter a new card number that's 16 digits");
                         return;
-                    }else if(newCardNum.length != 16){
+                    } else if (newCardNum.length != 16) {
                         alert('Make sure the new card is 16 digits');
                         return;
                     }
-                    
+
                 }
 
                 if ($('#gifteeCheck').attr("checked")) {
                     var gifteeEmail = $('#gifteeEmail').val();
-                    
-                    if(gifteeEmail.trim() == '' ){
+
+                    if (gifteeEmail.trim() == '') {
                         alert('Please provide a giftee email');
                     } else {
                         $.post('/transactionsAjax/checkIfUserExists', { userID: userID, emailAddress: gifteeEmail })
                         .done(function (data) {
-                            if(data == 'true'){
-                                 
+                            if (data == 'true') {
+
                                 if ($('#ccOption1').attr("checked")) {
-                                    window.location.href = "/transactions/getCheckOutPage" + "?" + $('#creditCard1').html() + "?" + gifteeEmail + "?gift" ;
+                                    window.location.href = "/transactions/getCheckOutPage" + "?" + $('#creditCard1').html() + "?" + gifteeEmail + "?gift";
                                 } else if ($('#ccOption2').attr("checked")) {
                                     window.location.href = "/transactions/getCheckOutPage" + "?" + $('#creditCard2').html() + "?" + gifteeEmail + "?gift";
                                 } else if ($('#ccOption3').attr("checked")) {
                                     window.location.href = "/transactions/getCheckOutPage" + "?-" + newCardNumShort + "?" + gifteeEmail + "?gift";
                                 }
 
-                                
-                            }else{
+
+                            } else {
                                 alert('giftee email does not exist');
                                 return;
-                                }
+                            }
                         });
                     }
                 }
                 var newCardNum = $('#newCardNum').val()
                 var newCardNumShort = newCardNum.substr(newCardNum.length - 4);
 
-                if($('#ccOption1').attr("checked")){
+                if ($('#ccOption1').attr("checked")) {
                     window.location.href = "/transactions/getCheckOutPage" + "?" + $('#creditCard1').html() + "?" + userEmail;
-                }else if($('#ccOption2').attr("checked")){
+                } else if ($('#ccOption2').attr("checked")) {
                     window.location.href = "/transactions/getCheckOutPage" + "?" + $('#creditCard2').html() + "?" + userEmail;
-                }else if ($('#ccOption3').attr("checked")){
+                } else if ($('#ccOption3').attr("checked")) {
                     window.location.href = "/transactions/getCheckOutPage" + "?-" + newCardNumShort + "?" + userEmail;
                 }
-                
 
-                
-                
+
+
+
             });
 
             //Get user song cart data
@@ -232,7 +233,7 @@
 
                 $.each(songListingDataObject, function (index, item) {
 
-                    $.post("/transactionsAjax/getSongDetails", {songID : item.UserActivityInputArg1})
+                    $.post("/transactionsAjax/getSongDetails", { songID: item.UserActivityInputArg1 })
                     .done(function (data) {
 
                         var songDetailsObject = JSON.parse(data);
@@ -330,7 +331,7 @@
                     }
                 });
 
-                if(duplicateCheck == false){
+                if (duplicateCheck == false) {
                     alert('The following are duplicate songs in your shopping cart, please remove them before proceeding to checkout: ' + duplicateSongs);
                     return;
                 }
@@ -339,7 +340,7 @@
                 var albumListLength = $('#albumListContainer > li').length;
 
                 if ((songListLength + albumListLength) == 0) {
-                    
+
                     alert("Please add songs or albums to the shopping cart before proceeding to check out.");
                     return;
                 }
@@ -354,7 +355,7 @@
                   $('.songPrice').each(function () {
                       var priceString = $(this).html();
                       var priceFloat = parseFloat(priceString);
-       
+
                       songTotal += priceFloat;
                   });
 

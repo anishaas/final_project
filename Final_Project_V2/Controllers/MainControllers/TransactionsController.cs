@@ -22,6 +22,29 @@ namespace Final_Project_V2.Controllers.MainControllers
             return View();
         }
         
+        public ActionResult getSongAnalytics()
+        {
+            return View("~/Views/SandBoxViews/Transactions/songAnalytics.cshtml");
+        }
+
+        public ActionResult getAlbumAnalytics()
+        {
+            return View("~/Views/SandBoxViews/Transactions/albumAnalytics.cshtml");
+        }
+        public ActionResult getArtistAnalytics()
+        {
+            return View("~/Views/SandBoxViews/Transactions/artistRevAnalytics.cshtml");
+        }
+        public ActionResult getArtistGenreAnalytics()
+        {
+            return View("~/Views/SandBoxViews/Transactions/artistGenreAnalytics.cshtml");
+        }
+        public ActionResult refundOrder(int? orderNum)
+        {
+            ViewBag.orderNum = orderNum.ToString();
+            return View("~/Views/SandBoxViews/Transactions/refundPage.cshtml");
+        }
+
         public ActionResult getOrderHistory()
         {
             return View("~/Views/SandBoxViews/Transactions/orderHistory.cshtml");
@@ -82,7 +105,7 @@ namespace Final_Project_V2.Controllers.MainControllers
             var cc1Type = "";
             var cc2 = "";
             var cc2Type = "";
-
+            var username = "";
             if (User.Identity.IsAuthenticated)
             {
 
@@ -90,6 +113,7 @@ namespace Final_Project_V2.Controllers.MainControllers
                 var manager = new UserManager<AppUser>(userStore);
                 var currentUser = manager.FindById(User.Identity.GetUserId());
 
+                username = currentUser.UserName;
                 userLastName = currentUser.LastName;
                 userFirstName = currentUser.FirstName;
                 userEmail = currentUser.Email;
@@ -109,6 +133,7 @@ namespace Final_Project_V2.Controllers.MainControllers
             ViewBag.CCNumber2 = cc2;
             ViewBag.CCType2 = cc2Type;
             ViewBag.userEmail = userEmail;
+            ViewBag.username = username;
 
             return View("~/Views/SandBoxViews/Transactions/shoppingCart.cshtml");
         }

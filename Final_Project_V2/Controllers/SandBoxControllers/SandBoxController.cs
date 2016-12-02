@@ -66,7 +66,9 @@ namespace FinalProject.Controllers.SandBoxControllers
                                  ArtistName = song.SongArtist,
                                  Featured = song.Featured,
                                  SongGenres = song.SongGenres,
-                                 SongAlbums = song.SongAlbums
+                                 SongAlbums = song.SongAlbums,
+                                 SongDiscount = song.SongDiscount,
+                                 SongDiscountEnabled = song.SongDiscountEnabled
                              };
 
             songDetailsQuery = songDetailsQuery.Where(s => s.SongID == id);
@@ -101,7 +103,20 @@ namespace FinalProject.Controllers.SandBoxControllers
                 userFirstName = currentUser.FirstName;
                 authenticationStatus = currentUser.EmpType;
 
+                if (User.IsInRole("Admin"))
+                {
+                    ViewBag.userRole = "admin";
+                }
+                else if (User.IsInRole("Employee"))
+                {
+                    ViewBag.userRole = "employee";
+                }
+                else
+                {
+                    ViewBag.userRole = "customer";
+                }
             }
+
             ViewBag.authenticationStatus = authenticationStatus;
             ViewBag.userLastName = userLastName;
             ViewBag.userFirstName = userFirstName;

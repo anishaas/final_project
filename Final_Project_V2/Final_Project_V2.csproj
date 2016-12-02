@@ -2116,6 +2116,12 @@
     <Content Include="Views\Admins\ManageEmployees.cshtml" />
     <Content Include="Views\SandBoxViews\Transactions\orderHistory.cshtml" />
     <Content Include="Views\SandBoxViews\Transactions\myMusic.cshtml" />
+    <Content Include="Views\SandBoxViews\Transactions\refundPage.cshtml" />
+    <Content Include="Views\SandBoxViews\Transactions\songAnalytics.cshtml" />
+    <Content Include="Views\SandBoxViews\Transactions\albumAnalytics.cshtml" />
+    <Content Include="Views\SandBoxViews\Transactions\artistGenreAnalytics.cshtml" />
+    <Content Include="Views\SandBoxViews\Transactions\artistRevAnalytics.cshtml" />
+    <Content Include="Views\SandBoxViews\promoteEmployees.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

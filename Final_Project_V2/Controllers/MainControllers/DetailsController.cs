@@ -37,7 +37,9 @@ namespace Final_Project_V2.Controllers.MainControllers
                                        albumPrice = album.AlbumPrice,
                                        albumArtist = album.AlbumArtist.ArtistName,
                                        albumGenres = album.AlbumGenres,
-                                       albumSongs = album.AlbumSongs
+                                       albumSongs = album.AlbumSongs,
+                                       AlbumDiscountEnabled = album.AlbumDiscountEnabled,
+                                       AlbumDiscount = album.AlbumDiscount
                                    };
 
             albumDetailsQuery = albumDetailsQuery.Where(album => album.albumId == id);
@@ -57,7 +59,6 @@ namespace Final_Project_V2.Controllers.MainControllers
             var userFirstName = "";
             var userID = User.Identity.GetUserId();
             var authenticationStatus = "none";
-
             if (User.Identity.IsAuthenticated)
             {
 
@@ -69,7 +70,19 @@ namespace Final_Project_V2.Controllers.MainControllers
                 userFirstName = currentUser.FirstName;
                 authenticationStatus = currentUser.EmpType;
 
+                if (User.IsInRole("Admin"))
+                {
+                    ViewBag.userRole = "admin";
+                }else if (User.IsInRole("Employee"))
+                {
+                    ViewBag.userRole = "employee";
+                }
+                else
+                {
+                    ViewBag.userRole = "customer";
+                }
             }
+
             ViewBag.authenticationStatus = authenticationStatus;
             ViewBag.userLastName = userLastName;
             ViewBag.userFirstName = userFirstName;

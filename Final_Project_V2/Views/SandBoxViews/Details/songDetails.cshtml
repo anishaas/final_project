@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "PA Consulting";
 }
 
@@ -27,9 +26,10 @@
                             <h3>Artist: <span id="artistSpan"></span></h3>
                             <h3>Genres: <span id="genreSpan"></span> </h3>
                             <h3>Album:<span id="albumSpan"></span> </h3>
+                            <h3>Discounted Price: <span id="discountPrice">N/A</span></h3>
                             <h3>Price: <span id="priceSpan"></span></h3>
                             <h3>Rating: <span id="ratingSpan"></span></h3>
-                            <input type="hidden" id="songID" value=""/>
+                            <input type="hidden" id="songID" value="" />
                         </div><!--end .card-body -->
                         <div class="card-actionbar">
                             <div class="card-actionbar-row">
@@ -60,7 +60,16 @@
                     </div><!--end .col -->
                     <button id="reviewBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Submit Review</button>
                 </div>
-                
+                <div id="allReviews" class="row" >
+                    <h3>Reviews</h3>
+                    <div class="">
+                        <div class="card">
+                            <div id="reviewBody" class="card-body">
+
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                 </div>
             </section>
         </div><!--end #content-->
         <!-- END CONTENT -->
@@ -75,18 +84,30 @@
     <script>
 
         $(document).ready(function () {
+            
+
+
+            //Remove the add to cart button if the user is an employee or admin
+            var userStatus = "@ViewBag.userRole";
+            if(userStatus != 'customer'){
+                $('#addCart').remove();
+            }
 
             //SONG DETAIL SETUP
             var songDetailsJSONString = "@ViewBag.songDetailJSON";
 
             var songDetailsJSONStringParsed = songDetailsJSONString.replace(/&quot;/g, '\"');
             var songDetailsObject = JSON.parse(songDetailsJSONStringParsed);
-            alert(songDetailsJSONStringParsed);
+
+            //alert(songDetailsJSONStringParsed);
             $('#songID').val(songDetailsObject[0].SongID);
 
             $('#songName').html(songDetailsObject[0].SongTitle);
             $('#artistSpan').html(songDetailsObject[0].ArtistName.ArtistName);
-
+            //alert(songDetailsObject[0].SongDiscountEnabled);
+            if (songDetailsObject[0].SongDiscountEnabled == true) {
+                $('#discountPrice').html(songDetailsObject[0].SongPrice - songDetailsObject[0].SongDiscount);
+            }
 
             var genreString = '';
 
@@ -101,6 +122,17 @@
             $('#priceSpan').html(" " + songDetailsObject[0].SongPrice);
             $('#albumSpan').html(" " + songDetailsObject[0].SongAlbums[0].AlbumName);
 
+            //Grab the reviews of the song
+            $.post('/transactionsajax/getSongReviews', { songID:songDetailsObject[0].SongID })
+            .done(function (data) {
+                var songReviewsObject = JSON.parse(data);
+                $.each(songReviewsObject, function (i, item) {
+                    $('#reviewBody').append("<p>" + item.UserActivityInputTxt1 + "</p>");
+                });
+            });
+            
+
+
             //ADD TO CART LOGIC (Put this below Song detail setup later)
             $('#addCart').on('click', function () {
                 if (authenticationStatus != 'none') {
@@ -109,7 +141,7 @@
 
                     $.post("/TransactionsAjax/addSongToCart", { songID: songID, userID: userID })
                     .done(function (data) {
-                        alert(data);
+                       // alert(data);
                         if (data == 'exists') {
                             alert('This song already exists in your cart');
                         } else if (data == 'success') {
@@ -160,7 +192,9 @@
                     //Get the current reviews
                     $.post('/transactionsAjax/getSongReview', { songID: songDetailsObject[0].SongID })
                     .done(function (data) {
+
                         $('#textReview').val(data);
+
                     });
 
                     $.post('/transactionsAjax/getSongNumRating', { songID: songDetailsObject[0].SongID })

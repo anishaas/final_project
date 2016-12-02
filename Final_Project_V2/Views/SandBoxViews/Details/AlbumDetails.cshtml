@@ -26,6 +26,7 @@
                         <div class="card-body text-default-light">
                             <h3>Artist: <span id="artistSpan"></span></h3>
                             <h3>Genres: <span id="genreSpan"></span> </h3>
+                            <h3>Discount Price: <span id="discountPrice">N/A</span></h3>
                             <h3>Price: <span id="priceSpan"></span></h3>
                             <h3>Rating: <span id="ratingSpan"></span></h3>
                             <input type="hidden" id="albumID" value="" />
@@ -59,6 +60,16 @@
                     </div><!--end .col -->
                     <button id="reviewBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Submit Review</button>
                 </div>
+                <div id="allReviews" class="row">
+                    <h3>Reviews</h3>
+                    <div class="">
+                        <div class="card">
+                            <div id="reviewBody" class="card-body">
+
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                </div>
             </section>
         </div><!--end #content-->
         <!-- END CONTENT -->
@@ -73,6 +84,11 @@
     <script>
 
         $(document).ready(function () {
+            //Remove the add to cart button if the user is an employee or admin
+            var userStatus = "@ViewBag.userRole";
+            if (userStatus != 'customer') {
+                $('#addCart').remove();
+            }
 
             var albumDetailsJSONString = "@ViewBag.albumDetailJSON";
 
@@ -95,6 +111,24 @@
 
             $('#genreSpan').html(" " + genreString);
             $('#priceSpan').html(" " + albumDetailsObject[0].albumPrice);
+
+            //Add discounts if applicable
+            if (albumDetailsObject[0].AlbumDiscountEnabled == true) {
+                var discountPoo = albumDetailsObject[0].albumPrice - albumDetailsObject[0].AlbumDiscount;
+                var discountedPrice = discountPoo.toFixed(2)
+                $('#discountPrice').html(discountedPrice);
+            }
+
+            //Get the album reviews
+
+            //Grab the reviews of the song
+            $.post('/transactionsajax/getAlbumReviews', { albumID: albumDetailsObject[0].albumId })
+            .done(function (data) {
+                var albumReviewsObject = JSON.parse(data);
+                $.each(albumReviewsObject, function (i, item) {
+                    $('#reviewBody').append("<p>" + item.UserActivityInputTxt1 + "</p>");
+                });
+            });
 
             //Add to cart logic
             //ADD TO CART LOGIC (Put this below Song detail setup later)
@@ -133,11 +167,11 @@
                     $.each(orderDetailsObject.albumItems, function (i, item) {
                         albumTitle = item.albumTitle;
 
-                        albumNameArray.push(albumTitle);
+                        albumNameArray.push(albumTitle.trim());
                     });
                 });
 
-                if ($.inArray(albumDetailsObject[0].albumName, albumNameArray) != -1) {
+                if ($.inArray(albumDetailsObject[0].albumName.trim(), albumNameArray) != -1) {
                     $('#reviewRow').css('display', 'block');
 
                     //Get the current reviews
@@ -153,8 +187,6 @@
                     });
 
                 }
-
-
 
                 //Submit the user's review
                 $('#reviewBtn').on('click', function () {
@@ -176,17 +208,17 @@
                         alert('Invalid rating, please provide 1-5');
                         return;
                     }
-                    
 
 
-                    $.post('/transactionsAjax/submitReview', { numRating: numRating, textReview: textReview, songID: songDetailsObject[0].SongID })
+
+                    $.post('/transactionsAjax/submitAlbumReview', { numRating: numRating, textReview: textReview, albumID: albumDetailsObject[0].albumId })
                     .done(function (data) {
-                        if(data == 'success'){
+                        if (data == 'success') {
                             alert('Successfully submitted review');
                         }
                     });
 
-
+                });
                 });
         });
     </script>

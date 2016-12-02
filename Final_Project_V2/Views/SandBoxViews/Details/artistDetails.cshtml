@@ -36,6 +36,36 @@
                         </div><!--end .card-actionbar -->
                     </div><!--end .card -->
                 </div><!--end .row -->
+                <div id="reviewRow" class="row" style="display:none">
+                    <h3>Provide a rating/review</h3>
+                    <div class="">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form">
+                                    <div class="form-group">
+                                        <input type="text" data-pre-id="false" class="form-control" id="numRating">
+                                        <label for="regular1">Rating (1-5)</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="textarea1" id="textReview" class="form-control" rows="3" placeholder="100 characters max" maxlength="100"></textarea>
+                                        <label for="textarea1">Write a Review</label>
+                                    </div>
+                                </form>
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                    <button id="reviewBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Submit Review</button>
+                </div>
+                <div id="allReviews" class="row">
+                    <h3>Reviews</h3>
+                    <div class="">
+                        <div class="card">
+                            <div id="reviewBody" class="card-body">
+
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                </div>
             </section>
         </div><!--end #content-->
         <!-- END CONTENT -->
@@ -93,7 +123,93 @@
 
             $('#songSpan').html(" " + songString);
 
+            //Add a review logic
+            //REVIEW LOGIC
+            //Check if the user should be able to see the review panel
+            $.post('/transactionsAjax/getOrderHistory')
+            .done(function (data) {
 
+                var artistNameArray = [];
+                var songArray = [];
+                var orderHistoryObject = JSON.parse(data);
+
+                $.each(orderHistoryObject, function (i, item) {
+
+                    var orderDetailsObject = JSON.parse(item.UserActivityInputArg3);
+                    //Get artist names from album listing
+                    $.each(orderDetailsObject.albumItems, function (i, item) {
+                        albumArtist = item.albumArtist;
+
+                        artistNameArray.push(albumArtist.trim());
+                    });
+
+                    //Get artist names from song listing
+                    $.each(orderDetailsObject.songItems, function (i, item) {
+                        var songObject = {};
+                        songObject.songTitle = item.songTitle;
+                        songObject.songArtist = item.songArtist;
+                        songObject.genreString = item.songGenres;
+                        songObject.albumString = item.songAlbum;
+                        songObject.albumPurchased = 'false';
+
+                        songArray.push(songObject);
+                    });
+
+                    songArray.forEach(function (currentValue, index1) {
+                        var songArtist = currentValue.songArtist;
+                        artistNameArray.push(songArtist.trim());
+                    });
+                });
+
+                if ($.inArray(artistDetailsObject[0].artistName.trim(), artistNameArray) != -1) {
+                    $('#reviewRow').css('display', 'block');
+
+                    //Get the current reviews
+                    $.post('/transactionsAjax/getArtistReview', { artistID: artistDetailsObject[0].artistId })
+                    .done(function (data) {
+                        $('#textReview').val(data);
+                    });
+
+                    $.post('/transactionsAjax/getArtistNumRating', { artistID: artistDetailsObject[0].artistId })
+                    .done(function (data) {
+                        $('#numRating').val(data);
+                        $('#numRating').attr('data-pre-id', 'true');
+                    });
+
+                }
+
+                //Submit the user's review
+                $('#reviewBtn').on('click', function () {
+                    var numRating = $('#numRating').val();
+                    var textReview = $('#textReview').val();
+
+                    if ($('#numRating').attr('data-pre-id') == 'true' && numRating == '') {
+                        alert("You can't delete a rating");
+                        return;
+                    }
+
+                    if (numRating.trim() == '') {
+                        alert('Please provide a rating');
+                        return;
+                    } else if (numRating.length > 1) {
+                        alert('Invalid rating, please provide 1-5');
+                        return;
+                    } else if (!/^[1-5]+$/.test(numRating)) {
+                        alert('Invalid rating, please provide 1-5');
+                        return;
+                    }
+
+
+
+                    $.post('/transactionsAjax/submitArtistReview', { numRating: numRating, textReview: textReview, artistID: artistDetailsObject[0].artistId })
+                    .done(function (data) {
+                        if (data == 'success') {
+                            alert('Successfully submitted review');
+                        }
+                    });
+
+                });
+            });
         });
     </script>
 </body>
