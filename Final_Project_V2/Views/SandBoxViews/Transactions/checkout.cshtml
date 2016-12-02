@@ -256,7 +256,7 @@
 
                         songCartHTML = songCartHTML.replace(/SONGID/g, songDetailsObject[0].SongID);
                         songCartHTML = songCartHTML.replace("SONGTITLE", songDetailsObject[0].SongTitle);
-                        songCartHTML = songCartHTML.replace("SONGARTIST", songDetailsObject[0].ArtistName);
+                        songCartHTML = songCartHTML.replace("SONGARTIST", songDetailsObject[0].ArtistName.ArtistName);
                         songCartHTML = songCartHTML.replace("SONGPRICE", songDetailsObject[0].SongPrice);
                         songCartHTML = songCartHTML.replace("GENRESTRING", genreString);
                         songCartHTML = songCartHTML.replace("ALBUMSTRING", albumString);

@@ -38,6 +38,27 @@
                         </div><!--end .card-actionbar -->
                     </div><!--end .card -->
                 </div><!--end .row -->
+
+                <div id="reviewRow" class="row" style="display:none">
+                    <h3>Provide a rating/review</h3>
+                    <div class="">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form">
+                                    <div class="form-group">
+                                        <input type="text" data-pre-id="false" class="form-control" id="numRating">
+                                        <label for="regular1">Rating (1-5)</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="textarea1" id="textReview" class="form-control" rows="3" placeholder="100 characters max" maxlength="100"></textarea>
+                                        <label for="textarea1">Write a Review</label>
+                                    </div>
+                                </form>
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                    <button id="reviewBtn" type="button" class="btn ink-reaction btn-raised btn-primary">Submit Review</button>
+                </div>
             </section>
         </div><!--end #content-->
         <!-- END CONTENT -->
@@ -95,6 +116,78 @@
                 }
 
             });
+
+            //Add a review logic
+            //REVIEW LOGIC
+            //Check if the user should be able to see the review panel
+            $.post('/transactionsAjax/getOrderHistory')
+            .done(function (data) {
+
+                var albumNameArray = [];
+
+                var orderHistoryObject = JSON.parse(data);
+                $.each(orderHistoryObject, function (i, item) {
+
+                    var orderDetailsObject = JSON.parse(item.UserActivityInputArg3);
+
+                    $.each(orderDetailsObject.albumItems, function (i, item) {
+                        albumTitle = item.albumTitle;
+
+                        albumNameArray.push(albumTitle);
+                    });
+                });
+
+                if ($.inArray(albumDetailsObject[0].albumName, albumNameArray) != -1) {
+                    $('#reviewRow').css('display', 'block');
+
+                    //Get the current reviews
+                    $.post('/transactionsAjax/getSongReview', { songID: songDetailsObject[0].SongID })
+                    .done(function (data) {
+                        $('#textReview').val(data);
+                    });
+
+                    $.post('/transactionsAjax/getSongNumRating', { songID: songDetailsObject[0].SongID })
+                    .done(function (data) {
+                        $('#numRating').val(data);
+                        $('#numRating').attr('data-pre-id', 'true');
+                    });
+
+                }
+
+
+
+                //Submit the user's review
+                $('#reviewBtn').on('click', function () {
+                    var numRating = $('#numRating').val();
+                    var textReview = $('#textReview').val();
+
+                    if ($('#numRating').attr('data-pre-id') == 'true' && numRating == '') {
+                        alert("You can't delete a rating");
+                        return;
+                    }
+
+                    if (numRating.trim() == '') {
+                        alert('Please provide a rating');
+                        return;
+                    } else if (numRating.length > 1) {
+                        alert('Invalid rating, please provide 1-5');
+                        return;
+                    } else if (!/^[1-5]+$/.test(numRating)) {
+                        alert('Invalid rating, please provide 1-5');
+                        return;
+                    }
+                    
+
+
+                    $.post('/transactionsAjax/submitReview', { numRating: numRating, textReview: textReview, songID: songDetailsObject[0].SongID })
+                    .done(function (data) {
+                        if(data == 'success'){
+                            alert('Successfully submitted review');
+                        }
+                    });
+
+
+                });
         });
     </script>
 </body>

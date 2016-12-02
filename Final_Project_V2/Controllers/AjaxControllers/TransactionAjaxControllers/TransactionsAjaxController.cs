@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,8 +23,294 @@ namespace Final_Project_V2.Controllers.MainControllers
             return View();
         }
 
+        public string getAlbumNumRating()
+        {
+            var userIDz = "";
+
+            if (User.Identity.IsAuthenticated)
+            {
+                userIDz = User.Identity.GetUserId();
+
+            }
+            else
+            {
+                return "user not authenticated";
+            }
+
+            var songID = Request.Form["songID"];
+
+
+            UserActivityInput b = (from x in db.UserActivityInputs
+                                   where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 4
+                                   select x).First();
+            var numRating = b.UserActivityInputTxt1;
+
+            return numRating;
+        }
+
+
+        public string getAlbumReview()
+        {
+            var userIDz = "";
+
+            if (User.Identity.IsAuthenticated)
+            {
+                userIDz = User.Identity.GetUserId();
+            }
+            else
+            {
+                return "user not authenticated";
+            }
+            var songID = Request.Form["songID"];
+
+            UserActivityInput b = (from x in db.UserActivityInputs
+                                   where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 3
+                                   select x).First();
+            var textreview = b.UserActivityInputTxt1;
+
+            return textreview;
+        }
+
+        public string getSongNumRating()
+        {
+            var userIDz = "";
+
+            if (User.Identity.IsAuthenticated)
+            {
+                userIDz = User.Identity.GetUserId();
+
+            }
+            else
+            {
+                return "user not authenticated";
+            }
+
+            var songID = Request.Form["songID"];
+            
+
+            UserActivityInput b = (from x in db.UserActivityInputs
+                                   where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 4
+                                   select x).First();
+            var numRating = b.UserActivityInputTxt1;
+
+            return numRating;
+        }
+
+        public string getSongReview()
+        {
+            var userIDz = "";
+
+            if (User.Identity.IsAuthenticated)
+            {
+                userIDz = User.Identity.GetUserId();
+            }
+            else
+            {
+                return "user not authenticated";
+            }   
+            var songID = Request.Form["songID"];
+
+            UserActivityInput b = (from x in db.UserActivityInputs
+                                   where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 3
+                                   select x).First();
+            var textreview = b.UserActivityInputTxt1;
+
+            return textreview;
+        }
+        public string submitAlbumReview()
+        {
+            var userIDz = "";
+
+            if (User.Identity.IsAuthenticated)
+            {
+                userIDz = User.Identity.GetUserId();
+
+            }
+            else
+            {
+                return "user not authenticated";
+            }
+
+            var numRating = Request.Form["numRating"];
+            var textReview = Request.Form["textReview"];
+            var songID = Request.Form["songID"];
+
+            UserActivityInput userInputRating = new UserActivityInput
+            {
+                UserActivityInputType = 4,
+                UserActivityInputArg1 = songID,
+                UserActivityInputArg2 = userIDz,
+                UserActivityInputTxt1 = numRating
+            };
+
+            UserActivityInput userInputReview = new UserActivityInput
+            {
+                UserActivityInputType = 3,
+                UserActivityInputArg1 = songID,
+                UserActivityInputArg2 = userIDz,
+                UserActivityInputTxt1 = textReview
+            };
+
+            if (!db.UserActivityInputs.Any(u => u.UserActivityInputArg1 == songID && u.UserActivityInputArg2 == userIDz))
+            {
+                db.UserActivityInputs.Add(userInputRating);
+                db.UserActivityInputs.Add(userInputReview);
+            }
+            else
+            {
+                UserActivityInput c = (from x in db.UserActivityInputs
+                                       where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 3
+                                       select x).First();
+                c.UserActivityInputTxt1 = textReview;
+
+                UserActivityInput b = (from x in db.UserActivityInputs
+                                       where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 4
+                                       select x).First();
+                b.UserActivityInputTxt1 = numRating;
+            }
+
+            try
+            {
+                db.SaveChanges();
+                return "success";
+            }
+            catch (Exception e)
+            {
+                return "fail";
+            }
+
+
+        }
+        public string submitArtistReview()
+        {
+            var userIDz = "";
+
+            if (User.Identity.IsAuthenticated)
+            {
+                userIDz = User.Identity.GetUserId();
+
+            }
+            else
+            {
+                return "user not authenticated";
+            }
+
+            var numRating = Request.Form["numRating"];
+            var textReview = Request.Form["textReview"];
+            var songID = Request.Form["songID"];
+
+            UserActivityInput userInputRating = new UserActivityInput
+            {
+                UserActivityInputType = 4,
+                UserActivityInputArg1 = songID,
+                UserActivityInputArg2 = userIDz,
+                UserActivityInputTxt1 = numRating
+            };
+
+            UserActivityInput userInputReview = new UserActivityInput
+            {
+                UserActivityInputType = 3,
+                UserActivityInputArg1 = songID,
+                UserActivityInputArg2 = userIDz,
+                UserActivityInputTxt1 = textReview
+            };
+
+            if (!db.UserActivityInputs.Any(u => u.UserActivityInputArg1 == songID && u.UserActivityInputArg2 == userIDz))
+            {
+                db.UserActivityInputs.Add(userInputRating);
+                db.UserActivityInputs.Add(userInputReview);
+            }
+            else
+            {
+                UserActivityInput c = (from x in db.UserActivityInputs
+                                       where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 3
+                                       select x).First();
+                c.UserActivityInputTxt1 = textReview;
+
+                UserActivityInput b = (from x in db.UserActivityInputs
+                                       where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 4
+                                       select x).First();
+                b.UserActivityInputTxt1 = numRating;
+            }
+
+            try
+            {
+                db.SaveChanges();
+                return "success";
+            }
+            catch (Exception e)
+            {
+                return "fail";
+            }
+
+
+        }
+        public string submitReview()
+        {
+            var userIDz = "";
+
+            if (User.Identity.IsAuthenticated)
+            {
+                userIDz = User.Identity.GetUserId();
+
+            }
+            else
+            {
+                return "user not authenticated";
+            }
+
+            var numRating = Request.Form["numRating"];
+            var textReview = Request.Form["textReview"];
+            var songID = Request.Form["songID"];
+
+            UserActivityInput userInputRating = new UserActivityInput
+            {
+                UserActivityInputType = 4,
+                UserActivityInputArg1 = songID,
+                UserActivityInputArg2 = userIDz,
+                UserActivityInputTxt1 = numRating
+            };
+
+            UserActivityInput userInputReview = new UserActivityInput
+            {
+                UserActivityInputType = 3,
+                UserActivityInputArg1 = songID,
+                UserActivityInputArg2 = userIDz,
+                UserActivityInputTxt1 = textReview
+            };
+
+            if (!db.UserActivityInputs.Any(u => u.UserActivityInputArg1 == songID && u.UserActivityInputArg2 == userIDz))
+            {
+                db.UserActivityInputs.Add(userInputRating);
+                db.UserActivityInputs.Add(userInputReview);
+            }else
+            {
+                UserActivityInput c = (from x in db.UserActivityInputs
+                                       where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 3
+                                       select x).First();
+                c.UserActivityInputTxt1 = textReview;
+
+                UserActivityInput b = (from x in db.UserActivityInputs
+                                       where x.UserActivityInputArg1 == songID && x.UserActivityInputArg2 == userIDz && x.UserActivityInputType == 4
+                                       select x).First();
+                b.UserActivityInputTxt1 = numRating;
+            }
+
+            try
+            {
+                db.SaveChanges();
+                return "success";
+            }
+            catch (Exception e)
+            {
+                return "fail";
+            }
+ 
+           
+        }
         public string getOrderHistory()
         {
+
             var userIDz = "";
             if (User.Identity.IsAuthenticated)
             {
@@ -66,8 +353,6 @@ namespace Final_Project_V2.Controllers.MainControllers
 
                 orderNums.Add(intOrderNum);
             }
-
-
 
             var maxOrderNum = 0;
             var newOrderNum = 0;
@@ -257,7 +542,12 @@ namespace Final_Project_V2.Controllers.MainControllers
 
             var songDetailsList = songDetailsQuery.ToList();
 
-            return JsonConvert.SerializeObject(songDetailsList);
+            return JsonConvert.SerializeObject(songDetailsList, Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
+
         }
 
         public string deleteSong()
