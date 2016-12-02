@@ -126,7 +126,11 @@ namespace Final_Project_V2.Controllers
                 customerToChange.CCNumber2 = @customer.CCNumber2;
                 //assign credit card type
                 //AmericanExpress
-                if (customerToChange.CCNumber1 != null && customerToChange.CCNumber1.Length == 15)
+                if (customerToChange.CCNumber1 == null)
+                {
+                    customerToChange.CCType1 = " ";
+                }
+                else if (customerToChange.CCNumber1 != null && customerToChange.CCNumber1.Length == 15)
                 {
                     customerToChange.CCType1 = "AmericanExpress";
                     //All other cards
@@ -150,8 +154,13 @@ namespace Final_Project_V2.Controllers
                         //error message to ViewBag
                         ViewBag.ErrorMessage = "That is not a valid credit card number. Please enter a valid credit card number";
                     }
+                }
 
-                    if (customerToChange.CCNumber2 != null && customerToChange.CCNumber2.Length == 15)
+                    if (customerToChange.CCNumber2 == null)
+                    {
+                        customerToChange.CCType2 = " ";
+                    }
+                    else if (customerToChange.CCNumber2 != null && customerToChange.CCNumber2.Length == 15)
                     {
                         customerToChange.CCType2 = "AmericanExpress";
                         //All other cards
@@ -176,20 +185,11 @@ namespace Final_Project_V2.Controllers
                             ViewBag.ErrorMessage = "That is not a valid credit card number. Please enter a valid credit card number";
                         }
                     }
-                }
-                if (customerToChange.CCNumber1 == null)
-                {
-                    customerToChange.CCType1 = " ";
-                }
-                   if (customerToChange.CCNumber2 == null)
-                {
-                    customerToChange.CCType2 = " ";
-                } 
-                    db.Entry(customerToChange).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("ManageCustomers", "Employees");
-                }
-                return View("~/Views/Employees/EditCustomer.cshtml", @customer);
+                db.Entry(customerToChange).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageCustomers", "Employees");
+            }
+               return View("~/Views/Employees/EditCustomer.cshtml", @customer);
             }
         }
     }
