@@ -322,6 +322,7 @@ namespace Final_Project_V2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Album @album = db.Albums.Find(id);
+            ViewBag.AllGenres = GetAllGenres(@album);
             return View("~/Views/Admins/EditAlbum.cshtml", @album);
         }
 
@@ -350,7 +351,7 @@ namespace Final_Project_V2.Controllers
 
                 db.Entry(albumToChange).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ManageSongs", "Admins");
+                return RedirectToAction("ManageAlbums", "Admins");
             }
             return View("~/Views/Admins/EditAlbum.cshtml", @album);
         }
