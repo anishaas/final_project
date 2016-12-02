@@ -32,7 +32,7 @@ namespace Final_Project_V2.Controllers
         public ActionResult SongDetails(int id)
         {
             //find respective song
-            List<Song> FoundSongs = db.Songs.Include(s => s.SongAlbums).Include(s => s.SongGenres).ToList();
+            List<Song> FoundSongs = db.Songs.Include(s => s.SongAlbums).Include(s => s.SongGenres).Include(s => s.SongArtist).ToList();
             Song @song = FoundSongs.FirstOrDefault(x => x.SongID == id);
             //List<Song> SongsFound = db.Songs.Include(s => s.SongAlbums).ToList();
             //Song @song = FoundSongs.FirstOrDefault(x => x.SongID == id);
@@ -475,7 +475,7 @@ namespace Final_Project_V2.Controllers
             return allArtistsList;
         }
 
-        public SelectList GetAllArtists(Artist @artist) //ARTIST CHOSEN ALREADY
+        public SelectList GetAllArtists(Song @song) //ARTIST CHOSEN ALREADY
         {
             //populate list of artists
             var query = from a in db.Artists
