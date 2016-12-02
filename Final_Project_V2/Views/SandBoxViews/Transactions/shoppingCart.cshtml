@@ -366,8 +366,8 @@
                   });
 
                   var subtotal = songTotal + albumTotal;
-
-                  $('#subtotal').html("$" + subtotal);
+                  var subtotalFixed = subtotal.toFixed(2);
+                  $('#subtotal').html("$" + subtotalFixed);
 
                   var total = subtotal * 1.0825;
                   var totalFixed = total.toFixed(2);
