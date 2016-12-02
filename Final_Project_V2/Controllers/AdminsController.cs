@@ -283,20 +283,25 @@ namespace Final_Project_V2.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Find song to change
+                //Find song to change, artist to add
                 Song songToChange = db.Songs.Find(@song.SongID);
+                Artist ArtistToAdd = db.Artists.Find(SelectedArtist);
 
-                if (songToChange.SongArtist.ArtistID != null && songToChange.SongArtist.ArtistID != SelectedArtist)
+                if (songToChange.SongArtist == null)
                 {
-                    Artist ArtistToAdd = db.Artists.Find(SelectedArtist);
+                    songToChange.SongArtist = ArtistToAdd; 
+                }
+                else if (songToChange.SongArtist.ArtistID != SelectedArtist)
+                {
+                    //Artist ArtistToAdd = db.Artists.Find(SelectedArtist);
 
-                    //update the committee
+                    //update the artist
                     songToChange.SongArtist = ArtistToAdd;
                 }
 
                 songToChange.SongTitle = @song.SongTitle;
                 songToChange.SongPrice = @song.SongPrice;
-                songToChange.SongArtist = @song.SongArtist;
+                //songToChange.SongArtist = @song.SongArtist;
                 songToChange.Featured = @song.Featured;
                 songToChange.SongDiscount = @song.SongDiscount;
 

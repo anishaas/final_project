@@ -29,7 +29,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.SongArtist, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("ArtistID", (SelectList)ViewBag.AllArtists, new { @class = "form-control" })
+            @Html.DropDownList("SelectedArtist", (SelectList)ViewBag.AllArtists, new { @class = "form-control" })
         </div>
     </div>
 
