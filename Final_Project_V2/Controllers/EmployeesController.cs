@@ -37,7 +37,6 @@ namespace Final_Project_V2.Controllers
         [Authorize(Roles = "Employee")]
         public ActionResult Edit()
         {
-            //if the logged in user is an employee, they edit their own account
             string id = User.Identity.GetUserId();
             AppUser @employee = db.Users.Find(id);
             if (id == null)
@@ -57,14 +56,28 @@ namespace Final_Project_V2.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Find associated member
-                AppUser employeeToChange = db.Users.Find(@employee.Id);
+                //Find associated employee
+                AppUser employeeToChange = db.Users.Find(User.Identity.GetUserId());
+                employeeToChange.Address = @employee.Address;
+                employeeToChange.Phone = @employee.Phone;
+                employeeToChange.Password = @employee.Password;
 
                 db.Entry(employeeToChange).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            return View();
+            return RedirectToAction("Details","Employees");
         }
+
+        public ActionResult Details()
+        {
+            AppUser employeeToView = db.Users.Find(User.Identity.GetUserId());
+            if (employeeToView == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View(employeeToView);
+        }
+
 
         //GET: Employees/ManageCustomers
         [Authorize(Roles = "Employee, Admin")]

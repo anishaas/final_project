@@ -52,11 +52,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -448,6 +448,10 @@
     <Content Include="MaterialDesignAssets\less\shared\themes\theme-5.less" />
     <Content Include="MaterialDesignAssets\less\shared\themes\theme-default.less" />
     <Content Include="MaterialDesignAssets\less\shared\variables.less" />
+    <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="MaterialDesignAssets\css\fonts\fontawesome-webfont.svg" />
     <Content Include="MaterialDesignAssets\css\fonts\glyphicons-halflings-regular.svg" />
@@ -1931,6 +1935,11 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\ProjectJs\AlbumJs\albumSearch.js" />
     <Content Include="Scripts\ProjectJs\AlbumJs\albumSearchComponents.js" />
     <Content Include="Scripts\ProjectJs\AlbumJs\albumSearchHelperFunctions.js" />
@@ -2120,6 +2129,7 @@
     <Content Include="Views\Albums\Create.cshtml" />
     <Content Include="Views\Albums\Details.cshtml" />
     <Content Include="Views\Albums\Index.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
