@@ -13,7 +13,6 @@ namespace Final_Project_V2.Controllers
     {
         private AppDbContext db = new AppDbContext();
 
-
         public enum ManageMessageId
         {
             AddPhoneSuccess,
@@ -60,6 +59,30 @@ namespace Final_Project_V2.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        // GET: /Account/AccountSettings
+        public ActionResult AccountSettings()
+        {
+            if (User.IsInRole("Customer"))
+            {
+                AppUser @customer = db.Users.Find(User.Identity.GetUserId());
+                //Redirect to Customers/Edit
+                return RedirectToAction("Edit", "Customers");
+            }
+            if (User.IsInRole("Employee"))
+            {
+                AppUser @employee = db.Users.Find(User.Identity.GetUserId());
+                //Redirect to Employees/Edit
+                return RedirectToAction("Edit", "Employees");
+            }
+            if (User.IsInRole("Admin"))
+            {
+                AppUser @admin = db.Users.Find(User.Identity.GetUserId());
+                //Redirect to Employees/Edit
+                return RedirectToAction("Edit", "Admins");
+            }
+            return RedirectToAction("Login", "Account");
         }
 
         //
