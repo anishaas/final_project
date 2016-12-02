@@ -12,7 +12,7 @@ var albumSearchURLs = {
 
 $(document).ready(function () {
     //Set up the html components in the htmlComponents object so other scripts can easily refer to the html.
-    htmlComponents.genreListComponent = $('#genreListComponent')[0].outerHTML;
-    htmlComponents.moduleButtonComponent = $('#moduleButtonComponent')[0].outerHTML;
-    htmlComponents.tableDataComponent = $('#tableDataComponent')[0].outerHTML;
+    //htmlComponents.genreListComponent = $('#genreListComponent')[0].outerHTML;
+    //htmlComponents.moduleButtonComponent = $('#moduleButtonComponent')[0].outerHTML;
+    //htmlComponents.tableDataComponent = $('#tableDataComponent')[0].outerHTML;
 });

@@ -15,11 +15,11 @@ namespace Final_Project_V2
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            HttpConfiguration config = GlobalConfiguration.Configuration;
+            //HttpConfiguration config = GlobalConfiguration.Configuration;
 
-            config.Formatters.JsonFormatter
-                        .SerializerSettings
-                        .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            //config.Formatters.JsonFormatter
+            //            .SerializerSettings
+            //            .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }

@@ -52,11 +52,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -124,10 +124,6 @@
     </Reference>
     <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -2115,13 +2111,13 @@
     <Content Include="Views\Admins\EditEmployee.cshtml" />
     <Content Include="Views\Admins\ManageEmployees.cshtml" />
     <Content Include="Views\SandBoxViews\Transactions\orderHistory.cshtml" />
-    <Content Include="Views\SandBoxViews\Transactions\myMusic.cshtml" />
-    <Content Include="Views\SandBoxViews\Transactions\refundPage.cshtml" />
-    <Content Include="Views\SandBoxViews\Transactions\songAnalytics.cshtml" />
-    <Content Include="Views\SandBoxViews\Transactions\albumAnalytics.cshtml" />
-    <Content Include="Views\SandBoxViews\Transactions\artistGenreAnalytics.cshtml" />
-    <Content Include="Views\SandBoxViews\Transactions\artistRevAnalytics.cshtml" />
-    <Content Include="Views\SandBoxViews\promoteEmployees.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\EditAlbumReview.cshtml" />
+    <Content Include="Views\Employees\EditArtistReview.cshtml" />
+    <Content Include="Views\Employees\EditSongReview.cshtml" />
+    <Content Include="Views\Employees\ManageAlbumReviews.cshtml" />
+    <Content Include="Views\Employees\ManageArtistReviews.cshtml" />
+    <Content Include="Views\Employees\ManageSongReviews.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2132,6 +2128,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\AjaxControllers\CustomerSearchAjaxControllers\" />
+    <Folder Include="Views\SandBoxViews\Analytics\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611251914146_Initial.resx">

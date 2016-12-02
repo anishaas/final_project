@@ -49,12 +49,15 @@ namespace Final_Project_V2.Models
 
         //LATER: Add additional fields to register users here.
         [Required]
-        [Display(Name = "LastName")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "FirstName")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
+        [Display(Name = "SSN")]
+        public string SSN { get; set; }
 
         [Display(Name = "Middle Initial")]
         public string MI { get; set; }

@@ -22,6 +22,12 @@ namespace Final_Project_V2.Controllers
             return View();
         }
 
+        //GET: Admins/RegisterEmployee
+        public ActionResult RegisterEmployee()
+        {
+            return RedirectToAction("RegisterEmployee", "Account");
+        }
+
         // GET: Admins/SongDetails
         public ActionResult SongDetails(int id)
         {
@@ -38,7 +44,8 @@ namespace Final_Project_V2.Controllers
         public ActionResult AlbumDetails(int id)
         {
             //find respective album
-            Album @album = db.Albums.Find(id);
+            List<Album> FoundAlbums = db.Albums.Include(a => a.AlbumGenres).Include(a => a.AlbumArtist).ToList();
+            Album @album = FoundAlbums.FirstOrDefault(x => x.AlbumID == id);
             //render album details page
             return View("~/Views/Albums/Details.cshtml", @album);
         }
@@ -112,19 +119,23 @@ namespace Final_Project_V2.Controllers
         public ActionResult CreateAlbum()
         {
             ViewBag.AllGenres = GetAllGenres();
+            ViewBag.AllArtists = GetAllArtists();
             return View();
         }
 
         // POST: Admins/CreateAlbum
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured")] Album @album, int[] SelectedGenres)
+        public ActionResult CreateAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured")] Album @album, int[] SelectedGenres, Int32 ArtistID)
         {
             //Validation
             //Check that the album's songs exist in the database
 
             if (ModelState.IsValid)
             {
+                //find selected artist
+                Artist artistToAdd = db.Artists.Find(ArtistID);
+                @album.AlbumArtist = artistToAdd;
                 //add genres
                 if (SelectedGenres != null)
                 {
@@ -134,6 +145,7 @@ namespace Final_Project_V2.Controllers
                         @album.AlbumGenres.Add(genreToAdd);
                     }
                 }
+
                 db.Albums.Add(@album);
                 db.SaveChanges();
                 return RedirectToAction("ManageAlbums");
@@ -221,8 +233,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditEmployee/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditEmployee([Bind(Include = "Id,Phone,DisabledEmployee,Password")] AppUser @employee)
-        //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
+        public ActionResult EditEmployee([Bind(Include = "Id,Phone,FirstName,LastName,Email,SSN,Address,DisabledEmployee,Password")] AppUser @employee)
         {
             if (ModelState.IsValid)
             {
@@ -233,7 +244,11 @@ namespace Final_Project_V2.Controllers
                 employeeToChange.Phone = @employee.Phone;
                 employeeToChange.Password = @employee.Password;
                 employeeToChange.DisabledEmployee = @employee.DisabledEmployee;
-                
+                employeeToChange.FirstName = @employee.FirstName;
+                employeeToChange.LastName = @employee.LastName;
+                employeeToChange.SSN = @employee.SSN;
+                employeeToChange.Address = @employee.Address;
+
                 db.Entry(employeeToChange).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ManageEmployees", "Admins");
@@ -256,6 +271,7 @@ namespace Final_Project_V2.Controllers
             }
             ViewBag.AllGenres = GetAllGenres(@song);
             ViewBag.AllAlbums = GetAllAlbums(@song);
+            ViewBag.AllArtists = GetAllArtists(@song);
             return View("~/Views/Admins/EditSong.cshtml", @song);
         }
 
@@ -329,6 +345,8 @@ namespace Final_Project_V2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Album @album = db.Albums.Find(id);
+            ViewBag.AllGenres = GetAllGenres(@album);
+            ViewBag.AllArtists = GetAllArtists(@album);
             return View("~/Views/Admins/EditAlbum.cshtml", @album);
         }
 
@@ -336,17 +354,44 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditAlbum/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist,AlbumDiscount,AlbumDiscountEnabled")] Album @album)
+        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist,AlbumDiscount,AlbumDiscountEnabled")] Album @album, int[] SelectedGenres, Int32 ArtistID)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)
             {
-                //Find associated customer
+                //Find associated album
                 Album albumToChange = db.Albums.Find(@album.AlbumID);
+
+                //change artist if necessary
+                //if (albumToChange.AlbumArtist.ArtistID == null)
+                //{
+                //    Artist SelectedArtist = db.Artists.Find(ArtistID);
+                //    albumToChange.AlbumArtist = SelectedArtist;
+                //}
+                if (albumToChange.AlbumArtist.ArtistID != ArtistID)
+                {
+                    //find artist if necessary
+                    Artist SelectedArtist = db.Artists.Find(ArtistID);
+
+                    //update the album
+                    albumToChange.AlbumArtist = SelectedArtist;
+                }
+
+                //clear navigational props
+                albumToChange.AlbumGenres.Clear();
+
+                //add genres
+                if (SelectedGenres != null)
+                {
+                    foreach (int Id in SelectedGenres)
+                    {
+                        Genre genreToAdd = db.Genres.Find(Id);
+                        albumToChange.AlbumGenres.Add(genreToAdd);
+                    }
+                }
 
                 albumToChange.AlbumName = @album.AlbumName;
                 albumToChange.AlbumPrice = @album.AlbumPrice;
-                //albumToChange.AlbumGenres = @album.SelectedGenres; 
                 albumToChange.AlbumDiscount = @album.AlbumDiscount;
                 albumToChange.AlbumDiscountEnabled = @album.AlbumDiscountEnabled;
                 if (@album.AlbumDiscountEnabled == true)
@@ -357,7 +402,7 @@ namespace Final_Project_V2.Controllers
 
                 db.Entry(albumToChange).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ManageSongs", "Admins");
+                return RedirectToAction("ManageAlbums", "Admins");
             }
             return View("~/Views/Admins/EditAlbum.cshtml", @album);
         }
@@ -437,6 +482,34 @@ namespace Final_Project_V2.Controllers
             return allArtistsList;
         }
 
+        public SelectList GetAllArtists(Artist @artist) //ARTIST CHOSEN ALREADY
+        {
+            //populate list of artists
+            var query = from a in db.Artists
+                        orderby a.ArtistName
+                        select a;
+            //create list and execute query 
+            List<Artist> allArtists = query.ToList();
+
+            //convert to select list
+            SelectList list = new SelectList(allArtists, "ArtistID", "ArtistName");
+            return list;
+        }
+
+        public SelectList GetAllArtists(Album @album) //ARTIST CHOSEN ALREADY
+        {
+            //populate list of artists
+            var query = from a in db.Artists
+                        orderby a.ArtistName
+                        select a;
+            //create list and execute query 
+            List<Artist> allArtists = query.ToList();
+
+            //convert to select list
+            SelectList list = new SelectList(allArtists, "ArtistID", "ArtistName");
+            return list;
+        }
+
         public MultiSelectList GetAllAlbums() //NO ALBUMS
         {
             //create query to find all albums
@@ -493,8 +566,25 @@ namespace Final_Project_V2.Controllers
             return allGenresList;
         }
 
+        public MultiSelectList GetAllGenres(Album @album)
+        {
+            //find the list of genres
+            var query = from g in db.Genres
+                        orderby g.GenreName
+                        select g;
 
+            List<Genre> allGenres = query.ToList();
+            List<Int32> SelectedGenres = new List<Int32>();
 
+            //Loop through list of genres add GenreId
+            foreach (Genre g in @album.AlbumGenres)
+            {
+                SelectedGenres.Add(g.GenreID);
+            }
 
+            //convert to multiselect
+            MultiSelectList allGenresList = new MultiSelectList(allGenres, "GenreID", "GenreName", SelectedGenres);
+            return allGenresList;
+        }
     }
 }
