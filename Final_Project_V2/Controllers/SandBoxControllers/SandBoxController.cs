@@ -78,8 +78,12 @@ namespace FinalProject.Controllers.SandBoxControllers
 
             var songDetailsList = songDetailsQuery.ToList();
 
-            ViewBag.songDetailJSON = JsonConvert.SerializeObject(songDetailsList);
-
+            //ViewBag.songDetailJSON = JsonConvert.SerializeObject(songDetailsList);
+            ViewBag.songDetailJSON = JsonConvert.SerializeObject(songDetailsList, Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
             //PROVIDING USER DATA TO THE VIEWBAG
             var userLastName = "";
             var userFirstName = "";

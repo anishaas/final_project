@@ -135,9 +135,16 @@
             //FINISH THE CHECKOUT FUNCTIONALITY
             $('#confirmBtn').on('click', function () {
 
+                if ($('#total').html() == 'Updating...Please give a few seconds') {
+                    alert('Please wait for totals to update');
+                    return;
+                }
+
+
                 alert("Thank you for ordering with PA Consulting");
 
                 var orderJSONObject = {}
+
                 orderJSONObject.songItems = [];
                 orderJSONObject.albumItems = [];
                 orderJSONObject.subTotal = '';
@@ -154,10 +161,8 @@
                     var songTitle = $(this).find('.songTitle').html();
                     var songArtist = $(this).find('.songArtist').html();
                     var songPrice = $(this).find('.songPrice').html();
-                    var genreString = $(this).find('').html();
-                    var albumString = '';
-
-                    var songDetailsObject = JSON.parse(data);
+                    var genreString = $(this).find('.genreStringSpan').html();
+                    var albumString = $(this).find('.albumStringSpan').html();
 
                     songObject.songTitle = songTitle;
                     songObject.songArtist = songArtist;
@@ -235,29 +240,27 @@
                         });
 
 
-                        var songCartHTML = '<li id="shoppingCartSongItem" class="tile"> \
-                                                    <a href="/sandbox/getsongdetailspage/SONGID" class="tile-content ink-reaction songItem">\
+                        var songCartHTML = '<li  class="tile"> \
+                                                    <div class="shoppingCartSongItem"><a href="/sandbox/getsongdetailspage/SONGID" class="tile-content ink-reaction songItem">\
                                                         <div class="tile-icon">\
                                                             <i class="fa fa-music"></i>\
                                                         </div>\
                                                          <div class="tile-text"><b>Title:</b> <span class="songTitle"> SONGTITLE </span> <b>Artist:</b> <span class="songArtist">SONGARTIST</span> <b>Rating: </b><span>SONGRATING</span> <b>Price: </b><span class="songPrice">SONGPRICE</span></div>\
                                                     </a>\
-                                                    <a onclick="deleteSong(this)" class="deleteSongBtn" data-song-id="SONGID" class="btn btn-flat ink-reaction">\
+                                                    <a style="display:none;" onclick="deleteSong(this)" class="deleteSongBtn" data-song-id="SONGID" class="btn btn-flat ink-reaction">\
                                                         <i class="fa fa-trash"></i>\
                                                     </a> <div style="display: none"class="genreStringSpan">GENRESTRING</div><div style="display:none" class="albumStringSpan">ALBUMSTRING</div>\
+                                                     </div>       \
                                                 </li>'
                         ;
 
                         songCartHTML = songCartHTML.replace(/SONGID/g, songDetailsObject[0].SongID);
                         songCartHTML = songCartHTML.replace("SONGTITLE", songDetailsObject[0].SongTitle);
-                        songCartHTML = songCartHTML.replace("SONGARTIST", songDetailsObject[0].ArtistName);
+                        songCartHTML = songCartHTML.replace("SONGARTIST", songDetailsObject[0].ArtistName.ArtistName);
                         songCartHTML = songCartHTML.replace("SONGPRICE", songDetailsObject[0].SongPrice);
                         songCartHTML = songCartHTML.replace("GENRESTRING", genreString);
                         songCartHTML = songCartHTML.replace("ALBUMSTRING", albumString);
                         songCartHTML = songCartHTML.replace("SONGRATING", "fml");
-
-
-
 
                         $('#songListingContainer').append(songCartHTML);
                     });
@@ -316,11 +319,6 @@
             $('#checkoutBtn').on('click', function () {
                 var duplicateCheck = true;
 
-                if ($('#total').html() == 'Updating...Please give a few seconds') {
-                    alert('Please wait for totals to update');
-                    return;
-                }
-
                 var duplicateSongs = [];
 
                 $.each(songsArray, function (key, value) {
@@ -365,8 +363,8 @@
                   });
 
                   var subtotal = songTotal + albumTotal;
-
-                  $('#subtotal').html("$" + subtotal);
+                  var subtotalFixed = subtotal.toFixed(2);
+                  $('#subtotal').html("$" + subtotalFixed);
 
                   var total = subtotal * 1.0825;
                   var totalFixed = total.toFixed(2);

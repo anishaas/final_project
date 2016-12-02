@@ -58,23 +58,6 @@ var songSearchHelperFunctions = {};
         });
 
         $.each(searchResultsJSONObject, function (index, item) {
- 
-            /*
-            var tableDataComponentHTML = htmlComponents.tableDataComponent;
-            var songNameUpdate = tableDataComponentHTML.replace("SONGTITLE", item.SongTitle);
-            var artistNameUpdate = songNameUpdate.replace("SONGARTIST", item.ArtistName);
-            var priceUpdate = artistNameUpdate.replace("SONGPRICE", item.SongPrice);
-            var songRatingUpdate = priceUpdate.replace("SONGRATING", "N/A");
-
-            searchResultInsert += songRatingUpdate;
-            */
-            /*
-            var artistString = '';
-
-            $.each(item.SongArtists, function (index, item) {
-                artistString += item.ArtistName + ', ';
-            });
-            */
             dataTable.row.add(["<a href='/sandbox/getSongDetailsPage/" + item.SongID + "'>" + item.SongTitle + "</a>", item.ArtistName, item.SongPrice, "N/A"]).draw();
         });
     }
