@@ -2134,6 +2134,8 @@
     <Content Include="Views\Employees\ManageAlbumReviews.cshtml" />
     <Content Include="Views\Employees\ManageArtistReviews.cshtml" />
     <Content Include="Views\Employees\EditSongReview.cshtml" />
+    <Content Include="Views\Employees\EditAlbumReview.cshtml" />
+    <Content Include="Views\Employees\EditArtistReview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

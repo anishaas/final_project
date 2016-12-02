@@ -86,6 +86,68 @@ namespace Final_Project_V2.Controllers
             return View("~/Views/Employees/EditSongReview.cshtml", @songReview);
         }
 
+        [Authorize(Roles = "Employee, Admin")]
+        // GET: Admins/EditAlbumReview/5
+        public ActionResult EditAlbumReview(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //find passed in review
+            UserActivityInput @albumReview = db.UserActivityInputs.Find(id);
+            return View("~/Views/Employees/EditAlbumReview.cshtml", @albumReview);
+        }
+        [Authorize(Roles = "Employee, Admin")]
+        // POST: Admins/EditAlbumReview/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAlbumReview([Bind(Include = "UserActivityInputID,UserActivityInputTxt1")] UserActivityInput @albumReview)
+        {
+            if (ModelState.IsValid)
+            {
+                //Find associated review
+                UserActivityInput albumReviewToChange = db.UserActivityInputs.Find(@albumReview.UserActivityInputID);
+                albumReviewToChange.UserActivityInputTxt1 = @albumReview.UserActivityInputTxt1;
+
+                db.Entry(albumReviewToChange).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageAlbumReviews", "Employees");
+            }
+            return View("~/Views/Employees/EditAlbumReview.cshtml", @albumReview);
+        }
+
+        //[Authorize(Roles = "Employee, Admin")]
+        //// GET: Admins/EditArtistReview/5
+        //public ActionResult EditArtistReview(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    //find passed in review
+        //    UserActivityInput @artistReview = db.UserActivityInputs.Find(id);
+        //    return View("~/Views/Employees/EditArtistReview.cshtml", @artistReview);
+        //}
+        //[Authorize(Roles = "Employee, Admin")]
+        //// POST: Admins/EditSongReview/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult EditSongReview([Bind(Include = "UserActivityInputID,UserActivityInputTxt1")] UserActivityInput @songReview)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        //Find associated review
+        //        UserActivityInput songReviewToChange = db.UserActivityInputs.Find(@songReview.UserActivityInputID);
+        //        songReviewToChange.UserActivityInputTxt1 = @songReview.UserActivityInputTxt1;
+
+        //        db.Entry(songReviewToChange).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("ManageSongReviews", "Employees");
+        //    }
+        //    return View("~/Views/Employees/EditSongReview.cshtml", @songReview);
+        //}
+
         // GET: Employees
         [Authorize(Roles = "Employee")]
         public ActionResult Index()
