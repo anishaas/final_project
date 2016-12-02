@@ -38,7 +38,8 @@ namespace Final_Project_V2.Controllers
         public ActionResult AlbumDetails(int id)
         {
             //find respective album
-            Album @album = db.Albums.Find(id);
+            List<Album> FoundAlbums = db.Albums.Include(a => a.AlbumGenres).ToList();
+            Album @album = FoundAlbums.FirstOrDefault(x => x.AlbumID == id);
             //render album details page
             return View("~/Views/Albums/Details.cshtml", @album);
         }
@@ -330,7 +331,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditAlbum/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist,AlbumDiscount,AlbumDiscountEnabled")] Album @album)
+        public ActionResult EditAlbum([Bind(Include = "AlbumID,AlbumName,AlbumPrice,Featured,AlbumArtist,AlbumDiscount,AlbumDiscountEnabled")] Album @album, int[] SelectedGenres)
         //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
         {
             if (ModelState.IsValid)
@@ -338,9 +339,21 @@ namespace Final_Project_V2.Controllers
                 //Find associated customer
                 Album albumToChange = db.Albums.Find(@album.AlbumID);
 
+                //clear navigational props
+                albumToChange.AlbumGenres.Clear();
+
+                //add genres
+                if (SelectedGenres != null)
+                {
+                    foreach (int Id in SelectedGenres)
+                    {
+                        Genre genreToAdd = db.Genres.Find(Id);
+                        albumToChange.AlbumGenres.Add(genreToAdd);
+                    }
+                }
+
                 albumToChange.AlbumName = @album.AlbumName;
                 albumToChange.AlbumPrice = @album.AlbumPrice;
-                //albumToChange.AlbumGenres = @album.SelectedGenres; 
                 albumToChange.AlbumDiscount = @album.AlbumDiscount;
                 albumToChange.AlbumDiscountEnabled = @album.AlbumDiscountEnabled;
                 if (@album.AlbumDiscountEnabled == true)
