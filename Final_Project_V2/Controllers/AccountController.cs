@@ -285,7 +285,7 @@ namespace Final_Project_V2.Controllers
             {
                 //LATER: Add fields to user here so they will be saved to the database 
                 //Create a new user with all the properties you need for the class
-                var user = new AppUser { UserName = model.Email, Email = model.Email, LastName = model.LastName, FirstName = model.FirstName};
+                var user = new AppUser { UserName = model.Email, Email = model.Email, Password = model.Password, LastName = model.LastName, FirstName = model.FirstName, Phone = model.Phone, Address = model.Address, SSN = model.SSN, ZipCode = model.ZipCode};
                 user.EmpType = "Employee";
 
                 //Add the new user to the database

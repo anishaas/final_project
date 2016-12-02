@@ -22,6 +22,12 @@ namespace Final_Project_V2.Controllers
             return View();
         }
 
+        //GET: Admins/RegisterEmployee
+        public ActionResult RegisterEmployee()
+        {
+            return RedirectToAction("RegisterEmployee", "Account");
+        }
+
         // GET: Admins/SongDetails
         public ActionResult SongDetails(int id)
         {
@@ -220,8 +226,7 @@ namespace Final_Project_V2.Controllers
         // POST: Admins/EditEmployee/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditEmployee([Bind(Include = "Id,Phone,DisabledEmployee,Password")] AppUser @employee)
-        //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
+        public ActionResult EditEmployee([Bind(Include = "Id,Phone,FirstName,LastName,Email,SSN,Address,DisabledEmployee,Password")] AppUser @employee)
         {
             if (ModelState.IsValid)
             {
@@ -232,7 +237,11 @@ namespace Final_Project_V2.Controllers
                 employeeToChange.Phone = @employee.Phone;
                 employeeToChange.Password = @employee.Password;
                 employeeToChange.DisabledEmployee = @employee.DisabledEmployee;
-                
+                employeeToChange.FirstName = @employee.FirstName;
+                employeeToChange.LastName = @employee.LastName;
+                employeeToChange.SSN = @employee.SSN;
+                employeeToChange.Address = @employee.Address;
+
                 db.Entry(employeeToChange).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ManageEmployees", "Admins");

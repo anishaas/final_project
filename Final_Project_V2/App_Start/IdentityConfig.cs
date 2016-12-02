@@ -37,7 +37,7 @@ namespace Final_Project_V2
             // NOTE: Configure validation logic for passwords - what are the rules for your passwords?
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
+                RequiredLength = 5,
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
                 RequireLowercase = false,
