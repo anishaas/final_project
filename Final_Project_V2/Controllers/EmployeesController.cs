@@ -65,7 +65,7 @@ namespace Final_Project_V2.Controllers
                 db.Entry(employeeToChange).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            return RedirectToAction("Details","Employees");
+            return RedirectToAction("Details", "Employees");
         }
 
         public ActionResult Details()
@@ -109,44 +109,41 @@ namespace Final_Project_V2.Controllers
         // POST: Employees/EditCustomer/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditCustomer([Bind(Include = "Id,Phone,DisabledCustomer,Password")] AppUser @customer)
-        //LastName,FirstName,EmailAddress,CCType1,CCNumber1,CCType2,CCNumber2
+        public ActionResult EditCustomer([Bind(Include = "Id,Phone,DisabledCustomer,Password,FirstName,LastName,Email,CCNumber1,CCNumber2")] AppUser @customer)
         {
             if (ModelState.IsValid)
             {
                 //Find associated customer
                 AppUser customerToChange = db.Users.Find(@customer.Id);
 
+                customerToChange.FirstName = @customer.FirstName;
+                customerToChange.LastName = @customer.LastName;
                 customerToChange.Email = @customer.Email;
                 customerToChange.Phone = @customer.Phone;
                 customerToChange.Password = @customer.Password;
                 customerToChange.DisabledCustomer = @customer.DisabledCustomer;
-
-                /*
-                //update customer properties based on edits
-                customerToChange.LastName = @customer.LastName;
-                customerToChange.FirstName = @customer.FirstName;
-
+                customerToChange.CCNumber1 = @customer.CCNumber1;
+                customerToChange.CCNumber2 = @customer.CCNumber2;
                 //assign credit card type
                 //AmericanExpress
-                if (@customer.CCNumber1.Length == 15)
+                if (customerToChange.CCNumber1 != null && customerToChange.CCNumber1.Length == 15)
                 {
-                    @customer.CCType1 = "AmericanExpress";
+                    customerToChange.CCType1 = "AmericanExpress";
                     //All other cards
                 }
-                else if (@customer.CCNumber1.Length == 16)
+                else if (customerToChange.CCNumber1 != null && customerToChange.CCNumber1.Length == 16)
                 {
-                    if (@customer.CCNumber1.Substring(0, 2) == "54")
+                    if (customerToChange.CCNumber1.Substring(0, 2) == "54")
                     {
-                        @customer.CCType1 = "MasterCard";
+                        customerToChange.CCType1 = "MasterCard";
                     }
-                    else if (@customer.CCNumber1.Substring(0, 1) == "4")
+                    else if (customerToChange.CCNumber1.Substring(0, 1) == "4")
                     {
-                        @customer.CCType1 = "Visa";
+                        customerToChange.CCType1 = "Visa";
                     }
-                    else if (@customer.CCNumber1.Substring(0, 1) == "6")
+                    else if (customerToChange.CCNumber1.Substring(0, 1) == "6")
                     {
-                        @customer.CCType1 = "Discover";
+                        customerToChange.CCType1 = "Discover";
                     }
                     else
                     {
@@ -154,19 +151,45 @@ namespace Final_Project_V2.Controllers
                         ViewBag.ErrorMessage = "That is not a valid credit card number. Please enter a valid credit card number";
                     }
 
+                    if (customerToChange.CCNumber2 != null && customerToChange.CCNumber2.Length == 15)
+                    {
+                        customerToChange.CCType2 = "AmericanExpress";
+                        //All other cards
+                    }
+                    else if (customerToChange.CCNumber2 != null && customerToChange.CCNumber2.Length == 16)
+                    {
+                        if (customerToChange.CCNumber2.Substring(0, 2) == "54")
+                        {
+                            customerToChange.CCType2 = "MasterCard";
+                        }
+                        else if (customerToChange.CCNumber2.Substring(0, 1) == "4")
+                        {
+                            customerToChange.CCType2 = "Visa";
+                        }
+                        else if (customerToChange.CCNumber2.Substring(0, 1) == "6")
+                        {
+                            customerToChange.CCType2 = "Discover";
+                        }
+                        else
+                        {
+                            //error message to ViewBag
+                            ViewBag.ErrorMessage = "That is not a valid credit card number. Please enter a valid credit card number";
+                        }
+                    }
                 }
-                //update exisitng credit cards
-                customerToChange.CCType1 = @customer.CCType1;
-                customerToChange.CCNumber1 = @customer.CCNumber1;
-                customerToChange.CCType2 = @customer.CCType2;
-                customerToChange.CCNumber2 = @customer.CCNumber2;
-                */
-
-                db.Entry(customerToChange).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                if (customerToChange.CCNumber1 == null)
+                {
+                    customerToChange.CCType1 = " ";
+                }
+                   if (customerToChange.CCNumber2 == null)
+                {
+                    customerToChange.CCType2 = " ";
+                } 
+                    db.Entry(customerToChange).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("ManageCustomers", "Employees");
+                }
+                return View("~/Views/Employees/EditCustomer.cshtml", @customer);
             }
-            return View("~/Views/Employees/EditCustomer.cshtml",@customer);
         }
     }
-}
